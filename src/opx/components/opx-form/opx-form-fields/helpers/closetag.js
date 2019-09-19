@@ -29,9 +29,9 @@
 
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
-    mod(require("../../../../../../../node_modules/codemirror/lib/codemirror"), require("../../../../../../../node_modules/codemirror/addon/fold/xml-fold"));
+    mod(require("codemirror/lib/codemirror"), require("codemirror/addon/fold/xml-fold"));
   else if (typeof define == "function" && define.amd) // AMD
-    define(["../../../../../../../node_modules/codemirror/lib/codemirror", "../../../../../../../node_modules/codemirror/addon/fold/xml-fold"], mod);
+    define(["codemirror/lib/codemirror", "codemirror/addon/fold/xml-fold"], mod);
   else // Plain browser env
     mod(CodeMirror);
 })(function(CodeMirror) {
