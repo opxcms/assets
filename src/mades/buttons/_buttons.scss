@@ -1,0 +1,47 @@
+@import "variables";
+@import "../variables";
+@import "../mixins/no-selection";
+@import "../mixins/border-radius";
+@import "../mixins/shadows";
+
+.button {
+   display: inline-block;
+   position: relative;
+   border: none;
+   outline: none;
+   padding: $buttons-padding;
+   cursor: pointer;
+   font-family: $buttons-font-family;
+   font-size: $buttons-font-size !important;
+   font-weight: $buttons-font-weight;
+   background-color: $buttons-default-color;
+   color: $buttons-default-text-color;
+   text-transform: uppercase;
+   letter-spacing: $buttons-font-spacing;
+   text-decoration: none;
+   @include border-radius($buttons-border-radius);
+   @include noSelection('&');
+   &:not(.disabled){
+     @include shadow-2dp;
+     @include shadow-hover-4dp;
+     @include shadow-active-none;
+   }
+
+   &.success {
+     background-color: $buttons-success-color;
+     color: $buttons-success-text-color;
+   }
+   &.info {
+     background-color: $color-info-darken-1;
+     color: $buttons-info-text-color;
+   }
+   &.error {
+     background-color: $buttons-error-color;
+     color: $buttons-error-text-color;
+   }
+   &.disabled {
+     background-color: $buttons-disabled-color;
+     color: $buttons-disabled-text-color;
+     cursor: not-allowed;
+   }
+ }

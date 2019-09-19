@@ -1,0 +1,21 @@
+@import "../colors";
+@import "../variables";
+
+$toolbar-base-height: 2rem;
+$toolbar-button-spacing: 0.3rem;
+$toolbar-button-icon-size: 1.6rem;
+$toolbar-button-icon-color: $color-gray-8;
+$toolbar-button-icon-hover-color: $color-darker-gray;
+$toolbar-button-icon-disabled-color: $color-gray-4;
+
+$toolbar-window-offset: -1rem;
+$toolbar-window-padding: 1rem;
+$toolbar-window-background: $color-white;
+$toolbar-window-line-height: 1.4rem;
+$toolbar-window-line-font-size: 1rem;
+$toolbar-window-line-spacing: 0.6rem;
+$toolbar-window-line-item-spacing: 0.5rem;
+$toolbar-window-line-text-color: $color-darker-gray;
+$toolbar-window-line-button-color: $color-gray-6;
+$toolbar-window-line-button-active-color: $color-blue-7;
+$toolbar-window-line-button-hover-color: $color-darker-gray;

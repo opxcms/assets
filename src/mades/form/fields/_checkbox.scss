@@ -1,0 +1,117 @@
+@import "../variables";
+@import "../variables_field";
+@import "../../mixins/transition";
+
+.opx-form-field-checkbox {
+  cursor: pointer;
+
+  &__in-list {
+    margin: 0.7rem 0;
+    display: block;
+  }
+
+  &__check {
+    display: inline-block;
+    width: $form-default-size;
+    height: $form-default-size;
+    border-radius: 2px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    margin-right: $form-default-size / 2;
+    border: 1px solid $form-text-color;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__label {
+    font-family: $form-font-family;
+    color: $form-active-color;
+    display: inline-block;
+    font-size: $form-default-size;
+    line-height: $form-default-size;
+    vertical-align: middle;
+    letter-spacing: $form-font-spacing;
+    font-weight: $form-field-caption-font-weight;
+  }
+
+  &__checked &__check {
+    border-color: $form-active-color;
+    background-color: $form-active-color;
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -70%) rotate(-45deg);
+      width: 0.5 * $form-default-size;
+      height: 0.4 * $form-default-size;
+      box-sizing: border-box;
+      border-width: 0 0 2px 2px;
+      border-style: solid;
+      border-color: $form-background;
+    }
+  }
+
+  &__group {
+    &-title {
+      font-family: $form-font-family;
+      color: $form-active-color;
+      display: inline-block;
+      font-size: $form-default-size;
+      margin-top: $form-default-size / 2;
+      line-height: $form-default-size;
+      vertical-align: middle;
+      letter-spacing: $form-font-spacing;
+      text-transform: uppercase;
+      cursor: pointer;
+      @include transition('color');
+
+      &:hover {
+        color: $form-hover-color;
+      }
+    }
+
+    &-body {
+      box-sizing: border-box;
+      padding-left: $form-default-size;
+    }
+  }
+
+  &__invalid {
+
+  }
+
+  &__modified:not(&__checked) &__check {
+    border-color: $form-modified-color;
+  }
+
+  #{&}__checked#{&}__modified &__check {
+    border-color: $form-modified-color;
+    background-color: $form-modified-color;
+  }
+
+  &__disabled {
+    cursor: default !important;
+  }
+
+  &__disabled &__check {
+    border-color: $form-disabled-color !important;
+    cursor: default !important;
+  }
+
+  #{&}__disabled#{&}__checked &__check {
+    background-color: $form-disabled-color !important;
+    cursor: default !important;
+  }
+
+  &__disabled &__label {
+    color: $form-disabled-color !important;
+    cursor: default !important;
+  }
+
+  &__required {
+
+  }
+}

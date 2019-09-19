@@ -1,0 +1,178 @@
+@import "transition";
+
+/**
+  Shadows
+*/
+
+$shadow-key-umbra-opacity: 0.2 !default;
+$shadow-key-penumbra-opacity: 0.14 !default;
+$shadow-ambient-shadow-opacity: 0.12 !default;
+
+// Focus shadow mixin.
+@mixin shadow-focus() {
+  box-shadow: 0 0 8px rgba(0,0,0,.18),0 8px 16px rgba(0,0,0,.36);
+}
+
+@mixin shadow-2dp() {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, $shadow-key-penumbra-opacity),
+  0 3px 1px -2px rgba(0, 0, 0, $shadow-key-umbra-opacity),
+  0 1px 5px 0 rgba(0, 0, 0, $shadow-ambient-shadow-opacity);
+}
+@mixin shadow-3dp() {
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, $shadow-key-penumbra-opacity),
+  0 3px 3px -2px rgba(0, 0, 0, $shadow-key-umbra-opacity),
+  0 1px 8px 0 rgba(0, 0, 0, $shadow-ambient-shadow-opacity);
+}
+@mixin shadow-4dp() {
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, $shadow-key-penumbra-opacity),
+  0 1px 10px 0 rgba(0, 0, 0, $shadow-ambient-shadow-opacity),
+  0 2px 4px -1px rgba(0, 0, 0, $shadow-key-umbra-opacity);
+}
+@mixin shadow-6dp() {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, $shadow-key-penumbra-opacity),
+  0 1px 18px 0 rgba(0, 0, 0, $shadow-ambient-shadow-opacity),
+  0 3px 5px -1px rgba(0, 0, 0, $shadow-key-umbra-opacity);
+}
+@mixin shadow-8dp() {
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, $shadow-key-penumbra-opacity),
+  0 3px 14px 2px rgba(0, 0, 0, $shadow-ambient-shadow-opacity),
+  0 5px 5px -3px rgba(0, 0, 0, $shadow-key-umbra-opacity);
+}
+
+@mixin shadow-16dp() {
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, $shadow-key-penumbra-opacity),
+  0  6px 30px 5px rgba(0, 0, 0, $shadow-ambient-shadow-opacity),
+  0  8px 10px -5px rgba(0, 0, 0, $shadow-key-umbra-opacity);
+}
+
+@mixin shadow-24dp() {
+  box-shadow: 0  9px 46px  8px rgba(0, 0, 0, $shadow-key-penumbra-opacity),
+  0 11px 15px -7px rgba(0, 0, 0, $shadow-ambient-shadow-opacity),
+  0 24px 38px  3px rgba(0, 0, 0, $shadow-key-umbra-opacity);
+}
+
+@mixin shadow-hover-none() {
+  @include transition('box-shadow');
+  &:hover {
+    box-shadow: none;
+  }
+}
+
+@mixin shadow-hover-focus() {
+  @include transition('box-shadow');
+  &:hover {
+    @include shadow-focus();
+  }
+}
+
+@mixin shadow-hover-2dp() {
+  @include transition('box-shadow');
+  &:hover {
+    @include shadow-2dp();
+  }
+}
+
+@mixin shadow-hover-3dp() {
+  @include transition('box-shadow');
+  &:hover {
+    @include shadow-3dp();
+  }
+}
+
+@mixin shadow-hover-4dp() {
+  @include transition('box-shadow');
+  &:hover {
+    @include shadow-4dp();
+  }
+}
+
+@mixin shadow-hover-6dp() {
+  @include transition('box-shadow');
+  &:hover {
+    @include shadow-6dp();
+  }
+}
+
+@mixin shadow-hover-8dp() {
+  @include transition('box-shadow');
+  &:hover {
+    @include shadow-8dp();
+  }
+}
+
+@mixin shadow-hover-16dp() {
+  @include transition('box-shadow');
+  &:hover {
+    @include shadow-16dp();
+  }
+}
+
+@mixin shadow-hover-24dp() {
+  @include transition('box-shadow');
+  &:hover {
+    @include shadow-24dp();
+  }
+}
+
+@mixin shadow-active-none() {
+  @include transition('box-shadow');
+  &:active {
+    box-shadow: none;
+  }
+}
+
+@mixin shadow-active-focus() {
+  @include transition('box-shadow');
+  &:active {
+    @include shadow-focus();
+  }
+}
+
+@mixin shadow-active-2dp() {
+  @include transition('box-shadow');
+  &:active {
+    @include shadow-2dp();
+  }
+}
+
+@mixin shadow-active-3dp() {
+  @include transition('box-shadow');
+  &:active {
+    @include shadow-3dp();
+  }
+}
+
+@mixin shadow-active-4dp() {
+  @include transition('box-shadow');
+  &:active {
+    @include shadow-4dp();
+  }
+}
+
+@mixin shadow-active-6dp() {
+  @include transition('box-shadow');
+  &:active {
+    @include shadow-6dp();
+  }
+}
+
+@mixin shadow-active-8dp() {
+  @include transition('box-shadow');
+  &:active {
+    @include shadow-8dp();
+  }
+}
+
+@mixin shadow-active-16dp() {
+  @include transition('box-shadow');
+  &:active {
+    @include shadow-16dp();
+  }
+}
+
+@mixin shadow-active-24dp() {
+  @include transition('box-shadow');
+  &:active {
+    @include shadow-24dp();
+  }
+}

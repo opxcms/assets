@@ -1,0 +1,29 @@
+@import "../colors";
+
+.opx-toolbar__item-button {
+  .opx-icon-refresh, .opx-icon-filter, .opx-icon-order, .opx-icon-search {
+    color: $color-blue-5;
+    fill: $color-blue-5;
+    &:hover {
+      color: $color-blue-7;
+      fill: $color-blue-7;
+    }
+  }
+  .opx-icon-delete, .opx-icon-disable {
+    color: $color-red-5;
+    fill: $color-red-5;
+    &:hover {
+      color: $color-red-7;
+      fill: $color-red-7;
+    }
+  }
+
+  .opx-icon-enable, .opx-icon-restore, .opx-icon-add, &-green>.opx-icon {
+    color: $color-green-7;
+    fill: $color-green-7;
+    &:hover {
+      color: $color-green-5;
+      fill: $color-green-5;
+    }
+  }
+}

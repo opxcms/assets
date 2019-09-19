@@ -1,0 +1,35 @@
+@import "../mixins/shadows";
+@import "../variables";
+
+
+.rise-focus {
+  @include shadow-focus()
+}
+
+.rise-2dp {
+  @include shadow-2dp()
+}
+
+.rise-3dp {
+  @include shadow-3dp()
+}
+
+.rise-4dp {
+  @include shadow-4dp()
+}
+
+.rise-6dp {
+  @include shadow-6dp()
+}
+
+.rise-8dp {
+  @include shadow-8dp()
+}
+
+.rise-16dp {
+  @include shadow-16dp()
+}
+
+.rise-24dp {
+  @include shadow-24dp()
+}

@@ -1,0 +1,56 @@
+@import "variables";
+@import "../variables";
+
+.opx-scroll-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    margin: 0;
+    padding: $scroll-page-header-padding;
+    box-sizing: border-box;
+
+    &-title {
+      font-family: $project-font;
+      font-size: $scroll-page-title-font-size;
+      font-weight: $scroll-page-title-font-weight;
+      color: $scroll-page-title-color;
+      margin: 0;
+      padding: 0 0.5rem;
+    }
+
+    &-line {
+      margin: $scroll-page-header-padding 0 0 0;
+    }
+  }
+
+  &__body {
+    flex: 1 0 auto;
+    position: relative;
+    //opacity: 0.99;
+    //z-index: 99;
+
+    &-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    &-scroller {
+      font-size: 0;
+    }
+  }
+
+  &__footer {
+    margin: 0;
+    padding: $scroll-page-header-padding;
+    box-sizing: border-box;
+    font-size: 1rem;
+  }
+}

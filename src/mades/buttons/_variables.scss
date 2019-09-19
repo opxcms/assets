@@ -1,0 +1,25 @@
+@import "../colors";
+@import "../variables";
+
+$buttons-border-radius: 3px !default;
+$buttons-padding: 0.3rem 0.7rem !default;
+
+$buttons-font-family: $project-font !default;
+$buttons-font-size: 0.9rem !default;
+$buttons-font-weight: 300 !default;
+$buttons-font-spacing: 0.05rem !default;
+
+$buttons-default-color: $color-primary !default;
+$buttons-default-text-color: $color-white !default;
+
+$buttons-success-color: $color-success-darken-1 !default;
+$buttons-success-text-color: $color-white !default;
+
+$buttons-info-color: $color-info !default;
+$buttons-info-text-color: $color-white !default;
+
+$buttons-error-color: $color-error !default;
+$buttons-error-text-color: $color-white !default;
+
+$buttons-disabled-color: $color-gray-8 !default;
+$buttons-disabled-text-color: $color-white !default;

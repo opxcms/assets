@@ -1,0 +1,54 @@
+@import "../variables";
+@import "../../mixins/transition";
+@import "../../../../../node_modules/codemirror/lib/codemirror";
+@import "../../../../../node_modules/codemirror/theme/eclipse";
+@import "../../../../../node_modules/codemirror/addon/lint/lint";
+
+.opx-form-field-editor {
+  margin: 0;
+  padding: 0.3rem;
+  outline: none !important;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: $form-default-color;
+  font-family: $form-font-family;
+  font-size: $form-default-size;
+  line-height: $form-default-size * 1.2;
+  width: 100%;
+  box-sizing: border-box;
+
+  .CodeMirror {
+    height: auto;
+    min-height: 100px;
+
+    &-scroll {
+      min-height: 100px;
+    }
+  }
+
+  &:focus {
+    outline: none !important;
+    border-color: $form-active-color;
+  }
+
+  &__invalid {
+    border-color: $form-error-color !important;
+  }
+
+  &__modified:focus {
+    border-color: $form-modified-color;
+  }
+
+  &__modified {
+    border-color: $form-modified-light-color;
+  }
+
+  &__required {
+  }
+
+  &:disabled {
+    background-color: transparent;
+    color: $form-disabled-color;
+    border-color: $form-disabled-light-color;
+  }
+}

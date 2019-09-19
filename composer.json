@@ -1,0 +1,27 @@
+{
+  "name": "opxcms/assets",
+  "description": "OpxCMS assets.",
+  "type": "library",
+  "keywords": [
+    "opxcms",
+    "assets"
+  ],
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/opxcms/assets/issues",
+    "source": "https://github.com/opxcms/assets"
+  },
+  "authors": [
+    {
+      "name": "Lozovoy Vyacheslav",
+      "email": "opxcms@gmail.com"
+    }
+  ],
+  "require": {
+  },
+  "require-dev": {
+  },
+  "autoload": {
+  },
+  "minimum-stability": "dev"
+}

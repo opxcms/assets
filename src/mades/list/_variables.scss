@@ -1,0 +1,60 @@
+@import "../colors";
+
+$list-item-height: (
+    xxs: 3rem,
+    xs:  3rem,
+    s:   3rem,
+    m:   3rem,
+    l:   3rem,
+    xl:  3rem,
+    xxl: 3rem,
+);
+
+$list-item-padding: (
+    xxs: 0.2rem,
+    xs:  0.2rem,
+    s:   0.2rem,
+    m:   0.2rem,
+    l:   0.2rem,
+    xl:  0.2rem,
+    xxl: 0.2rem,
+);
+
+$list-item-widths: (
+    xxs: (check: 3rem, check-margin: 1rem, check-inner: 1rem, id: 3rem),
+    xs:  (check: 3rem, check-margin: 1rem, check-inner: 1rem, id: 3rem),
+    s:   (check: 3rem, check-margin: 1rem, check-inner: 1rem, id: 3rem),
+    m:   (check: 3rem, check-margin: 1rem, check-inner: 1rem, id: 3rem),
+    l:   (check: 3rem, check-margin: 1rem, check-inner: 1rem, id: 3rem),
+    xl:  (check: 3rem, check-margin: 1rem, check-inner: 1rem, id: 3rem),
+    xxl: (check: 3rem, check-margin: 1rem, check-inner: 1rem, id: 3rem),
+);
+
+$list-item-hover-background: $color-gray-1;
+$list-item-border-color: $color-gray-1;
+
+$list-item-last-background: $color-teal-0;
+
+$list-item-check-disabled-color: $color-gray-3;
+$list-item-check-border-color: $color-gray-6;
+$list-item-check-border-hover-color: $color-gray-8;
+$list-item-check-v-color: $color-blue-6;
+
+$list-item-id-color: $color-darker-gray;
+$list-item-id-back-color: $color-green-4;
+$list-item-id-back-disabled-color: $color-red-4;
+$list-item-id-back-deleted-color: $color-gray-4;
+
+$list-item-action-color: $color-gray-6;
+$list-item-action-disabled-color: $color-gray-2;
+$list-item-action-hover-color: $color-gray-8;
+
+
+$list-item-title-color: $color-blue-8;
+$list-item-subtitle-color: $color-darker-gray;
+$list-item-description-color: $color-darker-gray;
+$list-item-property-color: $color-gray-8;
+
+$list-item-deleted-title-color: $color-gray-5;
+$list-item-deleted-subtitle-color: $color-gray-5;
+$list-item-deleted-property-color: $color-gray-5;

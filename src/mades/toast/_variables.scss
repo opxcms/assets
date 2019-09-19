@@ -1,0 +1,49 @@
+@import "../variables";
+@import "../colors";
+$toast-container-z-index: 100000 !default;
+
+$toast: (
+    xxs: (vertical: top, vertical-value: 1%, horizontal: right, horizontal-value: 0,  min-width: 100%, max-width: 100%),
+    xs:  (vertical: top, vertical-value: 1%, horizontal: right, horizontal-value: 0,  min-width: 100%, max-width: 100%),
+    s:   (vertical: top, vertical-value: 1%, horizontal: right, horizontal-value: 0,  min-width: 100%, max-width: 100%),
+    m:   (vertical: top, vertical-value: 1%, horizontal: right, horizontal-value: 2%, min-width: 10%,  max-width: 100%),
+    l:   (vertical: top, vertical-value: 1%, horizontal: right, horizontal-value: 2%, min-width: 10%,  max-width: 100%),
+    xl:  (vertical: top, vertical-value: 1%, horizontal: right, horizontal-value: 2%, min-width: 10%,  max-width: 100%),
+    xxl: (vertical: top, vertical-value: 1%, horizontal: right, horizontal-value: 2%, min-width: 10%,  max-width: 100%),
+);
+
+$toast-size: (
+    xxs: (base-size: 2rem),
+    xs:  (base-size: 2rem),
+    s:   (base-size: 2rem),
+    m:   (base-size: 2rem),
+    l:   (base-size: 2rem),
+    xl:  (base-size: 2rem),
+    xxl: (base-size: 2rem),
+);
+
+$toast-font-family: $project-font !default;
+$toast-font-size: 0.8rem !default;
+$toast-font-weight: 400 !default;
+
+$toast-min-height: 3rem !default;
+
+$toast-color: $color-gray-9 !default;
+$toast-text-color: $color-gray-0 !default;
+$toast-close-color: $color-gray-2 !default;
+$toast-close-hover-color: $color-gray-0 !default;
+
+$toast-success-color: $color-green-8 !default;
+$toast-success-text-color: $color-gray-0 !default;
+$toast-success-close-color: $color-gray-2 !default;
+$toast-success-close-hover-color: $color-gray-0 !default;
+
+$toast-info-color: $color-orange-6 !default;
+$toast-info-text-color: $color-gray-0 !default;
+$toast-info-close-color: $color-gray-2 !default;
+$toast-info-close-hover-color: $color-gray-0 !default;
+
+$toast-error-color: $color-red-7 !default;
+$toast-error-text-color: $color-gray-0 !default;
+$toast-error-close-color: $color-gray-2 !default;
+$toast-error-close-hover-color: $color-gray-0 !default;

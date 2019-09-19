@@ -1,0 +1,68 @@
+@font-face {
+	font-family: "opx-icons";
+	src: url("opx-icons.eot?f0ffa74e4d894bed6f7e613cdbb4fd00?#iefix") format("embedded-opentype"),
+url("opx-icons.woff2?f0ffa74e4d894bed6f7e613cdbb4fd00") format("woff2"),
+url("opx-icons.woff?f0ffa74e4d894bed6f7e613cdbb4fd00") format("woff"),
+url("opx-icons.ttf?f0ffa74e4d894bed6f7e613cdbb4fd00") format("truetype"),
+url("opx-icons.svg?f0ffa74e4d894bed6f7e613cdbb4fd00#opx-icons") format("svg");
+}
+
+.opx-icon {
+	line-height: 1;
+}
+
+.opx-icon:before {
+	font-family: opx-icons !important;
+	font-style: normal;
+	font-weight: normal !important;
+	vertical-align: top;
+}
+
+.opx-icon-administrators:before {
+	content: "\f101";
+}
+.opx-icon-arrow-bottom:before {
+	content: "\f102";
+}
+.opx-icon-arrow-left:before {
+	content: "\f103";
+}
+.opx-icon-arrow-right:before {
+	content: "\f104";
+}
+.opx-icon-arrow-top:before {
+	content: "\f105";
+}
+.opx-icon-content:before {
+	content: "\f106";
+}
+.opx-icon-desktop:before {
+	content: "\f107";
+}
+.opx-icon-favorite-empty:before {
+	content: "\f108";
+}
+.opx-icon-favorite-filled:before {
+	content: "\f109";
+}
+.opx-icon-favorite-mode:before {
+	content: "\f10a";
+}
+.opx-icon-favorites:before {
+	content: "\f10b";
+}
+.opx-icon-placeholder:before {
+	content: "\f10c";
+}
+.opx-icon-settings:before {
+	content: "\f10d";
+}
+.opx-icon-system-settings:before {
+	content: "\f10e";
+}
+.opx-icon-tools:before {
+	content: "\f10f";
+}
+.opx-icon-updates:before {
+	content: "\f110";
+}

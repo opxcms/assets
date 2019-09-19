@@ -1,0 +1,303 @@
+@import "../variables";
+@import "../variables_field";
+@import "../../mixins/transition";
+@import "../../mixins/no-selection";
+
+.opx-form-field-properties {
+  box-sizing: border-box;
+  padding: $form-default-size / 2 0;
+
+  &__show-all {
+    height: $form-default-size * 2;
+    line-height: $form-default-size * 2;
+    cursor: pointer;
+    color: $form-text-color;
+
+    &:hover {
+      color: $form-active-color;
+    }
+
+    &-check {
+      height: $form-default-size * 2;
+      width: $form-default-size * 1.5;
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+
+      &:before {
+        content: '';
+        display: block;
+        height: $form-default-size;
+        width: $form-default-size;
+        box-sizing: border-box;
+        border: 2px solid $form-text-color;
+        border-radius: 2px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+
+      &-checked {
+        &:before {
+          border-color: $form-active-color;
+          background-color: $form-active-color;
+        }
+
+        &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-100%, -70%) rotate(-45deg);
+          width: $form-default-size * 0.5;
+          height: $form-default-size * 0.4;
+          box-sizing: border-box;
+          border-width: 0 0 2px 2px;
+          border-style: solid;
+          border-color: $form-background;
+        }
+      }
+    }
+
+    &-caption {
+      font-family: $form-font-family;
+      font-size: $form-default-size;
+      height: $form-default-size * 2;
+      line-height: $form-default-size * 2;
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      color: inherit;
+    }
+  }
+
+  &__property {
+    height: $form-default-size * 2;
+    line-height: $form-default-size * 2;
+    font-size: 0;
+    display: flex;
+    margin-bottom: 0.1rem;
+    padding-left: $form-default-size / 2;
+    @include transition('background-color');
+
+    &:hover, &:hover .opx-form-field-properties__entry-actions {
+      background-color: $form-light-hover-color;
+    }
+
+    &-value {
+      flex: 1 0 auto;
+    }
+
+    &-caption, &-value {
+      font-family: $form-font-family;
+      font-size: $form-default-size;
+      vertical-align: top;
+      height: $form-default-size * 2;
+      min-width: $form-default-size * 2;
+      line-height: $form-default-size * 2;
+    }
+
+    &-caption {
+      cursor: default;
+      color: $form-hint-color;
+      font-weight: 400;
+
+      &-hint {
+        color: $form-hint-color;
+        margin-left: 0.2rem;
+        font-size: .8rem;
+        font-weight: 300;
+        letter-spacing: .05rem;
+      }
+    }
+
+    &-required &-caption {
+      font-weight: 600;
+      color: $form-text-color;
+    }
+
+    &-value {
+      height: 100%;
+      padding-left: 1rem;
+      box-sizing: border-box;
+      font-size: $form-default-size;
+    }
+  }
+}
+
+.opx-form-field-properties__entry {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  & .opx-form-field-text {
+    height: $form-default-size * 2;
+    vertical-align: top;
+    background-color: transparent;
+  }
+
+  &-value {
+    width: 100%;
+    height: 100%;
+    border-bottom: 2px solid $form-default-color;
+    box-sizing: border-box;
+    display: block;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+
+    &-text {
+      position: absolute;
+    }
+
+    &-modified {
+      border-color: $form-modified-light-color !important;
+    }
+  }
+
+  &-actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: calc(#{$form-default-size * 2} - 2px);
+    line-height: $form-default-size * 2;
+    background-color: $form-background;
+    @include transition('background-color');
+  }
+
+  &-clear {
+    display: inline-block;
+    vertical-align: top;
+    width: $form-default-size * 2;
+    height: $form-default-size * 2;
+    cursor: pointer;
+    position: relative;
+
+    &:before, &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 48%;
+      left: 48%;
+      background-color: $form-close-color;
+      width: $form-default-size * 1.2;
+      height: 2px;
+    }
+
+    &:before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &:after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    &:hover:before, &:hover:after {
+      background-color: $form-close-hover-color;
+    }
+  }
+
+  &-dropdown {
+    display: inline-block;
+    vertical-align: top;
+    width: $form-default-size * 1.5;
+    height: $form-default-size * 2;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+
+    & .opx-icon {
+      height: $form-default-size * 2;
+      line-height: $form-default-size * 2;
+
+      &:before {
+        display: inline-block;
+        @include transition('transform');
+      }
+
+      &.expanded:before {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &:focus {
+    outline: none !important;
+  }
+
+  &-list {
+    position: absolute;
+    width: calc(100% - 2px);
+    background-color: $form-background;
+    z-index: 99;
+    border: 1px solid $form-default-color;
+    left: 0;
+    max-height: $form-default-size * 2 * 8 + 0.2rem;
+    @include noSelection;
+
+    &-value {
+      display: block;
+      width: 100%;
+      height: $form-default-size * 2;
+      line-height: $form-default-size * 2;
+      box-sizing: border-box;
+      padding-left: $form-default-size * 2;
+      font-family: $form-font-family;
+      font-size: $form-default-size;
+      cursor: pointer;
+      position: relative;
+      color: $form-text-color;
+      @include transition('color, background-color');
+
+      &:hover {
+        color: $form-background;
+        background-color: $form-hover-color;
+      }
+
+      &:before {
+        content: '';
+        display: block;
+        width: $form-default-size;
+        height: $form-default-size;
+        top: $form-default-size / 2;
+        left: $form-default-size / 2;
+        border: 2px solid $form-text-color;
+        border-radius: 2px;
+        position: absolute;
+        box-sizing: border-box;
+      }
+
+      &-selected {
+        &:before {
+          border-color: $form-active-color;
+          background-color: $form-active-color;
+        }
+
+        &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 50%;
+          left: $form-default-size;
+          transform: translate(-50%, -70%) rotate(-45deg);
+          width: $form-default-size * 0.5;
+          height: $form-default-size * 0.4;
+          box-sizing: border-box;
+          border-width: 0 0 2px 2px;
+          border-style: solid;
+          border-color: $form-background;
+        }
+      }
+
+      &-modified:before {
+        border-color: $form-modified-color;
+      }
+
+      &-selected#{&}-modified:before {
+        background-color: $form-modified-color;
+      }
+    }
+  }
+}

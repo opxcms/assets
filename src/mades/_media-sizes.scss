@@ -1,0 +1,41 @@
+
+/**
+  Media sizes
+*/
+
+$media-xxs: (                stop: 360px  );
+$media-xs:  ( start: 361px,  stop: 480px  );
+$media-s:   ( start: 481px,  stop: 768px  );
+$media-m:   ( start: 769px,  stop: 1024px );
+$media-l:   ( start: 1025px, stop: 1280px );
+$media-xl:  ( start: 1281px, stop: 1920px );
+$media-xxl: ( start: 1921px               );
+
+/**
+  Usage:
+
+  $font-sizes: (
+      xxs: 16px,
+      xs:  18px,
+      s:   20px,
+      m:   22px,
+      l:   24px,
+      xl:  26px,
+      xxl: 28px,
+  );
+
+  @mixin p-font-size($size) {
+    .p {
+      font-size: map_get($font-sizes, $size) 0;
+    }
+  }
+
+  @media (max-width: map_get($media-xxs, stop))                                           { @include p-font-size(xxs); }
+  @media (min-width: map_get($media-xs, start)) and (max-width: map_get($media-xs, stop)) { @include p-font-size(xs); }
+  @media (min-width: map_get($media-s, start))  and (max-width: map_get($media-s, stop))  { @include p-font-size(s); }
+  @media (min-width: map_get($media-m, start))  and (max-width: map_get($media-m, stop))  { @include p-font-size(m); }
+  @media (min-width: map_get($media-l, start))  and (max-width: map_get($media-l, stop))  { @include p-font-size(l); }
+  @media (min-width: map_get($media-xl, start)) and (max-width: map_get($media-xl, stop)) { @include p-font-size(xl); }
+  @media (min-width: map_get($media-xxl, start))                                          { @include p-font-size(xxl); }
+
+*/

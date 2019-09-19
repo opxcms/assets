@@ -1,0 +1,73 @@
+@import "variables";
+@import "../../mixins/border-radius";
+@import "../../mixins/transition";
+
+.checkbox-field {
+  display: block;
+  width: 100%;
+  padding: $checkbox-field-padding;
+  margin: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.checkbox-field__input {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+}
+
+.checkbox-field__label {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: $checkbox-field-placeholder-size + $checkbox-field-label-left-padding;
+  position: relative;
+  font-family: $checkbox-field-label-font;
+  font-size: $checkbox-field-label-font-size;
+  font-weight: $checkbox-field-label-weight;
+  letter-spacing: $checkbox-field-label-font-spacing;
+  color: $checkbox-field-label-color;
+  cursor: pointer;
+  &:hover, &:active, &:focus {
+    .checkbox-field__placeholder {
+      border-color: $checkbox-field-placeholder-active-border-color;
+    }
+  }
+}
+
+.checkbox-field__placeholder {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: $checkbox-field-placeholder-top-offset;
+  width: $checkbox-field-placeholder-size;
+  height: $checkbox-field-placeholder-size;
+  box-sizing: border-box;
+  border: $checkbox-field-placeholder-border-width solid $checkbox-field-placeholder-inactive-border-color;
+  @include border-radius($checkbox-field-placeholder-border-radius);
+  @include transition('border-color, background-color');
+  &:after {
+    content: "";
+    width: $checkbox-field-placeholder-inner-width;
+    height: $checkbox-field-placeholder-inner-height;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50% + $checkbox-field-placeholder-inner-top-offset) rotate(-45deg);
+    border: 0 solid $checkbox-field-placeholder-inner-color;
+    border-width: 0 0 $checkbox-field-placeholder-border-width $checkbox-field-placeholder-border-width;
+    @include border-radius($checkbox-field-placeholder-inner-radius);
+    border-radius: 1px;
+    opacity: 0;
+    @include transition('opacity');
+  }
+}
+
+.checkbox-field__input:checked+.checkbox-field__label .checkbox-field__placeholder {
+  border-color: $checkbox-field-placeholder-active-border-color;
+  background-color: $checkbox-field-placeholder-active-border-color;
+  &:after{
+    opacity: 1;
+  }
+}

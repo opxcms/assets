@@ -1,0 +1,233 @@
+@import "../mades/normalize";
+@import "../mades/base-font-size";
+@import "../mades/buttons/buttons";
+@import "../mades/colors";
+@import "../mades/fonts/source-sans-pro";
+@import "../mades/inputs/checkbox-field/checkbox-field";
+@import "../mades/inputs/text-field/text-field";
+@import "../mades/mixins/no-selection";
+@import "../mades/mixins/transition";
+@import "../mades/mixins/border-radius";
+@import "../mades/mixins/shadows";
+@import "../mades/modifiers/shadows";
+@import "../mades/variables";
+@import "form/form";
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  $center-color: $color-primary-lighten-2;
+  $radius-color: $color-primary;
+  background: $center-color;
+  background: -moz-radial-gradient(center, ellipse cover, $center-color 0%, $radius-color 100%);
+  background: -webkit-radial-gradient(center, ellipse cover, $center-color 0%, $radius-color 100%);
+  background: radial-gradient(ellipse at center, $center-color 0%, $radius-color 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$center-color}', endColorstr='#{$radius-color}', GradientType=1);
+  background-attachment: fixed;
+}
+
+.page {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 420px;
+}
+
+@media all and (min-width: 660px) {
+  .page {
+    min-height: 340px;
+  }
+}
+
+.form {
+  width: 290px;
+  position: relative;
+}
+
+$arrow-size: 2rem;
+$arrow-color: $color-primary-lighten-2;
+$border-width: 1px;
+
+.back-to-site {
+  @include noSelection;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  height: $arrow-size;
+  padding-left: $arrow-size + $arrow-size/4;
+  line-height: $arrow-size;
+  color: $arrow-color;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
+  font-weight: 300;
+  font-family: $project-font;
+  display: block;
+  @include transition('color');
+  &:before, &:after {
+    @include transition('border-color');
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+  }
+  &:before {
+    width: $arrow-size/8*3;
+    height: $arrow-size/8*3;
+    border-bottom: $border-width solid $arrow-color;
+    border-left: $border-width solid $arrow-color;
+    top: 50%;
+    transform: translate($arrow-size/4*1.5, -50%) rotate(45deg);
+  }
+  &:after {
+    top: 0;
+    box-sizing: border-box;
+    width: $arrow-size;
+    height: $arrow-size;
+    border: $border-width solid $arrow-color;
+    border-radius: 50%;
+  }
+  &:hover {
+    color: $color-white;
+    &:before, &:after {
+      border-color: $color-white;
+    }
+  }
+}
+
+.back-to-site__text {
+  font-family: $project-font;
+}
+
+.locale-selector {
+  @include noSelection;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  height: $arrow-size;
+  padding-right: $arrow-size + $arrow-size/4;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: $arrow-color;
+  letter-spacing: 0.1rem;
+  @include transition('color');
+  &:before, &:after {
+    @include transition('border-color');
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+  }
+  &:before {
+    width: $arrow-size/8*3;
+    height: $arrow-size/8*3;
+    border-bottom: $border-width solid $arrow-color;
+    border-left: $border-width solid $arrow-color;
+    top: 50%;
+    transform-origin: 38% 62%;
+    transform: translate(-$arrow-size/4*1.2, -50%) rotate(-45deg);
+    transition: transform $animation-speed $animation-timing;
+  }
+  &:after {
+    width: $arrow-size;
+    height: $arrow-size;
+    border: $border-width solid $arrow-color;
+    top: 0;
+    border-radius: 50%;
+  }
+  &.is-open:before {
+    transform: translate(-$arrow-size/4*1.1, -50%) rotate(-225deg);
+  }
+  &:hover, &.is-open {
+    color: $color-white;
+    &:before, &:after {
+      border-color: $color-white;
+    }
+  }
+}
+
+.locale-selector__current {
+  display: inline-block;
+  line-height: $arrow-size;
+  font-family: $project-font;
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: inherit;
+}
+
+.locale-selector ul {
+  display: none;
+  z-index: 99;
+  position: absolute;
+  right: 0;
+  top: $arrow-size;
+  padding: 1rem;
+  background-color: $color-white;
+  @include border-radius;
+  @include shadow-8dp;
+  li {
+    list-style: none;
+    a {
+      color: $color-primary;
+      text-decoration: none;
+      padding: 0.2rem 0.4rem;
+      letter-spacing: 0.03rem;
+      font-weight: 400;
+      display: block;
+      font-family: $project-font;
+      font-size: 1.1rem;
+      position: relative;
+      text-transform: none;
+      @include transition('color');
+      &:hover {
+        color: $color-info-darken-1;
+      }
+    }
+  }
+  &:before {
+    content: "";
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    position: absolute;
+    top: 0;
+    right: $arrow-size/2;
+    transform: translate(50%, -50%) rotate(45deg);
+    background-color: $color-white;
+  }
+}
+
+.locale-selector.is-open {
+  ul {
+    display: block;
+  }
+}
+
+.opx-copy {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  display: block;
+  height: 3rem;
+}
+
+.opx-copy__text {
+  display: block;
+  font-family: $project-font;
+  color: $color-primary-lighten-2;
+  font-size: 1rem;
+  font-weight: 200;
+  letter-spacing: 0.05rem;
+  line-height: 1.2rem;
+  text-decoration: none;
+}

@@ -1,0 +1,51 @@
+@import "../variables";
+@import "../../mixins/transition";
+
+.opx-form-field-text {
+  margin: 0;
+  padding: 0.3rem;
+  outline: none !important;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: $form-default-color;
+  font-family: $form-font-family;
+  font-size: $form-default-size;
+  line-height: $form-default-size * 1.2;
+  width: 100%;
+  box-sizing: border-box;
+  display: inline-block;
+  text-decoration: none;
+
+  &:focus {
+    outline: none !important;
+    border-color: $form-active-color;
+  }
+
+  &__invalid {
+    border-color: $form-error-color !important;
+  }
+
+  &__modified:focus {
+    border-color: $form-modified-color !important;
+  }
+
+  &__modified {
+    border-color: $form-modified-light-color !important;
+  }
+
+  &__required {
+  }
+
+  &:disabled {
+    background-color: transparent;
+    color: $form-disabled-color;
+    border-color: $form-disabled-light-color !important;
+  }
+}
+
+textarea.opx-form-field-text {
+  resize: none;
+  height: $form-default-size * 4 * 1.2 + 0.5rem;
+  overflow: hidden;
+  @include transition('height');
+}

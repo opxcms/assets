@@ -1,0 +1,38 @@
+@import "variables";
+@import "../../mades/mixins/border-radius";
+
+.form {
+  background-color: $form-background-color;
+  @include border-radius;
+  padding: $form-padding-vertical $form-padding-horizontal;
+}
+
+.form__title {
+  color: $form-title-color;
+  font-size: $form-title-font-size;
+  font-weight: $form-title-font-weight;
+  font-family: $form-title-font-family;
+  letter-spacing: $form-title-font-spacing;
+  margin-bottom: $form-title-bottom-margin;
+  line-height: $form-title-line-height;
+}
+
+.form__subtitle {
+  color: $form-subtitle-color;
+  font-size: $form-subtitle-font-size;
+  font-weight: $form-subtitle-font-weight;
+  font-family: $form-subtitle-font-family;
+  letter-spacing: $form-subtitle-font-spacing;
+  margin-bottom: $form-subtitle-bottom-margin;
+}
+
+.form__actions {
+  margin-top: $form-action-top-margin;
+  text-align: center;
+  & .button {
+    margin-bottom: $form-action-button-spacing;
+    &:not(:last-child) {
+      margin-right: $form-action-button-spacing;
+    }
+  }
+}

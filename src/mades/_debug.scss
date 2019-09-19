@@ -1,0 +1,75 @@
+/***********************************************************************************************************************
+* DEBUG HELPER
+***********************************************************************************************************************/
+$mode: prouction !default;
+$debug_outline: no !default;
+
+.debug, .debug *{
+  outline:1px solid rgba(255, 0, 0, 0.3);
+  .blue{outline:1px solid rgba(0, 0, 255, 0.3);}
+  .green{outline:1px solid rgba(0, 255, 0, 0.3);}
+}
+
+@mixin debug {
+  & {
+    outline-style: solid;
+    outline-width: 1px;
+    outline-color: rgba(36, 54, 255, 0.71);
+  }
+  &>* {
+    outline-style: solid;
+    outline-width: 1px;
+    outline-color: rgba(255, 0, 0, 0.2);
+  }
+}
+
+@if $mode == debug {
+
+  @if $debug_outline == yes {
+    body * {
+      outline-style: solid;
+      outline-width: 1px;
+      outline-color: rgba(255, 0, 0, 0.2);
+    }
+  }
+
+  body::before {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 45px;
+    height: 12px;
+    text-align: center;
+    background-color: #481078;
+    color: white;
+    z-index: 49999;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    font-size: 10px;
+  }
+}
+
+  @mixin debug-sizing($size, $landscape) {
+    body::before {
+      content: "#{$size} (#{$landscape})";
+    }
+  }
+
+  @media (orientation: portrait) {
+    /* XXS */ @media (max-width: map_get($media-xxs, stop))                                           { @include debug-sizing(xxs, P); }
+    /* XS  */ @media (min-width: map_get($media-xs, start)) and (max-width: map_get($media-xs, stop)) { @include debug-sizing(xs, P); }
+    /* S   */ @media (min-width: map_get($media-s, start))  and (max-width: map_get($media-s, stop))  { @include debug-sizing(s, P); }
+    /* M   */ @media (min-width: map_get($media-m, start))  and (max-width: map_get($media-m, stop))  { @include debug-sizing(m, P); }
+    /* L   */ @media (min-width: map_get($media-l, start))  and (max-width: map_get($media-l, stop))  { @include debug-sizing(l, P); }
+    /* XL  */ @media (min-width: map_get($media-xl, start)) and (max-width: map_get($media-xl, stop)) { @include debug-sizing(xl, P); }
+    /* XXL */ @media (min-width: map_get($media-xxl, start))                                          { @include debug-sizing(xxl, P); }
+  }
+  @media (orientation: landscape) {
+    /* XXS */ @media (max-width: map_get($media-xxs, stop))                                           { @include debug-sizing(xxs, L); }
+    /* XS  */ @media (min-width: map_get($media-xs, start)) and (max-width: map_get($media-xs, stop)) { @include debug-sizing(xs, L); }
+    /* S   */ @media (min-width: map_get($media-s, start))  and (max-width: map_get($media-s, stop))  { @include debug-sizing(s, L); }
+    /* M   */ @media (min-width: map_get($media-m, start))  and (max-width: map_get($media-m, stop))  { @include debug-sizing(m, L); }
+    /* L   */ @media (min-width: map_get($media-l, start))  and (max-width: map_get($media-l, stop))  { @include debug-sizing(l, L); }
+    /* XL  */ @media (min-width: map_get($media-xl, start)) and (max-width: map_get($media-xl, stop)) { @include debug-sizing(xl, L); }
+    /* XXL */ @media (min-width: map_get($media-xxl, start))                                          { @include debug-sizing(xxl, L); }
+  }

@@ -1,0 +1,30 @@
+
+$navigation-widths: (
+        xxs: (sections-width: 5.4rem, menus-width: 17rem, on-screen: 0),
+        xs:  (sections-width: 5.4rem, menus-width: 17rem, on-screen: 0),
+        s:   (sections-width: 5.4rem, menus-width: 17rem, on-screen: 0),
+        m:   (sections-width: 5.4rem, menus-width: 17rem, on-screen: 1),
+        l:   (sections-width: 5.4rem, menus-width: 17rem, on-screen: 1),
+        xl:  (sections-width: 5.4rem, menus-width: 17rem, on-screen: 1),
+        xxl: (sections-width: 5.4rem, menus-width: 17rem, on-screen: 1),
+);
+
+$navigation-offsets: (
+    xxs: (top-padding: 2.4rem, bottom-padding: 2.4rem),
+    xs:  (top-padding: 2.4rem, bottom-padding: 2.4rem),
+    s:   (top-padding: 2.4rem, bottom-padding: 2.4rem),
+    m:   (top-padding: 2.4rem, bottom-padding: 2.4rem),
+    l:   (top-padding: 2.4rem, bottom-padding: 2.4rem),
+    xl:  (top-padding: 2.4rem, bottom-padding: 2.4rem),
+    xxl: (top-padding: 2.4rem, bottom-padding: 2.4rem),
+);
+
+$navigation-expand: (
+    xxs: (size: 2rem),
+    xs:  (size: 2rem),
+    s:   (size: 2rem),
+    m:   (size: 2rem),
+    l:   (size: 2rem),
+    xl:  (size: 2rem),
+    xxl: (size: 2rem),
+);

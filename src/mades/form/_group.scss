@@ -1,0 +1,26 @@
+@import "variables_group";
+@import "../colors";
+
+.opx-form-group {
+  font-family: $form-font-family;
+  box-sizing: border-box;
+  padding: $form-group-padding;
+  border: $form-group-border-width solid $form-group-border-color;
+  margin: $form-group-margin;
+  position: relative;
+
+  &__title {
+    display: inline-block;
+    background-color: $form-background;
+    position: absolute;
+    padding: 0 $form-group-title-padding;
+    font-size: $form-group-title-font-size;
+    line-height: $form-group-title-font-size;
+    top: $form-group-title-top;
+    left: $form-group-title-left;
+    text-transform: uppercase;
+    color: $form-group-title-color;
+    cursor: default;
+  }
+}
+

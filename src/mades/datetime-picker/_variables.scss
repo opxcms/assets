@@ -1,0 +1,66 @@
+@import "../colors";
+
+$datetime-picker-sizes: (
+    xxs: (width: 350px, height: 500px, header-height: 100px),
+    xs:  (width: 350px, height: 500px, header-height: 100px),
+    s:   (width: 350px, height: 500px, header-height: 100px),
+    m:   (width: 350px, height: 500px, header-height: 100px),
+    l:   (width: 350px, height: 500px, header-height: 100px),
+    xl:  (width: 350px, height: 500px, header-height: 100px),
+    xxl: (width: 350px, height: 500px, header-height: 100px),
+);
+
+
+$datetime-picker-calendar-height: 18rem;
+
+$datetime-picker-background: $color-white;
+$datetime-picker-color: $color-darker-gray;
+$datetime-picker-disabled-color: $color-gray-2;
+$datetime-picker-title-color: $color-blue-9;
+$datetime-picker-subtitle-color: $color-gray-8;
+
+$datetime-picker-border-color: $color-gray-6;
+$datetime-picker-highlight-color: $color-blue-4;
+
+
+$datetime-picker-title-size: 1.6rem;
+$datetime-picker-regular-size: 1rem;
+$datetime-picker-item-padding: 0.5rem;
+
+$datetime-picker-default-color: $color-darker-gray;
+$datetime-picker-default-background: $color-white;
+$datetime-picker-default-border: $color-white;
+
+$datetime-picker-hover-color: $color-white;
+$datetime-picker-hover-background: $color-blue-4;
+$datetime-picker-hover-border: $color-blue-4;
+
+$datetime-picker-current-color: $color-darker-gray;
+$datetime-picker-current-background: $color-white;
+$datetime-picker-current-border: $color-green-4;
+
+$datetime-picker-selected-color: $color-white;
+$datetime-picker-selected-background: $color-blue-6;
+$datetime-picker-selected-border: $color-blue-6;
+
+$datetime-picker-preselected-color: $color-darker-gray;
+$datetime-picker-preselected-background: $color-white;
+$datetime-picker-preselected-border: $color-blue-2;
+
+$datetime-picker-disabled-color: $color-gray-3;
+$datetime-picker-disabled-background: $color-white;
+$datetime-picker-disabled-border: $color-white;
+
+$datetime-picker-done-color: $color-green-6;
+$datetime-picker-done-hover-color: $color-green-7;
+
+$datetime-picker-reset-color: $color-blue-4;
+$datetime-picker-reset-hover-color: $color-blue-5;
+
+$datetime-picker-close-color: $color-red-4;
+$datetime-picker-close-hover-color: $color-red-5;
+
+
+
+
+

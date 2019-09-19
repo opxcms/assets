@@ -1,0 +1,8 @@
+@import "../variables";
+
+@mixin transition($property: 'all', $speed: $animation-speed, $timing: $animation-timing, $delay: 0s) {
+  transition-property: unquote($property);
+  transition-duration: $speed;
+  transition-timing-function: $timing;
+  transition-delay: $delay;
+}

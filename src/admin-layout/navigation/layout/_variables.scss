@@ -1,0 +1,23 @@
+@import "../../../mades/colors";
+
+$opx-navigation-background: $color-gray-3;
+
+$opx-navigation-header: (
+    xxs: (padding: 0.2rem),
+    xs:  (padding: 0.2rem),
+    s:   (padding: 0.2rem),
+    m:   (padding: 0.2rem),
+    l:   (padding: 0.2rem),
+    xl:  (padding: 0.2rem),
+    xxl: (padding: 0.2rem),
+);
+
+$opx-navigation-footer: (
+        xxs: (padding: 0.2rem),
+        xs:  (padding: 0.2rem),
+        s:   (padding: 0.2rem),
+        m:   (padding: 0.2rem),
+        l:   (padding: 0.2rem),
+        xl:  (padding: 0.2rem),
+        xxl: (padding: 0.2rem),
+);

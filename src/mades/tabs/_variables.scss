@@ -1,0 +1,22 @@
+@import "../colors";
+
+$tabs-background-color: transparent !default;
+
+$tabs-tab-line-height: 2rem !default;
+$tabs-tab-padding: 1rem !default;
+$tabs-tab-spacing: 0.3rem !default;
+$tabs-tab-background-color: $color-white !default;
+$tabs-tab-color: $color-darker-gray !default;
+$tabs-tab-font-family: 'Source Sans Pro' !default;
+$tabs-tab-font-size: 1rem !default;
+$tabs-tab-font-weight: 400 !default;
+
+$tabs-tab-underline-color: $color-blue-2 !default;
+$tabs-tab-active-underline-color: $color-blue-5 !default;
+$tabs-tab-underline-height: 0.1rem !default;
+
+$tabs-tab-error-background-color: $color-red-5 !default;
+$tabs-tab-modified-background-color: $color-green-7 !default;
+$tabs-tab-info-dot-size: 0.4rem !default;
+
+$tabs-tab-panel-padding: 1rem 0 !default;

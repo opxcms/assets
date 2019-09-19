@@ -1,0 +1,112 @@
+@import "variables";
+@import "../media-sizes";
+
+.opx-toast {
+  display:block;
+  position: fixed;
+  z-index: $toast-container-z-index;
+  .opx-toast__item {
+    top: 35px;
+    margin-top: 10px;
+    max-width: 100%;
+    width: auto;
+    position: relative;
+    height: auto;
+    min-height: $toast-min-height;
+    line-height: 1.5em;
+    word-break: break-all;
+    padding: 0.8rem $toast-min-height+1.5rem 0.8rem 1.5rem;
+    font-family: $toast-font-family;
+    font-size: $toast-font-size;
+    font-weight: $toast-font-weight;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: default;
+    color: $toast-text-color;
+    background-color: $toast-color;
+    opacity: 0;
+
+    .opx-toast__item-close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: $toast-min-height;
+      cursor: pointer;
+      border-left: 1px solid $toast-close-color;
+      height: 100%;
+      &:before, &:after {
+        content: "";
+        position: absolute;
+        top: $toast-min-height/2;
+        left: 50%;
+        width: 2px;
+        height: $toast-min-height/3;
+        background-color: $toast-close-color;
+      }
+      &:before {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+      &:after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+      &:hover:before, &:hover:after {
+        background-color: $toast-close-hover-color;
+      }
+    }
+    &.success {
+      color: $toast-success-text-color;
+      background-color: $toast-success-color;
+      .close {
+        &:before, &:after {
+          background-color: $toast-success-close-color;
+        }
+        &:hover:before, &:hover:after {
+          background-color: $toast-success-close-hover-color;
+        }
+      }
+    }
+    &.info {
+      color: $toast-info-text-color;
+      background-color: $toast-info-color;
+      .close {
+        &:before, &:after {
+          background-color: $toast-info-close-color;
+        }
+        &:hover:before, &:hover:after {
+          background-color: $toast-info-close-hover-color;
+        }
+      }
+    }
+    &.error {
+      color: $toast-error-text-color;
+      background-color: $toast-error-color;
+      .close {
+        &:before, &:after {
+          background-color: $toast-error-close-color;
+        }
+        &:hover:before, &:hover:after {
+          background-color: $toast-error-close-hover-color;
+        }
+      }
+    }
+  }
+}
+
+@mixin toast($size) {
+  $toast-map: map_get($toast, $size);
+  .opx-toast {
+    #{map_get($toast-map, vertical)}: map_get($toast-map, vertical-value);
+    #{map_get($toast-map, horizontal)}: map_get($toast-map, horizontal-value);
+    min-width: map_get($toast-map, min-width);
+    max-width: map_get($toast-map, max-width);
+  }
+}
+
+@media (max-width: map_get($media-xxs, stop))                                           { @include toast(xxs); }
+@media (min-width: map_get($media-xs, start)) and (max-width: map_get($media-xs, stop)) { @include toast(xs); }
+@media (min-width: map_get($media-s, start))  and (max-width: map_get($media-s, stop))  { @include toast(s); }
+@media (min-width: map_get($media-m, start))  and (max-width: map_get($media-m, stop))  { @include toast(m); }
+@media (min-width: map_get($media-l, start))  and (max-width: map_get($media-l, stop))  { @include toast(l); }
+@media (min-width: map_get($media-xl, start)) and (max-width: map_get($media-xl, stop)) { @include toast(xl); }
+@media (min-width: map_get($media-xxl, start))                                          { @include toast(xxl); }

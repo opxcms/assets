@@ -1,0 +1,17 @@
+@import "../mades/colors";
+
+$manage-main-frame__header-background: $color-darker-gray !default;
+
+$manage-main-frame__header-height: (
+    xxs: 4rem,
+    xs:  4rem,
+    s:   4rem,
+    m:   4rem,
+    l:   4rem,
+    xl:  4rem,
+    xxl: 4rem,
+);
+
+$z-indexes: (
+  navigation-layer: 1000,
+)

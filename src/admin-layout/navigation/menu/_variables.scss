@@ -1,0 +1,26 @@
+@import "../../../mades/colors";
+@import "../../../mades/variables";
+
+$opx-navigation-menu-background: $color-gray-1;
+$opx-navigation-menu-border: $color-gray-3;
+$opx-navigation-menu-item-hover-background: $color-blue-3 !default;
+$opx-navigation-menu-item-active-background: $color-blue-4 !default;
+
+$opx-navigation-menu-font: $project-font !default;
+$opx-navigation-menu-font-weight: 400 !default;
+$opx-navigation-menu-letter-spacing: 0.02rem;
+
+$opx-navigation-menu-favorite-inactive-color: $color-gray-7;
+$opx-navigation-menu-favorite-inactive-hover-color: $color-gray-4;
+$opx-navigation-menu-favorite-active-color: $color-orange-5;
+$opx-navigation-menu-favorite-active-hover-color: $color-orange-3;
+
+$opx-navigation-menu: (
+    xxs: (font-size: 1rem, line-height: 2rem, inner-padding: 0 0.5rem 0 0.5rem, expander-width: 2rem, folding-offset: 1rem, favorites-offset-size: 0.2rem, favorite-icon-size: 1.4rem, icon-spacing: 0.3rem),
+    xs:  (font-size: 1rem, line-height: 2rem, inner-padding: 0 0.5rem 0 0.5rem, expander-width: 2rem, folding-offset: 1rem, favorites-offset-size: 0.2rem, favorite-icon-size: 1.4rem, icon-spacing: 0.3rem),
+    s:   (font-size: 1rem, line-height: 2rem, inner-padding: 0 0.5rem 0 0.5rem, expander-width: 2rem, folding-offset: 1rem, favorites-offset-size: 0.2rem, favorite-icon-size: 1.4rem, icon-spacing: 0.3rem),
+    m:   (font-size: 1rem, line-height: 2rem, inner-padding: 0 0.5rem 0 0.5rem, expander-width: 2rem, folding-offset: 1rem, favorites-offset-size: 0.2rem, favorite-icon-size: 1.4rem, icon-spacing: 0.3rem),
+    l:   (font-size: 1rem, line-height: 2rem, inner-padding: 0 0.5rem 0 0.5rem, expander-width: 2rem, folding-offset: 1rem, favorites-offset-size: 0.2rem, favorite-icon-size: 1.4rem, icon-spacing: 0.3rem),
+    xl:  (font-size: 1rem, line-height: 2rem, inner-padding: 0 0.5rem 0 0.5rem, expander-width: 2rem, folding-offset: 1rem, favorites-offset-size: 0.2rem, favorite-icon-size: 1.4rem, icon-spacing: 0.3rem),
+    xxl: (font-size: 1rem, line-height: 2rem, inner-padding: 0 0.5rem 0 0.5rem, expander-width: 2rem, folding-offset: 1rem, favorites-offset-size: 0.2rem, favorite-icon-size: 1.4rem, icon-spacing: 0.3rem),
+);

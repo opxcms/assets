@@ -1,0 +1,230 @@
+@import "../variables";
+@import "../../media-sizes";
+@import "../../mixins/transition";
+
+$image-width: (
+        xxs: 100%,
+        xs: 50%,
+        s: 50%,
+        m: 33%,
+        l: 25%,
+        xl: 15.75%,
+        xxl: 12.5%,
+);
+
+/* COMMON */
+.opx-form-field-image {
+  border-color: $form-default-color;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  box-sizing: border-box;
+  font-size: 0;
+  margin: 0;
+  outline: none !important;
+  padding: $form-default-size 0;
+  position: relative;
+  width: 100%;
+
+  &__add {
+    width: 100%;
+    padding: 0 1rem;
+
+    &-button {
+      width: $form-default-size*3;
+      height: $form-default-size*3;
+      display: inline-block;
+      font-size: $form-default-size * 1.6;
+      color: $form-background;
+      border-radius: 5px;
+      background-color: $form-active-color;
+      padding: $form-default-size * 0.7;
+      box-sizing: border-box;
+      cursor: pointer;
+
+      &-upload {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        -moz-opacity: 0;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        font-size: 150px;
+        height: 30px;
+        z-index: -1;
+      }
+
+      & > .opx-icon {
+        display: block;
+      }
+
+      &:not(:last-child) {
+        margin-right: $form-default-size;
+      }
+
+      &-disabled {
+        cursor: default;
+        color: $form-disabled-light-color;
+        background-color: $form-disabled-color;
+      }
+    }
+  }
+
+  &__invalid {
+    border-color: $form-error-color !important;
+  }
+
+  &__modified:focus {
+    border-color: $form-modified-color;
+  }
+
+  &__modified {
+    border-color: $form-modified-light-color;
+  }
+
+  &__required {
+  }
+
+  &:disabled {
+    background-color: transparent;
+    border-color: $form-disabled-light-color;
+    color: $form-disabled-color;
+  }
+}
+
+
+.opx-form-field-image {
+  &__image {
+    border: 1px solid $form-default-color;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 1rem;
+    position: relative;
+    border-radius: 3px;
+
+    &::before {
+      content: '';
+      display: block;
+      padding-top: 100%;
+      width: 100%;
+    }
+
+    &-img {
+      max-width: 90%;
+      max-height: 90%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    & > .opx-loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    & > .opx-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    &-id {
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: $form-default-size * 2;
+      height: $form-default-size * 2;
+      line-height: $form-default-size * 2;
+      font-family: $project-font;
+      font-size: $form-default-size;
+      background-color: transparentize($color-white, 0.3);
+      text-align: center;
+      padding: 0 0.2rem;
+    }
+
+    &-edit {
+    }
+
+    &-remove {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: $form-default-size * 2;
+      height: $form-default-size * 2;
+      border-radius: 0 3px 0 0;
+      background-color: $form-background;
+      cursor: pointer;
+      opacity: 0.5;
+      @include transition('opacity');
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &:before, &:after {
+        content: '';
+        display: block;
+        width: 70%;
+        height: 2px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background-color: $form-error-color;
+      }
+
+      &:before {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+
+      &:after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+  }
+}
+
+@mixin image-field($size) {
+  .opx-form-field-image {
+    &__image {
+      width: calc(#{map_get($image-width, $size)} - 2rem);
+    }
+  }
+}
+
+/* XXS */
+@media (max-width: map_get($media-xxs, stop)) {
+  @include image-field(xxs);
+}
+
+/* XS  */
+@media (min-width: map_get($media-xs, start)) and (max-width: map_get($media-xs, stop)) {
+  @include image-field(xs);
+}
+
+/* S   */
+@media (min-width: map_get($media-s, start)) and (max-width: map_get($media-s, stop)) {
+  @include image-field(s);
+}
+
+/* M   */
+@media (min-width: map_get($media-m, start)) and (max-width: map_get($media-m, stop)) {
+  @include image-field(m);
+}
+
+/* L   */
+@media (min-width: map_get($media-l, start)) and (max-width: map_get($media-l, stop)) {
+  @include image-field(l);
+}
+
+/* XL  */
+@media (min-width: map_get($media-xl, start)) and (max-width: map_get($media-xl, stop)) {
+  @include image-field(xl);
+}
+
+/* XXL */
+@media (min-width: map_get($media-xxl, start)) {
+  @include image-field(xxl);
+}

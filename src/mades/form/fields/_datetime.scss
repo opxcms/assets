@@ -1,0 +1,157 @@
+@import "../variables";
+@import "../../mixins/transition";
+
+.opx-form-field-datetime {
+  margin: 0;
+  //padding: 0.3rem;
+  outline: none !important;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: $form-default-color;
+  font-family: $form-font-family;
+  font-size: $form-default-size;
+  line-height: $form-default-size * 1.2;
+  height: $form-default-size * 2;
+  width: 100%;
+  cursor: pointer;
+
+
+  &__invalid {
+    border-color: $form-error-color !important;
+  }
+
+  &__modified:focus {
+    border-color: $form-modified-color;
+  }
+
+  &__modified {
+    border-color: $form-modified-light-color;
+  }
+
+  &__required {
+  }
+
+  &__disabled {
+    background-color: transparent;
+    color: $form-disabled-color;
+    border-color: $form-disabled-light-color;
+    cursor: default !important;
+  }
+
+  &__value {
+    display: block;
+    width: 100%;
+    height: $form-default-size * 2;
+    box-sizing: border-box;
+    cursor: pointer;
+    padding: 0.3rem;
+    position: relative;
+    overflow: hidden;
+
+    &-date {
+      position: absolute;
+      white-space: nowrap;
+    }
+
+    &-actions {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: calc(#{$form-default-size * 2} - 2px);
+      line-height: $form-default-size * 2;
+      background-color: $form-background;
+
+      & > .opx-icon {
+        width: $form-default-size * 1.5;
+        height: $form-default-size * 2;
+        line-height: $form-default-size * 2;
+        text-align: center;
+        display: inline-block;
+        vertical-align: top;
+
+        &:before {
+          display: inline-block;
+          @include transition('transform');
+        }
+
+        &.expanded:before {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    &-clear {
+      display: inline-block;
+      vertical-align: top;
+      width: $form-default-size * 2;
+      height: $form-default-size * 2;
+      cursor: pointer;
+      position: relative;
+
+      &:before, &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 48%;
+        left: 48%;
+        background-color: $form-close-color;
+        width: $form-default-size * 1.2;
+        height: 2px;
+      }
+
+      &:before {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+
+      &:after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+
+      &:hover:before, &:hover:after {
+        background-color: $form-close-hover-color;
+      }
+    }
+  }
+
+  //
+  //& > .opx-icon {
+  //  float: right;
+  //  height: $form-default-size * 1.2;
+  //  display: inline-block;
+  //
+  //  &:before {
+  //    vertical-align: middle;
+  //  }
+  //}
+  //&__clear {
+  //  display: inline-block;
+  //  float: right;
+  //  width: $form-default-size * 1.2;
+  //  height: $form-default-size * 1.2;
+  //  margin-right: $form-default-size * 0.4;
+  //  position: relative;
+  //
+  //  &:before, &:after {
+  //    content: '';
+  //    display: block;
+  //    position: absolute;
+  //    top: 48%;
+  //    left: 48%;
+  //    background-color: $form-close-color;
+  //    width: $form-default-size * 1.2;
+  //    height: 2px;
+  //  }
+  //
+  //  &:hover:before, &:hover:after {
+  //    background-color: $form-close-hover-color;
+  //  }
+  //
+  //  &:before {
+  //    transform: translate(-50%, 0) rotate(-45deg);
+  //  }
+  //
+  //  &:after {
+  //    transform: translate(-50%, 0) rotate(45deg);
+  //  }
+  //}
+}

@@ -1,0 +1,239 @@
+@import "../../../mades/media-sizes";
+@import "../../../mades/mixins/transition";
+@import "../../variables";
+@import "../variables";
+@import "variables";
+@import "../menu/variables";
+@import "../sections/variables";
+
+.opx-manage__navigation {
+  z-index: map_get($z-indexes, navigation-layer);
+
+  &, & * {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
+  &-wrapper {
+    position: relative;
+    @include transition('width');
+  }
+
+  &-container {
+    background-color: $opx-navigation-menu-background;
+    box-sizing: border-box;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    @include transition('width, transform');
+
+    &-expanded {
+      transform: translate3d(0, 0, 0) !important;
+
+      &:before {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        width: 300vw;
+        height: 300vh;
+        background-color: transparentize($color-white, 0.4);
+      }
+    }
+
+    &-expand {
+      display: block;
+      position: absolute;
+      background-color: $opx-navigation-menu-background;
+      cursor: pointer;
+      z-index: map_get($z-indexes, navigation-layer)+5;
+      top: 0;
+      height: 100%;
+
+      &:before {
+        content: '';
+        display: block;
+        width: 1rem;
+        position: absolute;
+        height: 1rem;
+        top: 50%;
+        left: 50%;
+        border-color: $color-black;
+        border-width: 2px 2px 0 0;
+        border-style: solid;
+        transform: translate(-70%, -50%) rotate(45deg);
+      }
+    }
+
+    &-expanded &-expand:before {
+      transform: translate(-30%, -50%) rotate(-135deg);
+    }
+  }
+
+  &-sections {
+    box-sizing: border-box;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: map_get($z-indexes, navigation-layer)+2;
+  }
+
+  &-sections-container {
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+  }
+
+  &-menus {
+    background-color: $opx-navigation-menu-background;
+    border-right: 1px solid $opx-navigation-menu-border;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    z-index: map_get($z-indexes, navigation-layer)+1;
+  }
+
+  &-menus-container {
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  &-header, &-footer {
+    position: absolute;
+    left: 0;
+    text-align: left;
+    box-sizing: border-box;
+    z-index: map_get($z-indexes, navigation-layer)+3;
+  }
+
+  &-header {
+    top: 0;
+  }
+
+  &-footer {
+    bottom: 0;
+  }
+}
+
+@mixin navigation-layout($size) {
+  $navigation-widths-map: map_get($navigation-widths, $size);
+  $navigation-offsets-map: map_get($navigation-offsets, $size);
+  $opx-navigation-header-map: map_get($opx-navigation-header, $size);
+  $opx-navigation-footer-map: map_get($opx-navigation-footer, $size);
+  $navigation-expand-map: map_get($navigation-expand, $size);
+  $navigation-expand-size: map_get($navigation-expand-map, size);
+
+  $sections-width: map_get($navigation-widths-map, sections-width);
+  $menus-width: map_get($navigation-widths-map, menus-width);
+
+  $on-screen: map_get($navigation-widths-map, on-screen);
+  $wrapper-width: ($sections-width + $menus-width) * $on-screen + $navigation-expand-size * (1 - $on-screen);
+  $wrapper-width-no-menu: $sections-width * $on-screen + $navigation-expand-size * (1 - $on-screen);
+
+  $container-width: $sections-width + $menus-width;
+
+  .opx-manage__navigation {
+    &-wrapper {
+      width: $wrapper-width;
+
+      &-no-menu {
+        width: $wrapper-width-no-menu;
+
+      }
+    }
+
+    &-container {
+      width: $container-width;
+      @if ($on-screen == 0) {
+        transform: translate3d(- $container-width, 0, 0);
+      } @else {
+        &-expanded:before {
+          display: none;
+        }
+      }
+
+      &-no-menu {
+        width: $sections-width;
+        @if ($on-screen == 0) {
+          transform: translate3d(- $sections-width, 0, 0);
+        }
+      }
+
+      &-expand {
+        @if ($on-screen != 0) {
+          display: none;
+        } @else {
+          width: $navigation-expand-size;
+          right: - $navigation-expand-size;
+        }
+
+        &:before {
+          width: $navigation-expand-size / 2;
+          height: $navigation-expand-size / 2;
+        }
+      }
+    }
+
+    &-sections {
+      height: 100%;
+      width: $sections-width;
+      padding-top: map_get($navigation-offsets-map, top-padding);
+      padding-bottom: map_get($navigation-offsets-map, bottom-padding);
+    }
+
+    &-menus {
+      height: 100%;
+      width: $menus-width;
+      padding-top: map_get($navigation-offsets-map, top-padding);
+      padding-bottom: map_get($navigation-offsets-map, bottom-padding);
+    }
+
+    &-footer, &-header {
+      width: $sections-width;
+    }
+
+    &-header {
+      height: map_get($navigation-offsets-map, top-padding);
+    }
+
+    &-footer {
+      height: map_get($navigation-offsets-map, bottom-padding);
+    }
+  }
+}
+
+/* XXS */
+@media (max-width: map_get($media-xxs, stop)) {
+  @include navigation-layout(xxs);
+}
+
+/* XS  */
+@media (min-width: map_get($media-xs, start)) and (max-width: map_get($media-xs, stop)) {
+  @include navigation-layout(xs);
+}
+
+/* S   */
+@media (min-width: map_get($media-s, start)) and (max-width: map_get($media-s, stop)) {
+  @include navigation-layout(s);
+}
+
+/* M   */
+@media (min-width: map_get($media-m, start)) and (max-width: map_get($media-m, stop)) {
+  @include navigation-layout(m);
+}
+
+/* L   */
+@media (min-width: map_get($media-l, start)) and (max-width: map_get($media-l, stop)) {
+  @include navigation-layout(l);
+}
+
+/* XL  */
+@media (min-width: map_get($media-xl, start)) and (max-width: map_get($media-xl, stop)) {
+  @include navigation-layout(xl);
+}
+
+/* XXL */
+@media (min-width: map_get($media-xxl, start)) {
+  @include navigation-layout(xxl);
+}

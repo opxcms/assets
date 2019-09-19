@@ -1,0 +1,7 @@
+@import "../variables";
+
+@mixin border-radius($radius: $border-radius, $force: false) {
+  @if $force or $radius != '' and $radius != '0px' and $radius != '0rem' and $radius != '0em' {
+    border-radius: $radius;
+  }
+}

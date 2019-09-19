@@ -1,0 +1,24 @@
+@import "../../mades/colors";
+@import "../../mades/variables";
+
+$form-background-color: $color-white !default;
+$form-padding-vertical: 1rem !default;
+$form-padding-horizontal: 1.5rem !default;
+
+$form-title-color: $color-dark-gray !default;
+$form-title-font-size: 1.6rem !default;
+$form-title-line-height: 2rem !default;
+$form-title-font-weight: 300 !default;
+$form-title-font-family: $project-font !default;
+$form-title-font-spacing: 0.05rem !default;
+$form-title-bottom-margin: 0.5rem !default;
+
+$form-subtitle-color: $color-dark-gray !default;
+$form-subtitle-font-size: 1.2rem !default;
+$form-subtitle-font-weight: 300 !default;
+$form-subtitle-font-family: $project-font !default;
+$form-subtitle-font-spacing: 0.05rem !default;
+$form-subtitle-bottom-margin: 0.5rem !default;
+
+$form-action-top-margin: 0.5rem !default;
+$form-action-button-spacing: 0.5rem !default;

@@ -1,0 +1,16 @@
+@import "../../../mades/colors";
+
+$navigation-button: (
+    xxs: (width: 2.4rem, height: 2rem, spacing: 0.2rem, font-size: 1.4rem),
+    xs:  (width: 2.4rem, height: 2rem, spacing: 0.2rem, font-size: 1.4rem),
+    s:   (width: 2.4rem, height: 2rem, spacing: 0.2rem, font-size: 1.4rem),
+    m:   (width: 2.4rem, height: 2rem, spacing: 0.2rem, font-size: 1.4rem),
+    l:   (width: 2.4rem, height: 2rem, spacing: 0.2rem, font-size: 1.4rem),
+    xl:  (width: 2.4rem, height: 2rem, spacing: 0.2rem, font-size: 1.4rem),
+    xxl: (width: 2.4rem, height: 2rem, spacing: 0.2rem, font-size: 1.4rem),
+);
+
+$header-button-inactive-color: $color-gray-5;
+$header-button-inactive-hover-color: $color-gray-2;
+$header-button-active-color: $color-orange-4;
+$header-button-active-hover-color: $color-orange-2;

@@ -1,0 +1,75 @@
+@import "variables";
+@import "../variables";
+@import "../mixins/no-selection";
+@import "../mixins/transition";
+
+.opx-pagination {
+  width: 100%;
+  @include noSelection();
+
+  &__info {
+    width: 100%;
+    text-align: center;
+    font-family: $project-font;
+    font-size: $pagination-info-font-size;
+    color: $pagination-info-color;
+    display: block;
+    line-height: $pagination-info-font-size * 2;
+    & .opx-icon {
+      cursor: pointer;
+      color: $pagination-links-color;
+      font-size: $pagination-info-arrow-size;
+      &:before {
+        vertical-align: middle;
+      }
+    }
+  }
+
+  &__links {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0 $pagination-links-padding;
+    line-height: $pagination-links-size + $pagination-links-padding;
+
+    &-item {
+      display: inline-block;
+      box-sizing: border-box;
+      width: $pagination-links-size;
+      height: $pagination-links-size;
+      line-height: $pagination-links-size;
+      text-align: center;
+      font-size: $pagination-links-font-size;
+      color: $pagination-links-color;
+      background-color: $pagination-links-background-color;
+      @include transition('color, background-color');
+      cursor: pointer;
+
+      & > .opx-icon:before {
+        vertical-align: middle;
+      }
+
+      &:not(:last-child) {
+        margin-right: $pagination-links-padding;
+      }
+
+      &:hover {
+        color: $pagination-links-active-color;
+        background-color: $pagination-links-active-background-color;
+      }
+
+      &.active {
+        cursor: default;
+        color: $pagination-links-active-color;
+        background-color: $pagination-links-active-background-color;
+      }
+
+      &.disabled {
+        cursor: default;
+        color: $pagination-links-disable-color;
+        background-color: $pagination-links-disable-background-color;
+      }
+    }
+  }
+}
+

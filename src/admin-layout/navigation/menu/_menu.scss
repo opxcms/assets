@@ -1,0 +1,204 @@
+@import "variables";
+@import "../variables";
+@import "../../../mades/mixins/transition";
+
+.opx-manage-menu {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  &__submenu {
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    list-style: none;
+    font-family: $opx-navigation-menu-font;
+    font-weight: $opx-navigation-menu-font-weight;
+    letter-spacing: $opx-navigation-menu-letter-spacing;
+    box-sizing: border-box;
+    position: relative;
+
+    &-caption {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      cursor: pointer;
+      @include transition('background-color');
+
+      &:hover {
+        background-color: $opx-navigation-menu-item-hover-background;
+      }
+
+      &.active {
+        background-color: $opx-navigation-menu-item-active-background;
+      }
+
+      &>.opx-icon {
+        display: inline-block;
+        &:before {
+          vertical-align: bottom;
+        }
+      }
+    }
+
+    &-expand {
+      position: absolute;
+      top: 0;
+      display: block;
+      cursor: pointer;
+      @include transition('background-color');
+
+      &:hover {
+        background-color: $opx-navigation-menu-item-hover-background;
+      }
+
+      & > .opx-icon {
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: relative;
+        overflow: hidden;
+
+        &:before {
+          display: inline-block;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate3d(-50%, -50%, 0);
+          @include transition('transform');
+        }
+      }
+
+      &.expanded > .opx-icon:before {
+        transform: translate3d(-50%, -50%, 0) rotate(90deg);
+      }
+    }
+
+    &-favorite-switch {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: $opx-navigation-menu-background;
+      box-sizing: border-box;
+      cursor: pointer;
+      @include transition('background-color');
+
+      &>.opx-icon{
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        @include transition('color');
+
+        &:before {
+          display: inline-block;
+        }
+
+        &.opx-icon-favorite-empty {
+          color: $opx-navigation-menu-favorite-inactive-color;
+        }
+        &.opx-icon-favorite-filled {
+          color: $opx-navigation-menu-favorite-active-color;
+        }
+      }
+
+      &:hover {
+        background-color: $opx-navigation-menu-item-hover-background;
+
+        &>.opx-icon {
+
+          &.opx-icon-favorite-empty {
+            color: $opx-navigation-menu-favorite-inactive-hover-color;
+          }
+
+          &.opx-icon-favorite-filled {
+            color: $opx-navigation-menu-favorite-active-hover-color;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+@mixin menu($size) {
+  $menu-map: map_get($opx-navigation-menu, $size);
+
+  .opx-manage-menu {
+    padding-left: map_get($menu-map, expander-width);
+
+    &__submenu {
+      padding-left: map_get($menu-map, folding-offset);
+    }
+
+    &__item {
+      font-size: map_get($menu-map, font-size);
+      line-height: map_get($menu-map, line-height);
+      &-caption {
+        padding: map_get($menu-map, inner-padding);
+        &>.opx-icon {
+          line-height: map_get($menu-map, line-height);
+          margin-right: map_get($menu-map, icon-spacing);
+        }
+      }
+
+      &-expand {
+        height: map_get($menu-map, line-height);
+        width: map_get($menu-map, expander-width);
+        left: - map_get($menu-map, expander-width);
+        & > .opx-icon {
+          line-height: map_get($menu-map, line-height);
+          font-size: map_get($menu-map, line-height) * 0.6;
+        }
+      }
+
+      &-favorite-switch {
+        height: map_get($menu-map, line-height);
+        width: map_get($menu-map, line-height);
+        padding: map_get($menu-map, favorites-offset-size);
+        &>.opx-icon{
+          line-height: map_get($menu-map, line-height) - map_get($menu-map, favorites-offset-size) * 2;
+          font-size: map_get($menu-map, favorite-icon-size);
+        }
+      }
+    }
+  }
+}
+
+/* XXS */
+@media (max-width: map_get($media-xxs, stop)) {
+  @include menu(xxs);
+}
+
+/* XS  */
+@media (min-width: map_get($media-xs, start)) and (max-width: map_get($media-xs, stop)) {
+  @include menu(xs);
+}
+
+/* S   */
+@media (min-width: map_get($media-s, start)) and (max-width: map_get($media-s, stop)) {
+  @include menu(s);
+}
+
+/* M   */
+@media (min-width: map_get($media-m, start)) and (max-width: map_get($media-m, stop)) {
+  @include menu(m);
+}
+
+/* L   */
+@media (min-width: map_get($media-l, start)) and (max-width: map_get($media-l, stop)) {
+  @include menu(l);
+}
+
+/* XL  */
+@media (min-width: map_get($media-xl, start)) and (max-width: map_get($media-xl, stop)) {
+  @include menu(xl);
+}
+
+/* XXL */
+@media (min-width: map_get($media-xxl, start)) {
+  @include menu(xxl);
+}

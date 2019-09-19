@@ -1,0 +1,81 @@
+@import "variables";
+@import "../../mixins/transition";
+
+.text-field {
+  display: block;
+  width: 100%;
+  padding: $text-field-padding;
+  margin: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.text-field__label {
+  display: block;
+  width: 100%;
+  font-family: $text-field-label-font;
+  font-size: $text-field-label-font-size;
+  font-weight: $text-field-label-weight;
+  letter-spacing: $text-field-label-font-spacing;
+  color: $text-field-label-color;
+  padding-bottom: $text-field-label-bottom-margin;
+}
+
+.text-field__input {
+  display: block;
+  width: 100%;
+  font-family: $text-field-input-font;
+  font-size: $text-field-input-font-size;
+  font-weight: $text-field-input-weight;
+  letter-spacing: $text-field-input-font-spacing;
+  color: $text-field-input-color;
+  background-color: transparent;
+  padding: $text-field-input-padding;
+  box-sizing: border-box;
+  outline: none;
+  border: 0 solid $text-field-underline-color-inactive;
+  border-bottom-width: $text-field-underline-width;
+  @include transition('border-color');
+  &:hover, &:active, &:focus {
+    border-color: $text-field-underline-color-active;
+  }
+  &.is-invalid {
+    border-color: $text-field-underline-color-error;
+  }
+}
+
+.text-field__input {
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-text-fill-color: $text-field-input-color;
+    -webkit-animation: autofill 0s forwards;
+    animation: autofill 0s forwards;
+  }
+
+  @keyframes autofill {
+    100% {
+      background: transparent;
+      color: inherit;
+    }
+  }
+
+  @-webkit-keyframes autofill {
+    100% {
+      background: transparent;
+      color: inherit;
+    }
+  }
+}
+
+.text-field__error {
+  display: block;
+  width: 100%;
+  font-family: $text-field-error-font;
+  font-size: $text-field-error-font-size;
+  font-weight: $text-field-error-weight;
+  letter-spacing: $text-field-error-font-spacing;
+  color: $text-field-error-color;
+  margin-top: $text-field-error-top-margin;
+}

@@ -1,0 +1,20 @@
+@import "../../../../assets/src/mades/media-sizes";
+@import "variables";
+
+.opx-manage {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: table;
+
+  &__navigation {
+    display: table-cell;
+    height: 100%;
+  }
+
+  &__body {
+    display: table-cell;
+    height: 100%;
+    width: 100%;
+  }
+}

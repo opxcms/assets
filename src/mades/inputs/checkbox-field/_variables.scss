@@ -1,0 +1,24 @@
+@import "../../colors";
+@import "../../variables";
+
+$checkbox-field-padding: 0.5rem 0 !default;
+
+$checkbox-field-placeholder-size: 1rem !default;
+$checkbox-field-placeholder-top-offset: 0.1rem !default;
+$checkbox-field-placeholder-border-width: 2px !default;
+$checkbox-field-placeholder-inactive-border-color: $color-primary-lighten-2 !default;
+$checkbox-field-placeholder-active-border-color: $color-primary !default;
+$checkbox-field-placeholder-border-radius: 2px !default;
+
+$checkbox-field-placeholder-inner-width: 0.6rem !default;
+$checkbox-field-placeholder-inner-height: 0.3rem !default;
+$checkbox-field-placeholder-inner-color: $color-white !default;
+$checkbox-field-placeholder-inner-radius: 1px !default;
+$checkbox-field-placeholder-inner-top-offset: -20% !default;
+
+$checkbox-field-label-left-padding: 0.5rem !default;
+$checkbox-field-label-font: $project-font !default;
+$checkbox-field-label-font-size: 1rem !default;
+$checkbox-field-label-weight: 400 !default;
+$checkbox-field-label-font-spacing: 0.01rem !default;
+$checkbox-field-label-color: $color-dark-gray !default;

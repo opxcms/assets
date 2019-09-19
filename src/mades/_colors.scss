@@ -1,0 +1,176 @@
+/** @see https://palx.jxnblk.com/3053AD */
+
+$color-base: #005aeb;
+$color-black: #393f49;
+$color-white: #ffffff;
+
+$color-gray-0: #f8f9fa;
+$color-gray-1: #ecedef;
+$color-gray-2: #dee0e4;
+$color-gray-3: #cfd3d8;
+$color-gray-4: #bfc4cb;
+$color-gray-5: #adb3bd;
+$color-gray-6: #98a0ac;
+$color-gray-7: #808998;
+$color-gray-8: #626c7d;
+$color-gray-9: #393f49;
+
+$color-blue-0: #e6eefd;
+$color-blue-1: #cadcfa;
+$color-blue-2: #aac8f8;
+$color-blue-3: #83aff5;
+$color-blue-4: #518ef1;
+$color-blue-5: #005aeb;
+$color-blue-6: #0051d3;
+$color-blue-7: #0046b8;
+$color-blue-8: #003a98;
+$color-blue-9: #00296b;
+
+$color-indigo-0: #eceafd;
+$color-indigo-1: #d8d3fb;
+$color-indigo-2: #c0b9f9;
+$color-indigo-3: #a499f7;
+$color-indigo-4: #7c6df3;
+$color-indigo-5: #1b00eb;
+$color-indigo-6: #1800d4;
+$color-indigo-7: #1500ba;
+$color-indigo-8: #11009a;
+$color-indigo-9: #0c006f;
+
+$color-violet-0: #f5e9fd;
+$color-violet-1: #ebd1fb;
+$color-violet-2: #dfb5f9;
+$color-violet-3: #d093f6;
+$color-violet-4: #bc65f2;
+$color-violet-5: #9100eb;
+$color-violet-6: #8300d4;
+$color-violet-7: #7300ba;
+$color-violet-8: #5f009a;
+$color-violet-9: #44006f;
+
+$color-fuschia-0: #fdeafb;
+$color-fuschia-1: #fbd3f6;
+$color-fuschia-2: #f9b8f1;
+$color-fuschia-3: #f697eb;
+$color-fuschia-4: #f36ae3;
+$color-fuschia-5: #eb00d0;
+$color-fuschia-6: #d400bc;
+$color-fuschia-7: #bb00a5;
+$color-fuschia-8: #9b0089;
+$color-fuschia-9: #710064;
+
+$color-pink-0: #fdeaf1;
+$color-pink-1: #fbd3e2;
+$color-pink-2: #f9b8d1;
+$color-pink-3: #f697bb;
+$color-pink-4: #f36a9e;
+$color-pink-5: #eb005a;
+$color-pink-6: #d40051;
+$color-pink-7: #bb0047;
+$color-pink-8: #9b003b;
+$color-pink-9: #70002b;
+
+$color-red-0: #fdebe8;
+$color-red-1: #fbd5d0;
+$color-red-2: #f9bbb3;
+$color-red-3: #f69c90;
+$color-red-4: #f27261;
+$color-red-5: #eb1b00;
+$color-red-6: #d41800;
+$color-red-7: #ba1500;
+$color-red-8: #9a1100;
+$color-red-9: #6f0c00;
+
+$color-orange-0: #fcf1e0;
+$color-orange-1: #f9e3bf;
+$color-orange-2: #f7d39a;
+$color-orange-3: #f3c16f;
+$color-orange-4: #efab3e;
+$color-orange-5: #eb9100;
+$color-orange-6: #d48300;
+$color-orange-7: #ba7200;
+$color-orange-8: #9a5f00;
+$color-orange-9: #6f4400;
+
+$color-yellow-0: #f9fcdf;
+$color-yellow-1: #f2f9bc;
+$color-yellow-2: #ebf696;
+$color-yellow-3: #e3f36b;
+$color-yellow-4: #daef39;
+$color-yellow-5: #d0eb00;
+$color-yellow-6: #bcd400;
+$color-yellow-7: #a5bb00;
+$color-yellow-8: #899b00;
+$color-yellow-9: #647100;
+
+$color-lime-0: #ecfce2;
+$color-lime-1: #d8fac3;
+$color-lime-2: #c1f79f;
+$color-lime-3: #a6f476;
+$color-lime-4: #85f043;
+$color-lime-5: #5aeb00;
+$color-lime-6: #51d400;
+$color-lime-7: #47bb00;
+$color-lime-8: #3b9b00;
+$color-lime-9: #2b7000;
+
+$color-green-0: #e7fde9;
+$color-green-1: #ccfbd1;
+$color-green-2: #adf8b5;
+$color-green-3: #87f594;
+$color-green-4: #55f167;
+$color-green-5: #00eb1b;
+$color-green-6: #00d418;
+$color-green-7: #00bb15;
+$color-green-8: #009b11;
+$color-green-9: #00710d;
+
+$color-teal-0: #e5fdf4;
+$color-teal-1: #c9fae7;
+$color-teal-2: #a8f8d9;
+$color-teal-3: #81f5c8;
+$color-teal-4: #4ef1b2;
+$color-teal-5: #00eb91;
+$color-teal-6: #00d483;
+$color-teal-7: #00bb73;
+$color-teal-8: #009b60;
+$color-teal-9: #007145;
+
+$color-cyan-0: #e3f9fc;
+$color-cyan-1: #c5f4fa;
+$color-cyan-2: #a2edf7;
+$color-cyan-3: #79e6f4;
+$color-cyan-4: #45dcf0;
+$color-cyan-5: #00d0eb;
+$color-cyan-6: #00bcd4;
+$color-cyan-7: #00a5ba;
+$color-cyan-8: #00899b;
+$color-cyan-9: #006370;
+
+$color-primary-lighten-2: $color-blue-2;
+$color-primary-lighten-1: $color-blue-4;
+$color-primary: $color-blue-6;
+$color-primary-darken-1: $color-blue-7;
+$color-primary-darken-2: $color-blue-9;
+
+$color-info-lighten-2: rgba(255, 226, 166, 1);
+$color-info-lighten-1: rgba(255, 204, 99, 1);
+$color-info: rgba(255, 187, 48, 1);
+$color-info-darken-1: rgba(211, 143, 3, 1);
+$color-info-darken-2: rgba(145, 98, 0, 1);
+
+$color-success-lighten-2: rgba(153, 235, 167, 1);
+$color-success-lighten-1: rgba(83, 212, 105, 1);
+$color-success: rgba(37, 196, 65, 1);
+$color-success-darken-1: rgba(2, 161, 30, 1);
+$color-success-darken-2: rgba(0, 111, 19, 1);
+
+$color-error-lighten-2: $color-red-2;
+$color-error-lighten-1: $color-red-4;
+$color-error: $color-red-6;
+$color-error-darken-1: $color-red-8;
+$color-error-darken-2: $color-red-9;
+
+
+$color-dark-gray: $color-gray-8;
+$color-darker-gray: $color-black;

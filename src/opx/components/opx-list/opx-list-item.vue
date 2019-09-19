@@ -1,0 +1,178 @@
+<template>
+    <div class="opx-list-item" :class="item_class">
+        <div class="opx-list-item__checkbox" v-if="is_selectable"
+             :class="checkbox_class"
+             @click="toggleSelected"
+        ></div>
+        <div class="opx-list-item__id" :class="id_class"><span>{{ item_id }}</span></div>
+        <div class="opx-list-item__action" v-if="children_enabled"
+             @click="$emit('change-parent', item_id)"
+        >
+            <opx-icon :icon="children_icon"></opx-icon>
+        </div>
+        <router-link v-if="edit_enabled" :class="'opx-list-item__action'" :to="edit_route" :event="''"
+                     @click.native.prevent="goingEditing">
+            <opx-icon :icon="'edit'"></opx-icon>
+        </router-link>
+        <div class="opx-list-item__body">
+            <div class="opx-list-item__body-line">
+                <div class="opx-list-item__title">{{ item_title }}</div>
+                <div class="opx-list-item__subtitle" v-if="item_subtitle">{{ item_subtitle }}</div>
+                <div class="opx-list-item__description" v-if="item_description">{{ item_description }}</div>
+            </div>
+            <div class="opx-list-item__body-line">
+                <div class="opx-list-item__property"
+                     v-for="(prop, key) in item_properties"
+                     :key="key"
+                >{{ prop }}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    import {DateTime} from 'luxon';
+
+    export default {
+        name: "opx-list-item",
+        props: {
+            item: Object,
+            children: {
+                type: Boolean,
+                default: false,
+            },
+            selectable: {
+                type: Boolean,
+                default: true,
+            },
+            selected: {
+                type: Array,
+                default: () => [],
+            },
+            check_hidden: {
+                type: Boolean,
+                default: false,
+            },
+            check_disabled: {
+                type: Boolean,
+                default: false,
+            },
+            last: {
+                type: String,
+                default: null,
+            },
+            edit_url: {
+                type: String,
+                default: () => {
+                    return null;
+                }
+            },
+            before_edit: {
+                type: Function,
+                default: null,
+            }
+        },
+
+        computed: {
+            is_selected: function () {
+                return this.selected.indexOf(this.item['id']) !== -1;
+            },
+            is_selectable: function () {
+                return this.selectable;
+            },
+            checkbox_class: function () {
+                let classes = [];
+                if(this.is_selected) classes.push('opx-list-item__checkbox-selected');
+                if(this.check_hidden) classes.push('opx-list-item__checkbox-hidden');
+                if(this.check_disabled) classes.push('opx-list-item__checkbox-disabled');
+                return  classes;
+            },
+            id_class: function () {
+                let classes = [];
+                if (!this.selectable) {
+                    classes.push('opx-list-item__id-spaced');
+                }
+                if (!this.item['enabled']) {
+                    classes.push('opx-list-item__id-disabled');
+                }
+                return classes;
+            },
+            item_class: function () {
+                let classes = [];
+                if (this.item['deleted']) classes.push('opx-list-item-deleted');
+                if (this.last === String(this.item['id'])) classes.push('opx-list-item-last');
+
+                return classes;
+            },
+            item_title: function () {
+                return this.item['title'];
+            },
+            item_subtitle: function () {
+                return this.item['subtitle'];
+            },
+            item_description: function () {
+                return this.item['description'];
+            },
+            item_id: function () {
+                return this.item['id'];
+            },
+            children_enabled: function () {
+                return !!this.children;
+            },
+            children_icon: function () {
+                return this.item['children_count'] === null || this.item['children_count'] === 0 ? 'folder' : 'folder-full'
+            },
+            edit_route: function () {
+                return {name: this.edit_url, params: {id: this.item['id']}};
+            },
+            edit_enabled: function () {
+                return !!this.edit_url;
+            },
+            item_properties: function () {
+                let props = this.item['properties'];
+
+                if (props === null) return null;
+
+                if (typeof props === 'string') {
+                    props = [props];
+                }
+
+                let formatted = [];
+
+                props.map(prop => {
+                    if (String(prop).indexOf('datetime:') !== -1) {
+                        const date = DateTime.fromISO(prop.slice(9)).setZone().setLocale(window.navigator.language);
+                        prop = date.toFormat('d MMM yyyy, HH:mm');
+                    } else if (String(prop).indexOf('date:') !== -1) {
+                        const date = DateTime.fromISO(prop.slice(5)).setZone().setLocale(window.navigator.language);
+                        prop = date.toFormat('d MMM yyyy');
+                    } else {
+                        prop = this.$trans(prop);
+                    }
+
+                    formatted.push(prop)
+                });
+
+                return formatted;
+            }
+        },
+
+        methods: {
+            toggleSelected() {
+                if (this.check_disabled || this.check_hidden) return;
+
+                this.$emit('selection', this.item['id']);
+            },
+
+            goingEditing() {
+                if (this.before_edit) {
+                    this.before_edit(String(this.item['id']));
+                }
+                if (this.edit_url) {
+                    this.$router.push(this.edit_route);
+                }
+            },
+        }
+    }
+</script>

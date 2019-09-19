@@ -1,0 +1,77 @@
+@import "variables";
+
+// Field
+$form-field-padding: 0 0.5rem 0.5rem !default;
+$form-field-margin: 0 0.5rem 1rem !default;
+
+// Caption
+$form-field-caption-color: $form-active-color !default;
+$form-field-caption-font-size: $form-default-size !default;
+$form-field-caption-hint-font-size: 0.8rem !default;
+$form-field-caption-line-height: 1rem !default;
+$form-field-caption-font-weight: 300 !default;
+$form-field-caption-hint-font-weight: 300 !default;
+$form-field-caption-font-spacing: $form-font-spacing !default;
+$form-field-caption-padding: 0 0 0.3rem 0 !default;
+$form-field-caption-hint-color: $color-gray-4 !default;
+
+// Errors
+$form-field-errors-padding: 0.5rem 0 !default;
+$form-field-errors-spacing: 0.3rem !default;
+$form-field-errors-color: $color-red-5 !default;
+$form-field-errors-font-size: 0.8rem !default;
+$form-field-errors-line-height: 0.8rem !default;
+
+// Info
+$form-field-info-padding: 0.5rem 0 !default;
+$form-field-info-color: $color-gray-8 !default;
+$form-field-info-font-size: 0.8rem !default;
+$form-field-info-font-weight: 300 !default;
+$form-field-info-line-height: 0.8rem !default;
+
+// Required
+$form-field-required-color: $color-red-5 !default;
+$form-field-required-font-size: 1.4rem !default;
+$form-field-required-top: 0 !default;
+$form-field-required-left: -0.5rem !default;
+$form-field-required-width: 1rem !default;
+
+// Counter
+$form-field-counter-color: $color-green-7;
+$form-field-counter-invalid-color: $color-red-5 !default;
+
+//$form-modified-border-width: 2px !default;
+//$form-modified-border-color: $color-orange-5 !default;
+//$form-modified-border-color-default:  transparent !default;
+//
+//$form-value-color: $color-darker-gray !default;
+//$form-value-font-size: $form-fields-default-size !default;
+//$form-value-background: transparent !default;
+//$form-value-border-color: $color-blue-3 !default;
+//$form-value-border-color-focus: $color-blue-6 !default;
+//$form-value-border-width: 2px !default;
+//$form-value-border-focus: $color-indigo-5 !default;
+//$form-value-width: 100% !default;
+//
+//
+//
+//$form-info-color: $color-gray-7 !default;
+//$form-info-font-size: 0.8 * $form-fields-default-size !default;
+//$form-info-width: $form-fields-default-size !default;
+//$form-info-line-height: 0.8 * $form-fields-default-size !default;
+//$form-info-border-color: $color-gray-7 !default;
+//$form-info-border-width: 1px !default;
+//$form-info-text-padding: 0.5rem !default;
+//$form-info-text-border-color: $color-gray-7 !default;
+//$form-info-text-border-width: 1px !default;
+//$form-info-text-background: $color-white !default;
+//$form-info-text-top-margin: 0.4 * $form-fields-default-size !default;
+//
+//$form-counter-color: $color-lime-8 !default;
+//$form-counter-color-invalid: $color-red-6 !default;
+//$form-counter-font-size: 0.8 * $form-fields-default-size !default;
+//$form-counter-width: $form-fields-default-size !default;
+//$form-counter-line-height: 0.8 * $form-fields-default-size !default;
+//$form-counter-border-color: $color-gray-7 !default;
+//$form-counter-border-width: 1px !default;
+//$form-counter-right-margin: 0.5 * $form-fields-default-size !default;

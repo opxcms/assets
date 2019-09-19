@@ -1,0 +1,68 @@
+@import "../variables";
+@import "variables";
+@import "../form/variables";
+
+.opx-tabs {
+  &__tabs {
+    list-style: none;
+    width: 100%;
+    background-color: $tabs-background-color;
+    font-size: 0;
+    text-align: left;
+    &-tab {
+      display: inline-block;
+      margin: $tabs-tab-spacing;
+      cursor: pointer;
+      position: relative;
+      background-color: $tabs-tab-background-color;
+      color: $tabs-tab-color;
+      &-title {
+        display: block;
+        line-height: $tabs-tab-line-height;
+        padding: 0 $tabs-tab-padding;
+        font-family: $tabs-tab-font-family;
+        font-size: $tabs-tab-font-size;
+        font-weight: $tabs-tab-font-weight;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background-color: $tabs-tab-underline-color;
+      }
+      &-active:after, &:hover:after {
+        height: $tabs-tab-underline-height;
+      }
+      &-active:after {
+        background-color: $tabs-tab-active-underline-color;
+      }
+      &-modified:before, &-has-error:before {
+        content: "";
+        position: absolute;
+        width: $tabs-tab-info-dot-size;
+        height: $tabs-tab-info-dot-size;
+        top: 50%;
+        left: $tabs-tab-padding / 2;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+      }
+      &-modified:before {
+        background-color: $tabs-tab-modified-background-color;
+      }
+      &-has-error:before {
+        background-color: $tabs-tab-error-background-color;
+      }
+    }
+  }
+  &__panels {
+    &-panel {
+      padding: $tabs-tab-panel-padding;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+@import "media-sizes";
+
+$base-font-size: (
+    xxs: 100%,
+    xs:  100%,
+    s:   100%,
+    m:   100%,
+    l:   100%,
+    xl:  100%,
+    xxl: 100%,
+);
+
+@mixin base-font-size($size) {
+  html {
+    font-size: map_get($base-font-size, $size);
+  }
+}
+
+@media (max-width: map_get($media-xxs, stop))                                           { @include base-font-size(xxs); }
+@media (min-width: map_get($media-xs, start)) and (max-width: map_get($media-xs, stop)) { @include base-font-size(xs); }
+@media (min-width: map_get($media-s, start))  and (max-width: map_get($media-s, stop))  { @include base-font-size(s); }
+@media (min-width: map_get($media-m, start))  and (max-width: map_get($media-m, stop))  { @include base-font-size(m); }
+@media (min-width: map_get($media-l, start))  and (max-width: map_get($media-l, stop))  { @include base-font-size(l); }
+@media (min-width: map_get($media-xl, start)) and (max-width: map_get($media-xl, stop)) { @include base-font-size(xl); }
+@media (min-width: map_get($media-xxl, start))                                          { @include base-font-size(xxl); }

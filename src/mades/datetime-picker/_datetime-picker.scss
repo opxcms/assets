@@ -1,0 +1,411 @@
+@import "variables";
+@import "../variables";
+@import "../media-sizes";
+@import "../mixins/no-selection";
+
+.opx-dt-picker {
+  background-color: $datetime-picker-background;
+  z-index: 99;
+
+  &__header {
+    color: $datetime-picker-color;
+    padding: 1rem 0;
+    margin: 0 1rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid $datetime-picker-border-color;
+
+    &-select {
+      font-family: $project-font;
+      display: block;
+      box-sizing: border-box;
+      font-size: 0;
+      margin-top: 1rem;
+      color: $datetime-picker-title-color;
+    }
+
+    &-current {
+      font-family: $project-font;
+      font-size: $datetime-picker-regular-size;
+      box-sizing: border-box;
+      cursor: pointer;
+      color: $datetime-picker-subtitle-color;
+
+      &:hover {
+        border-bottom: 2px solid $datetime-picker-highlight-color;
+
+      }
+    }
+  }
+
+  &__select {
+    font-size: $datetime-picker-title-size;
+    cursor: pointer;
+
+    &:hover {
+      border-bottom: 2px solid $datetime-picker-highlight-color;
+    }
+
+    &-spacer {
+      display: inline-block;
+      font-size: $datetime-picker-title-size;
+      width: 0.4em;
+      text-align: center;
+      cursor: default;
+    }
+
+    &-active {
+      border-bottom: 2px solid $datetime-picker-highlight-color;
+    }
+  }
+
+  &__controls {
+    margin: 1rem;
+    box-sizing: border-box;
+    font-family: $project-font;
+    font-size: $datetime-picker-regular-size;
+    height: $datetime-picker-regular-size * 2;
+    line-height: $datetime-picker-regular-size * 2;
+
+    &-display {
+      cursor: pointer;
+    }
+
+    &-previous, &-next {
+      display: inline-block;
+      width: $datetime-picker-regular-size * 1.5;
+      height: $datetime-picker-regular-size * 2;
+      float: right;
+      margin-left: 0.5rem;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+
+      &:before {
+        content: '';
+        width: $datetime-picker-regular-size;
+        height: $datetime-picker-regular-size;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-style: solid;
+        border-width: 2px;
+        border-color: $datetime-picker-color transparent transparent $datetime-picker-color;
+        transform-origin: center;
+      }
+
+      &-disabled {
+        cursor: default;
+
+        &:before {
+          border-color: $datetime-picker-disabled-color transparent transparent $datetime-picker-disabled-color;
+        }
+      }
+    }
+
+    &-previous:before {
+      transform: translate(-20%, -50%) rotate(-45deg);
+    }
+
+    &-next:before {
+      transform: translate(-80%, -50%) rotate(135deg);
+    }
+  }
+
+  &__calendar {
+    font-family: $project-font;
+    font-size: $datetime-picker-regular-size;
+    @include noSelection;
+
+    &-item {
+      display: inline-block;
+      text-align: center;
+      box-sizing: border-box;
+      font-size: $datetime-picker-regular-size;
+      cursor: pointer;
+      color: $datetime-picker-default-color;
+      background-color: $datetime-picker-default-background;
+      border: 1px solid $datetime-picker-default-border;
+
+      @media (hover), (min-width: 0 \0
+      ), (min--moz-device-pixel-ratio: 0) {
+        &:not(&-disabled):hover {
+          color: $datetime-picker-hover-color;
+          background-color: $datetime-picker-hover-background;
+          border-color: $datetime-picker-hover-border;
+        }
+      }
+
+      &-current {
+        color: $datetime-picker-current-color;
+        background-color: $datetime-picker-current-background;
+        border-color: $datetime-picker-current-border;
+      }
+
+      &-selected {
+        color: $datetime-picker-selected-color !important;
+        background-color: $datetime-picker-selected-background !important;
+        border-color: $datetime-picker-selected-border !important;
+      }
+
+      &-preselected {
+        color: $datetime-picker-preselected-color;
+        background-color: $datetime-picker-preselected-background;
+        border-color: $datetime-picker-preselected-border;
+      }
+
+      &-disabled {
+        color: $datetime-picker-disabled-color;
+        background-color: $datetime-picker-disabled-background;
+        border-color: $datetime-picker-disabled-border;
+        cursor: default !important;
+      }
+    }
+
+    &-year > * {
+      width: calc(100% / 5);
+      height: calc(#{$datetime-picker-calendar-height} / 4);
+      line-height: calc(#{$datetime-picker-calendar-height} / 4);
+    }
+
+    &-month > * {
+      width: calc(100% / 3);
+      height: calc(#{$datetime-picker-calendar-height} / 4);
+      line-height: calc(#{$datetime-picker-calendar-height} / 4);
+    }
+
+    &-date > * {
+      width: calc(100% / 7);
+      height: calc(#{$datetime-picker-calendar-height} / 6);
+      line-height: calc(#{$datetime-picker-calendar-height} / 6);
+    }
+
+    &-hour > * {
+      width: calc(100% / 6);
+      height: calc(#{$datetime-picker-calendar-height} / 4);
+      line-height: calc(#{$datetime-picker-calendar-height} / 4);
+
+      & > span {
+        font-weight: 300;
+        opacity: 0.75;
+      }
+    }
+
+    &-minute > * > span {
+      font-weight: 300;
+      opacity: 0.75;
+    }
+
+    &-minute {
+      .n-1 {
+        width: calc(100% / 5);
+        height: calc(#{$datetime-picker-calendar-height} / 12);
+        line-height: calc(#{$datetime-picker-calendar-height} / 12);
+      }
+
+      .n-5 {
+        width: calc(100% / 3);
+        height: calc(#{$datetime-picker-calendar-height} / 4);
+        line-height: calc(#{$datetime-picker-calendar-height} / 4);
+      }
+
+      .n-10 {
+        width: calc(100% / 2);
+        height: calc(#{$datetime-picker-calendar-height} / 3);
+        line-height: calc(#{$datetime-picker-calendar-height} / 3);
+      }
+
+      .n-15 {
+        width: calc(100%);
+        height: calc(#{$datetime-picker-calendar-height} / 4);
+        line-height: calc(#{$datetime-picker-calendar-height} / 4);
+      }
+
+      .n-20 {
+        width: calc(100%);
+        height: calc(#{$datetime-picker-calendar-height} / 3);
+        line-height: calc(#{$datetime-picker-calendar-height} / 3);
+      }
+
+      .n-30 {
+        width: calc(100%);
+        height: calc(#{$datetime-picker-calendar-height} / 2);
+        line-height: calc(#{$datetime-picker-calendar-height} / 2);
+      }
+    }
+
+    &-second > * {
+      width: calc(100% / 10);
+      height: calc(#{$datetime-picker-calendar-height} / 6);
+      line-height: calc(#{$datetime-picker-calendar-height} / 6);
+    }
+
+    &-done {
+      height: $datetime-picker-calendar-height;
+      width: 100%;
+      position: relative;
+      cursor: pointer;
+
+      &:before {
+        content: '';
+        width: $datetime-picker-item-padding*5;
+        height: $datetime-picker-item-padding*8;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-style: solid;
+        border-width: 6px 0 0 6px;
+        border-color: $datetime-picker-done-color;
+        transform-origin: center;
+        transform: translate(-50%, -50%) rotate(-135deg);
+      }
+
+      &:hover:before {
+        border-color: $datetime-picker-done-hover-color;
+      }
+    }
+  }
+
+  &__actions {
+    margin: 1rem 0 0;
+    box-sizing: border-box;
+    font-size: 0;
+    text-align: right;
+    height: $datetime-picker-regular-size * 2;
+    line-height: $datetime-picker-regular-size * 2;
+
+    &-reset, &-close, &-done {
+      height: $datetime-picker-regular-size * 2;
+      display: inline-block;
+      vertical-align: top;
+      width: calc(100% / 3 - 2rem / 3);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+
+      &:before, &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+      }
+    }
+
+    &-reset {
+      &:before {
+        width: $datetime-picker-regular-size * 1.5;
+        height: $datetime-picker-regular-size * 1.5;
+        border-radius: 50%;
+        border-color: transparent $datetime-picker-reset-color $datetime-picker-reset-color $datetime-picker-reset-color;
+        border-width: 2px;
+        border-style: solid;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        box-sizing: border-box;
+      }
+
+      &:after {
+        border-color: $datetime-picker-reset-color transparent transparent $datetime-picker-reset-color;
+        border-width: 4px;
+        border-style: solid;
+        width: 0;
+        height: 0;
+        transform: translate(-4px, calc(#{-$datetime-picker-regular-size * 0.75} - 2px)) rotate(-45deg);
+      }
+
+      &:hover:before {
+        border-color: transparent $datetime-picker-reset-hover-color $datetime-picker-reset-hover-color $datetime-picker-reset-hover-color;
+      }
+
+      &:hover:after {
+        border-color: $datetime-picker-reset-hover-color transparent transparent $datetime-picker-reset-hover-color;
+      }
+    }
+
+    &-close {
+      margin-left: 1rem;
+
+      &:before, &:after {
+        background-color: $datetime-picker-close-color;
+        width: $datetime-picker-regular-size * 2;
+        height: 2px;
+      }
+
+      &:hover:before, &:hover:after {
+        background-color: $datetime-picker-close-hover-color;
+      }
+
+      &:before {
+        transform: translate(-50%, 0) rotate(-45deg);
+      }
+
+      &:after {
+        transform: translate(-50%, 0) rotate(45deg);
+      }
+    }
+
+    &-done {
+      margin-left: 1rem;
+
+      &:before {
+        width: $datetime-picker-regular-size * 1.5;
+        height: $datetime-picker-regular-size * 1.5;
+        border-width: 0 0 2px 2px;
+        border-style: solid;
+        border-color: $datetime-picker-done-color;
+        transform: translate(-50%, -75%) rotate(-45deg);
+      }
+
+      &:hover:before {
+        border-color: $datetime-picker-done-hover-color;
+      }
+    }
+  }
+}
+
+@mixin datetime-picker($size) {
+  $dt-map: map_get($datetime-picker-sizes, $size);
+
+  .opx-dt-picker {
+    width: map_get($dt-map, width);
+    //height: map_get($dt-map, height);
+
+    &__header {
+      height: map_get($dt-map, header-height);
+    }
+  }
+}
+
+/* XXS */
+@media (max-width: map_get($media-xxs, stop)) {
+  @include datetime-picker(xxs);
+}
+
+/* XS  */
+@media (min-width: map_get($media-xs, start)) and (max-width: map_get($media-xs, stop)) {
+  @include datetime-picker(xs);
+}
+
+/* S   */
+@media (min-width: map_get($media-s, start)) and (max-width: map_get($media-s, stop)) {
+  @include datetime-picker(s);
+}
+
+/* M   */
+@media (min-width: map_get($media-m, start)) and (max-width: map_get($media-m, stop)) {
+  @include datetime-picker(m);
+}
+
+/* L   */
+@media (min-width: map_get($media-l, start)) and (max-width: map_get($media-l, stop)) {
+  @include datetime-picker(l);
+}
+
+/* XL  */
+@media (min-width: map_get($media-xl, start)) and (max-width: map_get($media-xl, stop)) {
+  @include datetime-picker(xl);
+}
+
+/* XXL */
+@media (min-width: map_get($media-xxl, start)) {
+  @include datetime-picker(xxl);
+}

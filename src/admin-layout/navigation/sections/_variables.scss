@@ -1,0 +1,42 @@
+@import "../../../mades/colors";
+@import "../../../mades/variables";
+
+$opx-navigation-sections-item-caption-font: $project-font !default;
+$opx-navigation-sections-item-caption-font-weight: 400 !default;
+$opx-navigation-sections-item-caption-letter-spacing: 0.05rem !default;
+
+$opx-navigation-sections-background: $color-gray-8 !default;
+$opx-navigation-sections-item-hover-background: $color-blue-4 !default;
+$opx-navigation-sections-item-active-background: $color-blue-7 !default;
+$opx-navigation-sections-item-caption-color: $color-white !default;
+
+$opx-navigation-sections-item: (
+    xxs: (height: 4.6rem, padding: 1px),
+    xs:  (height: 4.6rem, padding: 1px),
+    s:   (height: 4.6rem, padding: 1px),
+    m:   (height: 4.6rem, padding: 1px),
+    l:   (height: 4.6rem, padding: 1px),
+    xl:  (height: 4.6rem, padding: 1px),
+    xxl: (height: 4.6rem, padding: 1px),
+);
+
+
+$opx-navigation-sections-item-image: (
+    xxs: (margin: 0.5rem auto 0.2rem, icon-size: 2rem),
+    xs:  (margin: 0.5rem auto 0.2rem, icon-size: 2rem),
+    s:   (margin: 0.5rem auto 0.2rem, icon-size: 2rem),
+    m:   (margin: 0.5rem auto 0.2rem, icon-size: 2rem),
+    l:   (margin: 0.5rem auto 0.2rem, icon-size: 2rem),
+    xl:  (margin: 0.5rem auto 0.2rem, icon-size: 2rem),
+    xxl: (margin: 0.5rem auto 0.2rem, icon-size: 2rem),
+);
+
+$opx-navigation-sections-item-caption: (
+    xxs: (padding: 0 0.1rem, font-size: 0.6rem, height: 1.4rem, caption-height: 0.7rem),
+    xs:  (padding: 0 0.1rem, font-size: 0.6rem, height: 1.4rem, caption-height: 0.7rem),
+    s:   (padding: 0 0.1rem, font-size: 0.6rem, height: 1.4rem, caption-height: 0.7rem),
+    m:   (padding: 0 0.1rem, font-size: 0.6rem, height: 1.4rem, caption-height: 0.7rem),
+    l:   (padding: 0 0.1rem, font-size: 0.6rem, height: 1.4rem, caption-height: 0.7rem),
+    xl:  (padding: 0 0.1rem, font-size: 0.6rem, height: 1.4rem, caption-height: 0.7rem),
+    xxl: (padding: 0 0.1rem, font-size: 0.6rem, height: 1.4rem, caption-height: 0.7rem),
+);

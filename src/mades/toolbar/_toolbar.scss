@@ -1,0 +1,150 @@
+@import "variables";
+@import "../mixins/no-selection";
+@import "../mixins/shadows";
+@import "../mixins/transition";
+
+.opx-toolbar {
+  width: 100%;
+  min-height: $toolbar-base-height;
+  position: relative;
+  @include noSelection();
+
+  &__group {
+    display: inline-block;
+    margin: 0 $toolbar-button-spacing;
+  }
+
+  &__item {
+    display: inline-block;
+    margin: 0;
+
+    &-button {
+      box-sizing: border-box;
+      height: $toolbar-base-height;
+      min-width: $toolbar-base-height;
+      line-height: $toolbar-base-height;
+      display: inline-block;
+      font-size: $toolbar-button-icon-size;
+      cursor: pointer;
+
+      & > .opx-icon {
+        line-height: $toolbar-button-icon-size;
+        padding: ($toolbar-base-height - $toolbar-button-icon-size) / 2;
+        display: inline-block;
+        color: $toolbar-button-icon-color;
+        fill: $toolbar-button-icon-color;
+        vertical-align: top;
+        height: $toolbar-button-icon-size;
+        width: $toolbar-button-icon-size;
+        text-align: center;
+        @include transition('color, fill');
+
+        &:hover {
+          color: $toolbar-button-icon-hover-color;
+          fill: $toolbar-button-icon-hover-color;
+        }
+      }
+
+      &-disabled {
+        cursor: default;
+
+        & > .opx-icon {
+          color: $toolbar-button-icon-disabled-color !important;
+          fill: $toolbar-button-icon-disabled-color !important;
+        }
+      }
+    }
+
+    &-popup {
+      position: absolute;
+      box-sizing: border-box;
+      padding: $toolbar-window-padding;
+      width: calc(100% - #{$toolbar-window-offset});
+      left: $toolbar-window-offset;
+      background-color: $toolbar-window-background;
+
+      &-line {
+        height: $toolbar-window-line-height;
+
+        &:not(:last-child) {
+          margin: 0 0 $toolbar-window-line-spacing 0;
+        }
+
+        &-button {
+          display: inline-block;
+          font-size: $toolbar-window-line-font-size;
+          vertical-align: middle;
+          color: $toolbar-window-line-button-color;
+          @include transition('color');
+          cursor: pointer;
+          margin: 0 $toolbar-window-line-item-spacing 0 0;
+
+          & > .opx-icon:before {
+            vertical-align: middle;
+          }
+
+          &:hover {
+            color: $toolbar-window-line-button-hover-color;
+          }
+
+          &.active {
+            color: $toolbar-window-line-button-active-color;
+          }
+        }
+
+        &-text {
+          display: inline-block;
+          font-size: $toolbar-window-line-font-size;
+          font-family: $project-font;
+          vertical-align: middle;
+          color: $toolbar-window-line-text-color;
+          margin: 0 $toolbar-window-line-item-spacing 0 0;
+        }
+
+        &-filter {
+          display: inline-block;
+          font-size: $toolbar-window-line-font-size;
+          font-family: $project-font;
+          vertical-align: middle;
+          color: $toolbar-window-line-text-color;
+          margin: 0 $toolbar-window-line-item-spacing 0 0;
+
+          & input.value {
+            outline: none;
+            width: 3rem;
+            text-align: left;
+          }
+
+          & .value {
+            color: $toolbar-window-line-button-active-color;
+            border-width: 0 0 1px 0;
+            border-style: dashed;
+            border-color: $toolbar-window-line-button-active-color;
+            cursor: pointer;
+            min-width: 1rem;
+            text-align: center;
+            display: inline-block;
+
+            &.disabled {
+              color: $toolbar-window-line-button-color;
+              border-color: $toolbar-window-line-button-color;
+            }
+          }
+        }
+      }
+
+      &-input {
+        font-family: $project-font;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0.3rem;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+        outline: none !important;
+        color: $color-darker-gray;
+        border: none;
+        border-bottom: 2px solid $toolbar-window-line-button-active-color;
+      }
+    }
+  }
+}

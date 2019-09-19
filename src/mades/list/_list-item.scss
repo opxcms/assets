@@ -1,0 +1,278 @@
+@import "../variables";
+@import "variables";
+@import "../mixins/transition";
+@import "../media-sizes";
+
+.opx-list-item {
+  font-size: 0;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+  min-width: 100%;
+  white-space: nowrap;
+  border-bottom: 1px solid $list-item-border-color;
+  @include transition('background-color');
+
+  &:hover {
+    background-color: $list-item-hover-background;
+  }
+
+
+  &__checkbox {
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    position: relative;
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-sizing: border-box;
+      border: 2px solid $list-item-check-border-color;
+      @include transition('border-color');
+    }
+
+    &-selected:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -70%) rotate(-45deg);
+      box-sizing: border-box;
+      border-width: 0 0 2px 2px;
+      border-style: solid;
+      border-color: $list-item-check-v-color;
+    }
+
+    &:hover:before {
+      border-color: $list-item-check-border-hover-color;
+    }
+
+    &-disabled:before, &-selected#{&}-disabled:after {
+      border-color: $list-item-check-disabled-color !important;
+    }
+
+    &-hidden:before, &-hidden:after {
+      display: none !important;
+    }
+
+    &-disabled, &-hidden {
+      cursor: default !important;
+    }
+  }
+
+  &__id {
+    cursor: default;
+    font-family: $project-font;
+    font-size: 1rem;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    color: $list-item-id-color;
+    white-space: nowrap;
+    position: relative;
+    padding-left: 1rem;
+
+    &:before {
+      content: '';
+      width: 0.7rem;
+      height: 0.7rem;
+      display: block;
+      border-radius: 50%;
+      background-color: $list-item-id-back-color;
+      position: absolute;
+      top: 50%;
+      left: 0.5rem;
+      transform: translate(-50%, -50%);
+    }
+
+    &-disabled:before {
+      background-color: $list-item-id-back-disabled-color;
+    }
+
+    &-spaced {
+      margin-left: 1rem;
+    }
+  }
+
+  &__action {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1.5rem;
+    text-align: center;
+    color: $list-item-action-color;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+
+    &-disabled {
+      cursor: default;
+      color: $list-item-action-disabled-color;
+    }
+
+    & > .opx-icon:before {
+      vertical-align: middle;
+    }
+
+    &:not(&-disabled):hover {
+      color: $list-item-action-hover-color;
+    }
+  }
+
+  &__body {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+
+    &-line {
+      font-size: 0;
+      white-space: nowrap;
+    }
+  }
+
+  &__title {
+    font-family: $project-font;
+    font-size: 1rem;
+    font-weight: 400;
+    display: inline-block;
+    margin-right: 0.5em;
+    color: $list-item-title-color;
+    vertical-align: middle;
+  }
+
+  &__subtitle {
+    font-family: $project-font;
+    font-size: 1rem;
+    display: inline-block;
+    margin-right: 0.5em;
+    color: $list-item-subtitle-color;
+    vertical-align: middle;
+  }
+
+  &__description {
+    font-family: $project-font;
+    font-size: 1rem;
+    font-weight: 300;
+    display: inline-block;
+    margin-right: 0.5em;
+    color: $list-item-description-color;
+    vertical-align: middle;
+  }
+
+  &__property {
+    font-family: $project-font;
+    font-size: 0.8rem;
+    font-weight: 400;
+    display: inline-block;
+    margin-right: 0.5em;
+    color: $list-item-property-color;
+    vertical-align: middle;
+  }
+
+  &-last {
+    background-color: $list-item-last-background;
+  }
+
+  &-deleted &__id:before {
+    background-color: $list-item-id-back-deleted-color !important;
+  }
+
+  &-deleted &__title {
+    color: $list-item-deleted-title-color !important;
+  }
+
+  &-deleted &__subtitle {
+    color: $list-item-deleted-subtitle-color !important;
+  }
+
+  &-deleted &__property {
+    color: $list-item-deleted-property-color !important;
+  }
+
+}
+
+@mixin list-item($size) {
+  $widths: map_get($list-item-widths, $size);
+
+  .opx-list-item {
+    height: map_get($list-item-height, $size) + map_get($list-item-padding, $size) * 2;
+    padding: map_get($list-item-padding, $size);
+
+    &__checkbox {
+      width: map_get($widths, check);
+      height: map_get($list-item-height, $size);
+
+      &:before {
+        width: map_get($widths, check-inner);
+        height: map_get($widths, check-inner);
+      }
+
+      &-selected:after {
+        width: map_get($widths, check-inner) * 0.5;
+        height: map_get($widths, check-inner) * 0.4;
+      }
+    }
+
+    &__id {
+      line-height: map_get($list-item-height, $size);
+      min-width: map_get($list-item-height, $size);
+    }
+
+    &__body {
+      height: map_get($list-item-height, $size);
+      padding: 0 map_get($list-item-padding, $size);
+
+      &-line {
+        line-height: map_get($list-item-height, $size) / 2;
+      }
+    }
+
+    &__action {
+      min-width: map_get($widths, id);
+      height: map_get($list-item-height, $size);
+      line-height: map_get($list-item-height, $size) * 27 / 30;
+    }
+  }
+}
+
+/* XXS */
+@media (max-width: map_get($media-xxs, stop)) {
+  @include list-item(xxs);
+}
+
+/* XS  */
+@media (min-width: map_get($media-xs, start)) and (max-width: map_get($media-xs, stop)) {
+  @include list-item(xs);
+}
+
+/* S   */
+@media (min-width: map_get($media-s, start)) and (max-width: map_get($media-s, stop)) {
+  @include list-item(s);
+}
+
+/* M   */
+@media (min-width: map_get($media-m, start)) and (max-width: map_get($media-m, stop)) {
+  @include list-item(m);
+}
+
+/* L   */
+@media (min-width: map_get($media-l, start)) and (max-width: map_get($media-l, stop)) {
+  @include list-item(l);
+}
+
+/* XL  */
+@media (min-width: map_get($media-xl, start)) and (max-width: map_get($media-xl, stop)) {
+  @include list-item(xl);
+}
+
+/* XXL */
+@media (min-width: map_get($media-xxl, start)) {
+  @include list-item(xxl);
+}

@@ -1,0 +1,60 @@
+@import "variables";
+@import "../variables";
+
+.opx-overlay {
+  z-index: 2000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: $overlay-background;
+
+  &__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: $overlay-close-size;
+    height: $overlay-close-size;
+    background-color: $overlay-close-background;
+    cursor: pointer;
+    z-index: 999;
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      display: block;
+      background-color: $overlay-close-color;
+      width: 70%;
+      height: 2px;
+      top: 50%;
+      left: 50%;
+      transform-origin: center;
+    }
+
+    &:before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &:after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+
+  &__container {
+    position: relative;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    background-color: $overlay-container-background;
+    padding: $overlay-close-size;
+  }
+
+  &__container#{&}__container-full {
+    width: 100%;
+    height: 100%;
+  }
+}

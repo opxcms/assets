@@ -1,0 +1,50 @@
+@import "../variables";
+@import "../../../mades/media-sizes";
+@import "variables";
+
+.opx-manage__navigation-header-button {
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  color: $header-button-inactive-color;
+
+  &:hover {
+    color: $header-button-inactive-hover-color;
+  }
+
+  &.active {
+    color: $header-button-active-color;
+
+    &:hover {
+      color: $header-button-active-hover-color;
+    }
+  }
+
+  &>.opx-icon {
+    vertical-align: middle;
+    line-height: inherit;
+  }
+}
+
+@mixin navigation-button($size) {
+  $navigation-button-map: map_get($navigation-button, $size);
+
+  .opx-manage__navigation-header-button {
+    width: map_get($navigation-button-map, width);
+    height: map_get($navigation-button-map, height);
+    line-height: map_get($navigation-button-map, height);
+
+    & .opx-icon {
+      font-size: map_get($navigation-button-map, font-size);
+    }
+  }
+}
+
+/* XXS */ @media (max-width: map_get($media-xxs, stop))                                           { @include navigation-button(xxs); }
+/* XS  */ @media (min-width: map_get($media-xs, start)) and (max-width: map_get($media-xs, stop)) { @include navigation-button(xs); }
+/* S   */ @media (min-width: map_get($media-s, start))  and (max-width: map_get($media-s, stop))  { @include navigation-button(s); }
+/* M   */ @media (min-width: map_get($media-m, start))  and (max-width: map_get($media-m, stop))  { @include navigation-button(m); }
+/* L   */ @media (min-width: map_get($media-l, start))  and (max-width: map_get($media-l, stop))  { @include navigation-button(l); }
+/* XL  */ @media (min-width: map_get($media-xl, start)) and (max-width: map_get($media-xl, stop)) { @include navigation-button(xl); }
+/* XXL */ @media (min-width: map_get($media-xxl, start))                                          { @include navigation-button(xxl); }

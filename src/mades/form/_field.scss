@@ -1,0 +1,118 @@
+@import "variables_field";
+@import "../colors";
+@import "../mixins/no-selection";
+@import "../mixins/transition";
+@import "fields/text";
+@import "fields/checkbox";
+@import "fields/editor";
+@import "fields/select";
+@import "fields/datetime";
+@import "fields/image";
+@import "fields/properties";
+@import "fields/related";
+
+.opx-form-field {
+  font-family: $form-font-family;
+  box-sizing: border-box;
+  position: relative;
+  padding: $form-field-padding;
+  margin: $form-field-margin;
+
+  &__caption {
+    color: $form-field-caption-color;
+    font-size: $form-field-caption-font-size;
+    font-weight: $form-field-caption-font-weight;
+    font-family: $form-font-family;
+    letter-spacing: $form-field-caption-font-spacing;
+    line-height: $form-field-caption-line-height;
+    padding: $form-field-caption-padding;
+    cursor: default;
+
+    & > span {
+      vertical-align: middle;
+    }
+
+    &-hint {
+      color: $form-field-caption-hint-color;
+      margin-left: 0.2rem;
+      font-size: $form-field-caption-hint-font-size;
+      font-weight: $form-field-caption-hint-font-weight;
+      font-family: $form-font-family;
+      letter-spacing: $form-field-caption-font-spacing;
+      cursor: default;
+      vertical-align: middle;
+    }
+
+    & > .opx-icon {
+      @include noSelection();
+
+      &:before {
+        @include transition('transform');
+        vertical-align: middle;
+        cursor: pointer;
+        display: inline-block;
+      }
+
+      &.expanded:before {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  &__value {
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  &__errors {
+    padding: $form-field-errors-padding;
+    box-sizing: border-box;
+    cursor: default;
+
+    &-text {
+      color: $form-field-errors-color;
+      font-size: $form-field-errors-font-size;
+      line-height: $form-field-errors-line-height;
+      display: block;
+      box-sizing: border-box;
+
+      &:not(:last-child) {
+        margin-bottom: $form-field-errors-spacing;
+      }
+    }
+  }
+
+  &__required {
+    &::before {
+      content: '*';
+      color: $form-field-required-color;
+      position: absolute;
+      font-size: $form-field-required-font-size;
+      line-height: $form-field-required-font-size;
+      top: $form-field-required-top;
+      left: $form-field-required-left;
+      width: $form-field-required-width;
+      text-align: center;
+    }
+  }
+
+  &__info {
+    display: block;
+    padding: $form-field-info-padding;
+    box-sizing: border-box;
+    color: $form-field-info-color;
+    font-size: $form-field-info-font-size;
+    font-weight: $form-field-info-font-weight;
+    line-height: $form-field-info-line-height;
+    cursor: default;
+  }
+
+  &__counter {
+    color: $form-field-counter-color;
+
+    &-invalid {
+      color: $form-field-counter-invalid-color;
+    }
+  }
+}
+

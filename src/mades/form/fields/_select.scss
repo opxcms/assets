@@ -1,0 +1,221 @@
+@import "../variables";
+@import "../../mixins/transition";
+@import "../../mixins/no-selection";
+
+.opx-form-field-select {
+  margin: 0;
+  padding: 0;
+  outline: none !important;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: $form-default-color;
+  font-family: $form-font-family;
+  font-size: $form-default-size;
+  height: $form-default-size * 2;
+  width: 100%;
+  box-sizing: border-box;
+
+  &__expanded {
+    border-width: 1px 1px 0 1px;
+    border-color: $form-default-color !important;
+  }
+
+  &__value {
+    display: block;
+    width: 100%;
+    height: $form-default-size * 2;
+    box-sizing: border-box;
+    cursor: pointer;
+    padding: 0.3rem;
+    position: relative;
+    overflow: hidden;
+
+    &-selected {
+      position: absolute;
+      white-space: nowrap;
+    }
+
+    &-id {
+      display: inline-block;
+      margin-left: $form-default-size / 2;
+      color: $form-hint-color;
+      font-weight: 300;
+    }
+
+    &-actions {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: calc(#{$form-default-size * 2} - 2px);
+      line-height: $form-default-size * 2;
+      background-color: $form-background;
+
+      & > .opx-icon {
+        width: $form-default-size * 1.5;
+        height: $form-default-size * 2;
+        line-height: $form-default-size * 2;
+        text-align: center;
+        display: inline-block;
+        vertical-align: top;
+
+        &:before {
+          display: inline-block;
+          @include transition('transform');
+        }
+
+        &.expanded:before {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    &-clear {
+      display: inline-block;
+      vertical-align: top;
+      width: $form-default-size * 2;
+      height: $form-default-size * 2;
+      cursor: pointer;
+      position: relative;
+
+      &:before, &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 48%;
+        left: 48%;
+        background-color: $form-close-color;
+        width: $form-default-size * 1.2;
+        height: 2px;
+      }
+
+      &:before {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+
+      &:after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+
+      &:hover:before, &:hover:after {
+        background-color: $form-close-hover-color;
+      }
+    }
+  }
+
+
+  $height-unit: $form-default-size * 1.6;
+  $width-unit: $form-default-size * 1.5;
+
+  &__list {
+    @include noSelection;
+    position: absolute;
+    width: calc(100% - 2px);
+    background-color: $form-background;
+    z-index: 99;
+    border: 1px solid $form-default-color;
+    left: 0;
+    max-height: $height-unit * 8 + 0.2rem;
+
+    &-container {
+      position: relative;
+      margin-left: $width-unit;
+    }
+
+    &-sub-container {
+      position: relative;
+      margin-left: $width-unit / 2;
+    }
+
+    &-expand {
+      position: absolute;
+      display: block;
+      width: $width-unit;
+      height: $height-unit;
+      left: -$width-unit;
+      cursor: pointer;
+      @include transition('color, background-color');
+
+      &:before, &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        background-color: $form-hint-color;
+        transform: translate(-50%, -50%);
+      }
+
+      &:before {
+        width: 8px;
+        height: 2px;
+      }
+
+      &:after {
+        width: 2px;
+        height: 8px;
+      }
+
+      &:hover {
+        background-color: $form-hover-color;
+      }
+
+      &-expanded {
+        &:after {
+          display: none;
+        }
+      }
+    }
+
+    &-value {
+      display: block;
+      width: 100%;
+      height: $form-default-size + 0.6rem;
+      line-height: $form-default-size + 0.6rem;
+      padding-left: 0.5rem;
+      cursor: pointer;
+      box-sizing: border-box;
+      @include transition('color, background-color');
+
+      &:not(&-disabled):hover {
+        color: $form-background;
+        background-color: $form-hover-color;
+      }
+
+      &-active {
+        color: $form-background;
+        background-color: $form-active-color !important;
+      }
+
+      &-disabled {
+        color: $form-disabled-color;
+        cursor: default;
+      }
+    }
+  }
+
+  &:focus {
+    outline: none !important;
+    border-color: $form-active-color;
+  }
+
+  &__invalid {
+    border-color: $form-error-color !important;
+  }
+
+  &__modified:focus {
+    border-color: $form-modified-color;
+  }
+
+  &__modified {
+    border-color: $form-modified-light-color;
+  }
+
+  &__required {
+  }
+
+  &:disabled {
+    background-color: transparent;
+    color: $form-disabled-color;
+    border-color: $form-disabled-light-color;
+  }
+}

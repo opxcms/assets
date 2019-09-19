@@ -1,0 +1,22 @@
+@import "../colors";
+@import "../variables";
+
+// Global
+$form-default-size: 1rem;
+$form-font-family: $project-font !default;
+$form-font-spacing: 0.05rem !default;
+
+$form-background: $color-white;
+$form-disabled-light-color: $color-gray-1;
+$form-default-color: $color-blue-3;
+$form-disabled-color: $color-dark-gray;
+$form-text-color: $color-darker-gray;
+$form-hint-color: $color-gray-6;
+$form-light-hover-color: $color-gray-0;
+$form-hover-color: $color-blue-5;
+$form-active-color: $color-blue-9;
+$form-error-color: $color-red-5;
+$form-modified-color: $color-green-7;
+$form-modified-light-color: $color-green-3;
+$form-close-color: $color-red-4;
+$form-close-hover-color: $color-red-5;

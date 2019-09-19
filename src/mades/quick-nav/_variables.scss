@@ -1,0 +1,28 @@
+@import "../variables";
+@import "../colors";
+
+$quick-nav-default-color: $color-blue-3;
+$quick-nav-font-family: $project-font;
+
+$quick-nav-default-size: 1rem;
+$quick-nav-head-height: 1.8rem;
+
+$quick-nav-button-color: $color-blue-5;
+$quick-nav-button-background-color: transparent;
+
+$quick-nav-button-hover-color: $color-white;
+$quick-nav-button-hover-background-color: $color-blue-5;
+
+$quick-nav-background: $color-white;
+//$quick-nav-disabled-light-color: $color-gray-1;
+//$quick-nav-default-color: $color-blue-3;
+//$quick-nav-disabled-color: $color-dark-gray;
+$quick-nav-text-color: $color-darker-gray;
+$quick-nav-hint-color: $color-gray-6;
+$quick-nav-hover-color: $color-blue-5;
+$quick-nav-active-color: $color-blue-8;
+//$quick-nav-error-color: $color-red-5;
+//$quick-nav-modified-color: $color-green-7;
+//$quick-nav-modified-light-color: $color-green-3;
+$quick-nav-close-color: $color-red-4;
+$quick-nav-close-hover-color: $color-red-5;

@@ -1,0 +1,7 @@
+@import "../colors";
+
+$overlay-background: transparentize($color-black, 0.5);
+$overlay-container-background: $color-white;
+$overlay-close-size: 2rem;
+$overlay-close-background: $color-red-4;
+$overlay-close-color: $color-white;
