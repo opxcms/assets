@@ -32,6 +32,10 @@
                 type: String,
                 default: '',
             },
+            controllerBase: {
+                type: String,
+                default: null,
+            },
             globalLock: {
                 type: Boolean,
                 default: false,

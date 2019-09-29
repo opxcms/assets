@@ -59,6 +59,7 @@
                                                :modified="dataset.isFieldModified(field)"
                                                :errors="dataset.validation_errors[field]"
                                                :saveUrl="saveUrl"
+                                               :controllerBase="controllerBase"
                                                :globalLock="reloading"
                                                :hints="hints"
                                                @lock="updateLock"
@@ -108,26 +109,31 @@
 
         data: () => {
             return {
-                isMounted: false,
-                id: 0,
-                activeTab: '',
                 dataset: null,
+
+                isMounted: false,
+                activeTab: '',
+
+                id: 0,
                 caption: '',
                 saveUrl: '',
+                hints: true,
+                controllerBase: null,
+
                 uploading: false,
                 uploaded: 0,
                 total: 0,
-                locks: 0,
                 reloading: false,
-                hints: true,
+                locks: 0,
             }
         },
 
         created() {
             this.id = String(this.original['id']);
             this.caption = this.original['caption'];
-            this.saveUrl = this.original['save'];
             this.hints = !!this.original['hints'];
+            this.saveUrl = this.original['save'];
+            this.controllerBase = !!this.original['controller_base'] ? this.original['controller_base'] : null;
 
             Vue.set(this, 'dataset', new FormData(this.original['form']));
 
@@ -140,6 +146,14 @@
         },
 
         methods: {
+            getSaveUrl() {
+                if (this.controllerBase !== null) {
+                    return this.controllerBase + this.saveUrl;
+                }
+
+                return this.saveUrl;
+            },
+
             save(reload = false, initiatedBy = null) {
                 if (!reload && (this.dataset.hasErrors() || !this.saveUrl || this.locks > 0)) {
                     return;
@@ -166,7 +180,7 @@
 
                 this.locks += 1;
 
-                client.post(this.saveUrl, data, {
+                client.post(this.getSaveUrl(), data, {
                     timeout: 0,
                     onUploadProgress: e => {
                         this.progress(e)
@@ -209,6 +223,7 @@
                     this.id = String(response.data['data']['id']);
                     this.caption = response.data['data']['caption'];
                     this.saveUrl = response.data['data']['save'];
+                    this.controllerBase = !!response.data['data']['controller_base'] ? response.data['data']['controller_base'] : null;
                     const redirect = !!response.data['redirect'] ? response.data['redirect'] : null;
                     if (redirect) {
                         this.$router.replace({path: redirect});
