@@ -1,0 +1,113 @@
+@import "../variables_form";
+@import "../variables_field";
+
+.opx-comments {
+  &__toolbar {
+  }
+
+  &__comment {
+    width: 100%;
+    box-sizing: border-box;
+    padding: $form-default-size / 4 0;
+
+    &-selected {
+      background-color: $form-light-hover-color;
+    }
+
+    &-header, &-footer {
+      width: 100%;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    &-header:not(:empty) {
+      padding: $form-default-size / 2 $form-default-size / 2 0 $form-default-size / 2;
+    }
+
+    &-footer {
+      padding: 0 $form-default-size / 2 $form-default-size / 2 $form-default-size / 2;
+    }
+
+    &-commentator {
+      font-family: $project-font;
+      font-size: 0.9rem;
+      color: $form-hover-color;
+
+      &-hint {
+        color: $form-hint-color;
+        font-weight: 300;
+      }
+    }
+
+    &-date {
+      font-family: $project-font;
+      font-size: 0.9rem;
+      color: $form-text-color;
+      font-weight: 300;
+    }
+
+    &-reply {
+      font-family: $project-font;
+      font-size: 0.9rem;
+      color: $form-text-color;
+      margin-left: 0.5rem;
+    }
+
+    &-text {
+      font-family: $project-font;
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+      color: $form-text-color;
+      padding: 0.5rem $form-default-size / 2;
+    }
+
+    &-replies {
+      box-sizing: border-box;
+      padding-left: $form-default-size / 2;
+    }
+
+    &-replies > & {
+      border-left: 1px solid $form-disabled-light-color;
+    }
+  }
+
+  &__add {
+    margin-top: $form-default-size;
+
+    &-to {
+      box-sizing: border-box;
+
+      &-clear {
+        width: $form-default-size;
+        height: $form-default-size;
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        cursor: pointer;
+
+        &:before, &:after {
+          content: '';
+          display: block;
+          width: 100%;
+          height: 2px;
+          background-color: $form-close-hover-color;
+          top: 50%;
+          left: 50%;
+          position: absolute;
+        }
+
+        &:before {
+          transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        &:after {
+          transform: translate(-50%, -50%) rotate(45deg);
+        }
+      }
+    }
+
+    &-buttons {
+      padding: $form-default-size / 2 0;
+    }
+  }
+}
