@@ -29,9 +29,11 @@
                 <div class="opx-comments__add">
                     <div class="opx-comments__add-to" v-html="getReplyTitle()" @click="addToClick"></div>
                     <textarea class="opx-form-field-text"
-                              v-model="commentText"
+                              v-model="valueModel"
                               :disabled="!canEdit()"
                     ></textarea>
+                    <div class="hidden-div"
+                         style="display: none; white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word; padding-top: 1.2rem; position: absolute; top: 0;"></div>
                     <div class="opx-comments__add-buttons">
                         <opx-button :class="'success'" :caption="$trans('actions.send')"
                                     @click="addComment"></opx-button>
@@ -57,7 +59,20 @@
             selectedId: null,
             showCommentator: true,
             format: 'dd MMMM yyyy, HH:mm',
+            height: null,
         }),
+
+        computed: {
+            valueModel: {
+                get: function () {
+                    return this.commentText;
+                },
+                set: function (value) {
+                    this.commentText = value;
+                    this.resize(value);
+                },
+            },
+        },
 
         created() {
             client.get(this.controllerBase + 'comments?id=' + this.id)
@@ -66,7 +81,11 @@
                 })
                 .catch(error => {
                     this.$toast.error(error.message);
-                })
+                });
+        },
+
+        mounted() {
+            this.initResizer();
         },
 
         methods: {
@@ -83,6 +102,8 @@
                     .then(response => {
                         // update comments
                         this.comments = response.data;
+                        this.commentText = '';
+                        this.selectedId = null;
                     })
                     .catch(error => {
                         // handle error
@@ -123,8 +144,65 @@
             },
 
             addToClick(e) {
-                if(e.target.classList.contains('opx-comments__add-to-clear')) {
+                if (e.target.classList.contains('opx-comments__add-to-clear')) {
                     this.selectedId = null;
+                }
+            },
+
+            initResizer() {
+                const textarea = this.$el.querySelector('textarea');
+                const hidden = this.$el.querySelector('.hidden-div');
+
+                // Set original-height, if none
+                if (this.height === null) {
+                    this.height = textarea.clientHeight;
+                }
+
+                // Set font properties of hiddenDiv
+                const style = window.getComputedStyle(textarea);
+
+                let fontFamily = style.fontFamily;
+                let fontSize = style.fontSize;
+                let fontWeight = style.fontWeight;
+                let lineHeight = style.lineHeight;
+                let letterSpacing = style.letterSpacing;
+                let padding = style.padding;
+
+                if (fontSize) {
+                    hidden.style.fontSize = fontSize;
+                }
+                if (fontFamily) {
+                    hidden.style.fontFamily = fontFamily;
+                }
+                if (fontWeight) {
+                    hidden.style.fontWeight = fontWeight;
+                }
+                if (lineHeight) {
+                    hidden.style.lineHeight = lineHeight;
+                }
+                if (letterSpacing) {
+                    hidden.style.letterSpacing = letterSpacing;
+                }
+                if (padding) {
+                    hidden.style.padding = padding;
+                }
+
+                hidden.style.width = textarea.clientWidth + 'px';
+                hidden.innerHTML = this.valueModel + '\n\n';
+            },
+
+            resize(value) {
+                const textarea = this.$el.querySelector('textarea');
+                const hidden = this.$el.querySelector('.hidden-div');
+
+                hidden.innerHTML = value + '\n\n';
+
+                // Resize if the new height is greater than the original height of the textarea
+                hidden.style.display = 'block';
+                const height = hidden.clientHeight;
+                hidden.style.display = 'none';
+                if (this.height <= height) {
+                    textarea.style.height = height + 'px';
                 }
             },
         }

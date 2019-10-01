@@ -59,6 +59,10 @@
       letter-spacing: 0.03em;
       color: $form-text-color;
       padding: 0.5rem $form-default-size / 2;
+
+      & > p {
+        margin: 0.3rem 0;
+      }
     }
 
     &-replies {
