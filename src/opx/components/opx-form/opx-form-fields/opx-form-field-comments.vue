@@ -35,7 +35,7 @@
                     <div class="hidden-div"
                          style="display: none; white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word; padding-top: 1.2rem; position: absolute; top: 0;"></div>
                     <div class="opx-comments__add-buttons">
-                        <opx-button :class="'success'" :caption="$trans('actions.send')"
+                        <opx-button :class="[isEmpty() ? 'disabled' : 'success']" :caption="$trans('actions.send')"
                                     @click="addComment"></opx-button>
                     </div>
                 </div>
@@ -93,7 +93,15 @@
                 return this.comments.filter(item => item['comment']['parent'] === 0);
             },
 
+            isEmpty() {
+                return this.commentText === null || this.commentText === '';
+            },
+
             addComment() {
+                if(this.isEmpty()) {
+                    return;
+                }
+
                 client.post(this.controllerBase + 'comments', {
                     id: this.id,
                     reply_to: this.selectedId,
