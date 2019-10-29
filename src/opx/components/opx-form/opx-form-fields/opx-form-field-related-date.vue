@@ -9,8 +9,8 @@
             <div class="opx-form-field-datetime__value">
                 <span class="opx-form-field-datetime__value-date">{{ getFormattedValue() }}</span>
                 <div class="opx-form-field-datetime__value-actions">
-                    <opx-icon :icon="'calendar'" v-if="canEdit()"></opx-icon>
-                    <span class="opx-form-field-datetime__value-clear" v-if="value !== null && canEdit()"
+                    <opx-icon :icon="'calendar'" v-if="can_edit"></opx-icon>
+                    <span class="opx-form-field-datetime__value-clear" v-if="value !== null && can_edit"
                           @click.stop="clear"></span>
                 </div>
             </div>
@@ -49,6 +49,10 @@
             initial: {
                 type: String,
                 default: '',
+            },
+            can_edit: {
+                type: Boolean,
+                default: true,
             },
         },
 

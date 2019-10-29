@@ -4,10 +4,11 @@
                :class="{
                     'opx-form-field-text__modified': isModified(),
                }"
-               v-model="model">
+               v-model="model"
+               :disabled="!can_edit">
         <div class="opx-form-field-related__entry-actions">
             <span class="opx-form-field-related__entry-clear"
-                  v-if="value !== null"
+                  v-if="value !== null && can_edit"
                   @click="clear"
             ></span>
         </div>
@@ -28,6 +29,10 @@
                 type: String,
                 default: '',
             },
+            can_edit: {
+                type: Boolean,
+                default: true,
+            },
         },
 
         computed: {
@@ -36,6 +41,8 @@
                     return this.value !== null ? this.value : 0;
                 },
                 set: function (value) {
+                    if (!this.can_edit) return;
+
                     if (value === '') {
                         value = null;
                     }

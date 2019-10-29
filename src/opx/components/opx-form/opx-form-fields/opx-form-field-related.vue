@@ -21,6 +21,7 @@
                                    :id="item['id']"
                                    :value="!!item['value'] ? String(item['value']) : null"
                                    :initial="getItemInitialValue(item['id'])"
+                                   :can_edit="canEdit()"
                                    @changed="setItemValue"
                         ></component>
                         <!-- End of value selector -->
