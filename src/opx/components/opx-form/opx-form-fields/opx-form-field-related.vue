@@ -84,7 +84,7 @@
             },
 
             canAddRelated: function () {
-                return !!this.original['can_add_related'];
+                return !!this.original['can_add_related'] && !!this.original['list_loader_url'];
             },
 
             loaderUrl: function () {

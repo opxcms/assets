@@ -6,9 +6,14 @@
                  }"
              @click="showPicker"
         >
-            <span class="opx-form-field-datetime__value">{{ getFormattedValue() }}</span>
-            <opx-icon :icon="'calendar'"></opx-icon>
-            <span class="opx-form-field-datetime__clear" v-if="value !== null" @click.stop="clear"></span>
+            <div class="opx-form-field-datetime__value">
+                <span class="opx-form-field-datetime__value-date">{{ getFormattedValue() }}</span>
+                <div class="opx-form-field-datetime__value-actions">
+                    <opx-icon :icon="'calendar'" v-if="canEdit()"></opx-icon>
+                    <span class="opx-form-field-datetime__value-clear" v-if="value !== null && canEdit()"
+                          @click.stop="clear"></span>
+                </div>
+            </div>
         </div>
         <div class="opx-overlay" v-if="show">
             <div class="opx-overlay__container">
