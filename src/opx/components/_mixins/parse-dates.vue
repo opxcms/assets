@@ -27,8 +27,16 @@
              * @returns string
              */
             formatDate(date) {
-                return date.toFormat("yyyy-MM-dd'T'HH:mm:ssZZ")
-            }
+                return date.toFormat("yyyy-MM-dd'T'HH:mm:ssZZ");
+            },
+
+            /**
+             * @param date DateTime
+             * @returns string
+             */
+            formatTime(date) {
+                return date.toFormat("HH:mm:ss");
+            },
         }
     }
 </script>
