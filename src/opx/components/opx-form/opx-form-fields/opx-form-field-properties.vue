@@ -71,7 +71,7 @@
 
         methods: {
             getValue() {
-                return Array.from(this.value);
+                return Array.from(!!this.value ? this.value : []);
             },
 
             getOptions() {
