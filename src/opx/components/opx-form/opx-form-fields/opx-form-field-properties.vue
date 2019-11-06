@@ -104,7 +104,7 @@
 
             propertyCaption(key) {
                 const options = this.getOptions();
-                let caption = options[key]['name'];
+                let caption = this.$trans(options[key]['name']);
                 if (options[key]['units']) caption += ', ' + options[key]['units'];
                 if (options[key]['alias']) caption += '<span class="opx-form-field-properties__property-caption-hint">[' + options[key]['alias'] + ']</span>';
 
