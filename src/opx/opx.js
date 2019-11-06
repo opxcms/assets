@@ -70,6 +70,7 @@ import OpxFormFieldPropertiesComponent from './components/opx-form/opx-form-fiel
 import OpxFormFieldPropertiesSimpleComponent from './components/opx-form/opx-form-fields/opx-form-field-properties-simple';
 import OpxFormFieldPropertiesOneOfComponent from './components/opx-form/opx-form-fields/opx-form-field-properties-one-of';
 import OpxFormFieldPropertiesManyOfComponent from './components/opx-form/opx-form-fields/opx-form-field-properties-many-of';
+import OpxFormFieldPropertiesDateTimeComponent from './components/opx-form/opx-form-fields/opx-form-field-properties-datetime';
 import OpxFormFieldRelatedComponent from './components/opx-form/opx-form-fields/opx-form-field-related';
 import OpxFormFieldRelatedNumberComponent from './components/opx-form/opx-form-fields/opx-form-field-related-number';
 import OpxFormFieldRelatedDateComponent from './components/opx-form/opx-form-fields/opx-form-field-related-date';
@@ -126,6 +127,7 @@ Vue.component('opx-form-field-properties', OpxFormFieldPropertiesComponent);
 Vue.component('opx-form-field-properties-simple', OpxFormFieldPropertiesSimpleComponent);
 Vue.component('opx-form-field-properties-one-of', OpxFormFieldPropertiesOneOfComponent);
 Vue.component('opx-form-field-properties-many-of', OpxFormFieldPropertiesManyOfComponent);
+Vue.component('opx-form-field-properties-datetime', OpxFormFieldPropertiesDateTimeComponent);
 Vue.component('opx-form-field-related', OpxFormFieldRelatedComponent);
 Vue.component('opx-form-field-related-number', OpxFormFieldRelatedNumberComponent);
 Vue.component('opx-form-field-related-date', OpxFormFieldRelatedDateComponent);
