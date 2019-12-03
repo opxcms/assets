@@ -1,0 +1,77 @@
+@import "../variables";
+
+.opx-form-field-key-value {
+
+  &__entry {
+    font-family: $project-font;
+    font-size: 1rem;
+    position: relative;
+    padding: 0 2rem 0 8rem;
+    margin: 0 0 0.2rem;
+    box-sizing: border-box;
+    height: $form-default-size * 2;
+
+    &-key, &-value {
+      display: block;
+      box-sizing: border-box;
+      padding: 0.2rem;
+      outline: none!important;
+      border-width: 0 0 1px 0;
+      border-color: $form-default-color;
+      height: $form-default-size * 2;
+      &:focus{
+      border-color: $form-active-color;
+      }
+    }
+
+    &-key {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 8rem;
+    }
+
+    &-value {
+      width: 100%;
+    }
+
+    &-remove {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: inline-block;
+      vertical-align: top;
+      width: $form-default-size * 2;
+      height: $form-default-size * 2;
+      cursor: pointer;
+
+      &:before, &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 48%;
+        left: 48%;
+        background-color: $form-close-color;
+        width: $form-default-size * 1.2;
+        height: 2px;
+      }
+
+      &:before {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+
+      &:after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+
+      &:hover:before, &:hover:after {
+        background-color: $form-close-hover-color;
+      }
+    }
+  }
+
+  &__actions {
+    margin: 0.5rem 0 0;
+  }
+}

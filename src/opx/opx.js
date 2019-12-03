@@ -80,6 +80,7 @@ import OpxFormFieldMaskComponent from './components/opx-form/opx-form-fields/opx
 import OpxFormFieldLinkComponent from './components/opx-form/opx-form-fields/opx-form-field-link';
 import OpxFormFieldCommentsComponent from './components/opx-form/opx-form-fields/opx-form-field-comments';
 import OpxFormFieldCommentsCommentComponent from './components/opx-form/opx-form-fields/opx-form-field-comments-comment';
+import OpxFormFieldKeyValueComponent from './components/opx-form/opx-form-fields/opx-form-field-key-value';
 
 
 Vue.component('opx-loading', OpxLoadingComponent);
@@ -138,6 +139,7 @@ Vue.component('opx-form-field-mask', OpxFormFieldMaskComponent);
 Vue.component('opx-form-field-link', OpxFormFieldLinkComponent);
 Vue.component('opx-form-field-comments', OpxFormFieldCommentsComponent);
 Vue.component('opx-form-field-comments-comment', OpxFormFieldCommentsCommentComponent);
+Vue.component('opx-form-field-key-value', OpxFormFieldKeyValueComponent);
 
 /**
  * Make app
