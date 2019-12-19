@@ -147,6 +147,9 @@
                     } else if (String(prop).indexOf('date:') !== -1) {
                         const date = DateTime.fromISO(prop.slice(5)).setZone().setLocale(window.navigator.language);
                         prop = date.toFormat('d MMM yyyy');
+                    } else if (String(prop).indexOf('time:') !== -1) {
+                        const date = DateTime.fromISO(prop.slice(5)).setZone().setLocale(window.navigator.language);
+                        prop = date.toFormat('HH:mm');
                     } else {
                         prop = this.$trans(prop);
                     }
