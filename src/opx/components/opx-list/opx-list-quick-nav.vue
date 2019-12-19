@@ -75,7 +75,7 @@
             getList() {
                 const list = this.nav;
 
-                return list.filter(item => item['parent_id'] === 0);
+                return list.filter(item => !item['parent_id']);
             },
 
             setNewValue(value) {
