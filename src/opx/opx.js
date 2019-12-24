@@ -60,6 +60,7 @@ import OpxFormFieldCheckboxComponent from './components/opx-form/opx-form-fields
 import OpxFormFieldCheckboxListComponent from './components/opx-form/opx-form-fields/opx-form-field-checkbox-list';
 import OpxFormFieldCheckboxGroupedListComponent from './components/opx-form/opx-form-fields/opx-form-field-checkbox-grouped-list';
 import OpxFormFieldDateTimeComponent from './components/opx-form/opx-form-fields/opx-form-field-datetime';
+import OpxFormFieldDateComponent from './components/opx-form/opx-form-fields/opx-form-field-date';
 import OpxFormFieldTimeComponent from './components/opx-form/opx-form-fields/opx-form-field-time';
 import OpxFormFieldSelectComponent from './components/opx-form/opx-form-fields/opx-form-field-select';
 import OpxFormFieldNestedSelectComponent from './components/opx-form/opx-form-fields/opx-form-field-nested-select';
@@ -119,6 +120,7 @@ Vue.component('opx-form-field-checkbox', OpxFormFieldCheckboxComponent);
 Vue.component('opx-form-field-checkbox-list', OpxFormFieldCheckboxListComponent);
 Vue.component('opx-form-field-checkbox-grouped-list', OpxFormFieldCheckboxGroupedListComponent);
 Vue.component('opx-form-field-datetime', OpxFormFieldDateTimeComponent);
+Vue.component('opx-form-field-date', OpxFormFieldDateComponent);
 Vue.component('opx-form-field-time', OpxFormFieldTimeComponent);
 Vue.component('opx-form-field-select', OpxFormFieldSelectComponent);
 Vue.component('opx-form-field-nested-select', OpxFormFieldNestedSelectComponent);
