@@ -35,7 +35,8 @@
     &-item {
       display: inline-block;
       box-sizing: border-box;
-      width: $pagination-links-size;
+      min-width: $pagination-links-size;
+      padding: 0 0.2rem;
       height: $pagination-links-size;
       line-height: $pagination-links-size;
       text-align: center;
