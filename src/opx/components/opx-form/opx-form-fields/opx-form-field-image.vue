@@ -148,6 +148,9 @@
                                 })
                                 .catch(error => {
                                     const message = !!error.response.data['message'] ? error.response.data['message'] : null;
+                                    Vue.delete(newVal, 'loading');
+                                    Vue.delete(newVal, 'uploading');
+                                    Vue.delete(newVal, 'progress');
 
                                     if (message) {
                                         this.$toast.error(this.$trans(message));
