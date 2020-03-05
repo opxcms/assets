@@ -94,6 +94,7 @@ $image-width: (
 
 
 .opx-form-field-image {
+
   &__image {
     border: 1px solid $form-default-color;
     box-sizing: border-box;
@@ -101,6 +102,7 @@ $image-width: (
     margin: 1rem;
     position: relative;
     border-radius: 3px;
+    cursor: grab;
 
     &::before {
       content: '';
@@ -116,7 +118,6 @@ $image-width: (
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      cursor: pointer;
     }
 
     & > .opx-loading {
@@ -131,30 +132,71 @@ $image-width: (
       left: 0;
     }
 
+    &-remove, &-view, &-edit, &-id {
+      position: absolute;
+      height: $form-default-size * 2;
+      background-color: transparentize($color-white, 0.3);
+    }
+
     &-id {
       display: inline-block;
-      position: absolute;
       top: 0;
       left: 0;
-      min-width: $form-default-size * 2;
-      height: $form-default-size * 2;
       line-height: $form-default-size * 2;
+      min-width: $form-default-size * 2;
       font-family: $project-font;
       font-size: $form-default-size;
-      background-color: transparentize($color-white, 0.3);
       text-align: center;
-      padding: 0 0.2rem;
+      border-radius: 3px 0 0 0;
     }
 
     &-edit {
+      display: none;
+    }
+
+    &-view {
+      cursor: pointer;
+      width: $form-default-size * 2;
+      border-radius: 0 0 3px 0;
+      bottom: 0;
+      right: 0;
+      opacity: 0.5;
+      @include transition('opacity');
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &:before, &:after {
+        content: '';
+        display: block;
+        position: absolute;
+      }
+
+      &:before {
+        width: 40%;
+        height: 40%;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        border: 2px solid $form-text-color;
+        transform: translate(-30%, -70%);
+      }
+
+      &:after {
+        top: 68%;
+        left: 32%;
+        height: 30%;
+        width: 2px;
+        background-color: $form-text-color;
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
     }
 
     &-remove {
-      position: absolute;
       top: 0;
       right: 0;
       width: $form-default-size * 2;
-      height: $form-default-size * 2;
       border-radius: 0 3px 0 0;
       background-color: $form-background;
       cursor: pointer;

@@ -24,7 +24,12 @@
                                            :key="key"
                                            :id="key"
                                            :image="image"
+                                           draggable="true"
                                            @discard="removeValue"
+                                           @ondragstart="dragstart"
+                                           @ondragenter="dragenter"
+                                           @ondrop="drop"
+                                           @ondragend="dragend"
                 ></opx-form-field-image-item>
                 <!-- end of list of images -->
 
@@ -55,11 +60,10 @@
     export default {
         mixins: [OpxFormAbstractField],
 
-        data() {
-            return {
-                maxImages: 0,
-            }
-        },
+        data: () => ({
+            maxImages: 0,
+            currentDragging: null,
+        }),
 
         created() {
             this.maxImages = this.calcMaxImages();
@@ -192,6 +196,24 @@
                 val.splice(key, 1);
 
                 this.setValue(val);
+            },
+            dragstart(event, key) {
+                this.currentDragging = key;
+                event.dataTransfer.effectAllowed = "move";
+            },
+            dragenter(event, key) {
+                if(key !== this.currentDragging) {
+                    this.value.splice(key, 0, this.value.splice(this.currentDragging, 1)[0]);
+                    this.currentDragging = key;
+                }
+                event.preventDefault();
+            },
+            drop(event, key) {
+                return true;
+            },
+            dragend(event, key) {
+                this.currentDragging = null;
+                return true;
             },
         }
     }
