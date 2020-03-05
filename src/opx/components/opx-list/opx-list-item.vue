@@ -16,6 +16,7 @@
         </router-link>
         <!-- Additional actions -->
         <router-link v-if="has_actions" :class="'opx-list-item__action'" v-for="(action, ind) in item['actions']"
+                     :key="ind"
                      :to="action['route']"
                      :event="''"
                      @click.native.prevent="goingEditing(action['route'])">
