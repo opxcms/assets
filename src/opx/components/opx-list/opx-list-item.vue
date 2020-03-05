@@ -11,10 +11,16 @@
             <opx-icon :icon="children_icon"></opx-icon>
         </div>
         <router-link v-if="edit_enabled" :class="'opx-list-item__action'" :to="edit_route" :event="''"
-                     @click.native.prevent="goingEditing">
+                     @click.native.prevent="goingEditing(edit_route)">
             <opx-icon :icon="'edit'"></opx-icon>
         </router-link>
         <!-- Additional actions -->
+        <router-link v-if="has_actions" :class="'opx-list-item__action'" v-for="(action, ind) in item['actions']"
+                     :to="action['route']"
+                     :event="''"
+                     @click.native.prevent="goingEditing(action['route'])">
+            <opx-icon :icon="action['icon']"></opx-icon>
+        </router-link>
         <div class="opx-list-item__body">
             <div class="opx-list-item__body-line">
                 <div class="opx-list-item__title">{{ item_title }}</div>
@@ -130,6 +136,9 @@
             edit_enabled: function () {
                 return !!this.edit_url;
             },
+            has_actions: function () {
+                return !!this.item['actions'];
+            },
             item_properties: function () {
                 let props = this.item['properties'];
 
@@ -176,13 +185,11 @@
                 this.$emit('selection', this.item['id']);
             },
 
-            goingEditing() {
+            goingEditing(route) {
                 if (this.before_edit) {
                     this.before_edit(String(this.item['id']));
                 }
-                if (this.edit_url) {
-                    this.$router.push(this.edit_route);
-                }
+                this.$router.push(route);
             },
         }
     }
