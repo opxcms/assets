@@ -202,6 +202,9 @@
                 event.dataTransfer.effectAllowed = "move";
             },
             dragenter(event, key) {
+                if (this.currentDragging === null) {
+                    return true;
+                }
                 if(key !== this.currentDragging) {
                     this.value.splice(key, 0, this.value.splice(this.currentDragging, 1)[0]);
                     this.currentDragging = key;
