@@ -14,6 +14,7 @@
                      @click.native.prevent="goingEditing">
             <opx-icon :icon="'edit'"></opx-icon>
         </router-link>
+        <!-- Additional actions -->
         <div class="opx-list-item__body">
             <div class="opx-list-item__body-line">
                 <div class="opx-list-item__title">{{ item_title }}</div>
@@ -24,8 +25,8 @@
                 <div class="opx-list-item__property"
                      v-for="(prop, key) in item_properties"
                      :key="key"
-                >{{ prop }}
-                </div>
+                     v-html="prop"
+                ></div>
             </div>
         </div>
     </div>
@@ -83,10 +84,10 @@
             },
             checkbox_class: function () {
                 let classes = [];
-                if(this.is_selected) classes.push('opx-list-item__checkbox-selected');
-                if(this.check_hidden) classes.push('opx-list-item__checkbox-hidden');
-                if(this.check_disabled) classes.push('opx-list-item__checkbox-disabled');
-                return  classes;
+                if (this.is_selected) classes.push('opx-list-item__checkbox-selected');
+                if (this.check_hidden) classes.push('opx-list-item__checkbox-hidden');
+                if (this.check_disabled) classes.push('opx-list-item__checkbox-disabled');
+                return classes;
             },
             id_class: function () {
                 let classes = [];
@@ -141,20 +142,27 @@
                 let formatted = [];
 
                 props.map(prop => {
-                    if (String(prop).indexOf('datetime:') !== -1) {
-                        const date = DateTime.fromISO(prop.slice(9)).setZone().setLocale(window.navigator.language);
-                        prop = date.toFormat('d MMM yyyy, HH:mm');
-                    } else if (String(prop).indexOf('date:') !== -1) {
-                        const date = DateTime.fromISO(prop.slice(5)).setZone().setLocale(window.navigator.language);
-                        prop = date.toFormat('d MMM yyyy');
-                    } else if (String(prop).indexOf('time:') !== -1) {
-                        const date = DateTime.fromISO(prop.slice(5)).setZone().setLocale(window.navigator.language);
-                        prop = date.toFormat('HH:mm');
+                    let value = typeof prop === 'string' ? prop : prop[Object.keys(prop)[0]];
+                    let key = typeof prop === 'string' ? null : Object.keys(prop)[0];
+
+                    if (String(value).indexOf('datetime:') !== -1) {
+                        const date = DateTime.fromISO(value.slice(9)).setZone().setLocale(window.navigator.language);
+                        value = date.toFormat('d MMM yyyy, HH:mm');
+                    } else if (String(value).indexOf('date:') !== -1) {
+                        const date = DateTime.fromISO(value.slice(5)).setZone().setLocale(window.navigator.language);
+                        value = date.toFormat('d MMM yyyy');
+                    } else if (String(value).indexOf('time:') !== -1) {
+                        const date = DateTime.fromISO(value.slice(5)).setZone().setLocale(window.navigator.language);
+                        value = date.toFormat('HH:mm');
                     } else {
-                        prop = this.$trans(prop);
+                        value = this.$trans(value);
                     }
 
-                    formatted.push(prop)
+                    if (key === null) {
+                        formatted.push(value);
+                    } else {
+                        formatted.push('<span class="opx-list-item__property-' + key + '">' + value + '</span>');
+                    }
                 });
 
                 return formatted;
