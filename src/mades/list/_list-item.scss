@@ -2,6 +2,7 @@
 @import "variables";
 @import "../mixins/transition";
 @import "../media-sizes";
+@import "../colors";
 
 .opx-list-item {
   font-size: 0;
@@ -174,6 +175,54 @@
     margin-right: 0.5em;
     color: $list-item-property-color;
     vertical-align: middle;
+
+    &-blue {
+      color: $color-blue-8;
+    }
+
+    &-indigo {
+      color: $color-indigo-8;
+    }
+
+    &-violet {
+      color: $color-violet-8;
+    }
+
+    &-fuchsia {
+      color: $color-fuschia-8;
+    }
+
+    &-pink {
+      color: $color-pink-8;
+    }
+
+    &-red {
+      color: $color-red-8;
+    }
+
+    &-orange {
+      color: $color-orange-8;
+    }
+
+    &-yellow {
+      color: $color-yellow-8;
+    }
+
+    &-lime {
+      color: $color-lime-8;
+    }
+
+    &-green {
+      color: $color-green-8;
+    }
+
+    &-teal {
+      color: $color-teal-8;
+    }
+
+    &-cyan {
+      color: $color-cyan-8;
+    }
   }
 
   &-last {
@@ -192,7 +241,7 @@
     color: $list-item-deleted-subtitle-color !important;
   }
 
-  &-deleted &__property {
+  &-deleted &__property, &-deleted &__property > * {
     color: $list-item-deleted-property-color !important;
   }
 
