@@ -287,6 +287,10 @@
       min-width: map_get($widths, id) * 0.8;
       height: map_get($list-item-height, $size);
       line-height: map_get($list-item-height, $size) * 27 / 30;
+
+      &-fixed {
+        width: map_get($widths, id) * 0.8;
+      }
     }
   }
 }

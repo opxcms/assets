@@ -28,7 +28,8 @@
                     <!-- add -->
                     <div class="opx-toolbar__group">
                         <div class="opx-toolbar__item">
-                            <div class="opx-toolbar__item-button opx-toolbar__item-button-green" v-if="!!original['add']"
+                            <div class="opx-toolbar__item-button opx-toolbar__item-button-green"
+                                 v-if="!!original['add']"
                                  @click="clickAdd">
                                 <opx-icon-external v-if="!!original['icons'] && !!original['icons']['add']"
                                                    :icon="original['icons']['add']"></opx-icon-external>
@@ -100,6 +101,7 @@
                                :selectable="has_actions"
                                @selection="toggleItemSelection"
                                @change-parent="changeParent"
+                               @refreshed="refreshed"
                 ></opx-list-item>
             </opx-scroll-box>
             <opx-loading v-if="is_loading"></opx-loading>
@@ -470,6 +472,14 @@
                 }
 
                 this.$router.push(query);
+            },
+
+            refreshed(id, data) {
+                Object.keys(this.list).map(key => {
+                    if (this.list[key]['id'] === id) {
+                        Vue.set(this.list, key, data);
+                    }
+                });
             }
         },
     }

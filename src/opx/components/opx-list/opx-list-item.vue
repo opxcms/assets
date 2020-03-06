@@ -22,6 +22,13 @@
                      @click.native.prevent="goingEditing(action['route'])">
             <opx-icon :icon="action['icon']"></opx-icon>
         </router-link>
+        <!-- Refresh action -->
+        <div class="opx-list-item__action opx-list-item__action-fixed" v-if="has_refresh"
+             @click="refresh"
+        >
+            <opx-icon :icon="'refresh'" v-if="!refreshing"></opx-icon>
+            <opx-loading v-if="refreshing" :fit="true"></opx-loading>
+        </div>
         <div class="opx-list-item__body">
             <div class="opx-list-item__body-line">
                 <div class="opx-list-item__title">{{ item_title }}</div>
@@ -41,6 +48,7 @@
 
 <script>
     import {DateTime} from 'luxon';
+    import client from "../../api-client/api-client";
 
     export default {
         name: "opx-list-item",
@@ -140,6 +148,9 @@
             has_actions: function () {
                 return !!this.item['actions'];
             },
+            has_refresh: function () {
+                return !!this.item['refresh'];
+            },
             item_properties: function () {
                 let props = this.item['properties'];
 
@@ -179,6 +190,10 @@
             }
         },
 
+        data: () => ({
+            refreshing: false,
+        }),
+
         methods: {
             toggleSelected() {
                 if (this.check_disabled || this.check_hidden) return;
@@ -191,6 +206,23 @@
                     this.before_edit(String(this.item['id']));
                 }
                 this.$router.push(route);
+            },
+
+            refresh() {
+                if (!this.item['refresh'] || this.refreshing) {
+                    return;
+                }
+                this.refreshing = true;
+                client.post(this.item['refresh'], {id: this.item_id})
+                    .then(response => {
+                        this.$emit('refreshed', this.item_id, response.data);
+                        this.refreshing = false;
+                    })
+                    .catch(error => {
+                        const message = error.message + ':<br>' + error.response.data.message;
+                        this.$toast.error(message);
+                        this.refreshing = false;
+                    });
             },
         }
     }
