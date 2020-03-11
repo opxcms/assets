@@ -163,10 +163,13 @@
                 let formatted = [];
 
                 props.map(prop => {
-                    if(prop === null) {
+                    if (prop === null) {
                         return;
                     }
                     let value = typeof prop === 'string' ? prop : prop[Object.keys(prop)[0]];
+                    if (value === null) {
+                        return;
+                    }
                     let key = typeof prop === 'string' ? null : Object.keys(prop)[0];
 
                     if (String(value).indexOf('datetime:') !== -1) {
