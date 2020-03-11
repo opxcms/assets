@@ -144,6 +144,7 @@
                 if (this.dropped) {
                     this.$nextTick(() => {
                         const el = this.$el.querySelector('.opx-form-field-select__list');
+                        el.style.height = null;
                         const height = el.clientHeight + 1;
                         el.style.height = height + 'px';
                         el.parentElement.focus();
