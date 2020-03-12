@@ -156,7 +156,7 @@
 
                 if (props === null) return null;
 
-                if (typeof props === 'string') {
+                if (typeof props === 'string' || typeof props === 'number') {
                     props = [props];
                 }
 
@@ -166,7 +166,7 @@
                     if (prop === null) {
                         return;
                     }
-                    let value = typeof prop === 'string' ? prop : prop[Object.keys(prop)[0]];
+                    let value = (typeof prop === 'string' || typeof prop === 'number') ? prop : prop[Object.keys(prop)[0]];
                     if (value === null) {
                         return;
                     }
