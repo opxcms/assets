@@ -22,23 +22,33 @@
                     <span class="opx-form-field-properties__show-all-caption">{{ $trans('forms.show_all') }}</span>
                 </div>
                 <!-- end of show all -->
-                <div class="opx-form-field-properties__property" v-for="(property, key) in getOptions()"
-                     :key="key"
-                     :class="{'opx-form-field-properties__property-required': propertyRequired(key)}"
-                >
-                    <span class="opx-form-field-properties__property-caption" v-html="propertyCaption(key)"></span>
-                    <div class="opx-form-field-properties__property-value">
-                        <!-- Value selector here -->
-                        <component :is="getPropertyType(key)"
-                                   :original="property"
-                                   :value="getPropertyValue(key)"
-                                   :initial="getPropertyInitial(key)"
-                                   @changed="setNewValue"
-                        ></component>
+
+                <!-- groups -->
+                <div class="opx-form-field-properties__group" v-for="(group, groupKey) in optionsGroups" :key="groupKey">
+                    <span class="opx-form-field-properties__group-caption" v-if="!!group">{{ group }}</span>
+                    <!-- properties -->
+                    <div class="opx-form-field-properties__property" v-for="(property, key) in getOptions(group)"
+                         :key="key"
+                         :class="{'opx-form-field-properties__property-required': propertyRequired(property['id'])}"
+                    >
+                        <span class="opx-form-field-properties__property-caption" v-html="propertyCaption(property['id'])"></span>
+                        <div class="opx-form-field-properties__property-value">
+                            <!-- Value selector here -->
+                            <component :is="getPropertyType(property['id'])"
+                                       :original="property"
+                                       :value="getPropertyValue(property['id'])"
+                                       :initial="getPropertyInitial(property['id'])"
+                                       @changed="setNewValue"
+                            ></component>
+                        </div>
                     </div>
+                    <!-- end of properties -->
                 </div>
+                <!-- end of groups -->
+
             </div>
             <!-- end of options -->
+
         </div>
         <div class="opx-form-field__errors" v-if="!isValid()">
             <span class="opx-form-field__errors-text" v-for="message in getErrors()">{{ message }}</span>
@@ -66,7 +76,21 @@
                 if (options === null) return true;
 
                 return !options.some(option => !option['required']);
-            }
+            },
+
+            optionsGroups: function () {
+                let options = (this.original['options']) ? this.original['options'] : {};
+                let groups = [];
+                options.map(option => {
+                    let optionGroup = !!option['group'] ? option['group'] : null;
+                    if (groups.indexOf(optionGroup) === -1) {
+                        groups.push(optionGroup);
+                    }
+                });
+
+                return groups;
+            },
+
         },
 
         methods: {
@@ -74,8 +98,13 @@
                 return Array.from(!!this.value ? this.value : []);
             },
 
-            getOptions() {
-                let options = (this.original['options']) ? this.original['options'] : {};
+
+            getOptions(group = null) {
+                let options = (!!this.original['options']) ? this.original['options'] : {};
+
+                options = options.filter(option => {
+                    return (!!option['group'] && (option['group'] === group)) || (group === null && !option['group']);
+                });
 
                 if (!this.showAll) {
                     options = options.filter(option => {
@@ -91,22 +120,24 @@
                 return options;
             },
 
-            getOption(key) {
-                const options = this.getOptions();
-                return !!options[key] ? options[key] : null;
+            getOption(id) {
+                let options = (!!this.original['options']) ? this.original['options'] : {};
+                options = options.filter(option => option['id'] === id);
+                options = options.length > 0 ? options[0] : null;
+                return !!options ? options : null;
             },
 
-            propertyRequired(key) {
-                const option = this.getOption(key);
+            propertyRequired(id) {
+                const option = this.getOption(id);
 
                 return !!option && !!option['required'];
             },
 
-            propertyCaption(key) {
-                const options = this.getOptions();
-                let caption = this.$trans(options[key]['name']);
-                if (options[key]['units']) caption += ', ' + options[key]['units'];
-                if (options[key]['alias']) caption += '<span class="opx-form-field-properties__property-caption-hint">[' + options[key]['alias'] + ']</span>';
+            propertyCaption(id) {
+                const option = this.getOption(id);
+                let caption = this.$trans(option['name']);
+                if (option['units']) caption += ', ' + option['units'];
+                if (option['alias']) caption += '<span class="opx-form-field-properties__property-caption-hint">[' + option['alias'] + ']</span>';
 
                 return caption;
             },
@@ -150,17 +181,17 @@
                 this.setValue(values);
             },
 
-            getPropertyType(key) {
-                const option = this.getOption(key);
+            getPropertyType(id) {
+                const option = this.getOption(id);
                 const name = 'opx-form-field-properties-' + (!!option['type'] ? option['type'] : 'simple');
                 const component = Vue.component(name);
 
                 return !!component ? component : Vue.component('opx-form-field-properties-simple');
             },
 
-            getPropertyValue(key) {
+            getPropertyValue(id) {
                 const values = this.getValue();
-                const option = this.getOption(key);
+                const option = this.getOption(id);
 
                 let value = null;
 
@@ -175,9 +206,9 @@
                 return value !== null ? String(value) : null;
             },
 
-            getPropertyInitial(key) {
+            getPropertyInitial(id) {
                 const values = !!this.original['value'] ? this.original['value'] : [];
-                const option = this.getOption(key);
+                const option = this.getOption(id);
                 let value = null;
 
                 values.some(item => {

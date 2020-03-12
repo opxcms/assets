@@ -73,6 +73,18 @@
     }
   }
 
+  &__group {
+    &-caption {
+      font-family: $form-font-family;
+      font-size: $form-default-size;
+      height: $form-default-size * 2;
+      line-height: $form-default-size * 2;
+      color: $form-active-color;
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+  }
+
   &__property {
     height: $form-default-size * 2;
     line-height: $form-default-size * 2;
@@ -101,8 +113,8 @@
 
     &-caption {
       cursor: default;
-      color: $form-hint-color;
-      font-weight: 400;
+      color: $form-text-color;
+      font-weight: 300;
 
       &-hint {
         color: $form-hint-color;
@@ -114,7 +126,7 @@
     }
 
     &-required &-caption {
-      font-weight: 600;
+      font-weight: 400;
       color: $form-text-color;
     }
 
