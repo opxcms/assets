@@ -25,8 +25,8 @@
                                            :id="key"
                                            :image="image"
                                            draggable="true"
-                                           @discard="removeValue"
                                            @ondragstart="dragstart"
+                                           @discard="removeValue"
                                            @ondragenter="dragenter"
                                            @ondrop="drop"
                                            @ondragend="dragend"
@@ -34,8 +34,14 @@
                 <!-- end of list of images -->
 
                 <!-- actions -->
-                <div class="opx-form-field-image__add" v-if="canEdit()">
-                    <label class="opx-form-field-image__add-button"
+                <div class="opx-form-field-image__add" v-if="canEdit()"
+                     :class="{'opx-form-field-image__add-dropping': externalDropping}"
+                     @dragenter.stop.prevent="externalDragenter"
+                     @dragover.stop.prevent="() => {return false;}"
+                     @dragleave.stop.prevent="externalDragleave"
+                     @drop.stop.prevent="externalDrop"
+                >
+                    <label class="opx-form-field-image__add-button" v-if="!externalDropping"
                            :class="{'opx-form-field-image__add-button-disabled': !canAddImage()}">
                         <opx-icon :icon="'folder-open'"></opx-icon>
                         <input class="opx-form-field-image__add-button-upload" type="file" accept="image/*" multiple
@@ -63,6 +69,7 @@
         data: () => ({
             maxImages: 0,
             currentDragging: null,
+            externalDropping: false,
         }),
 
         created() {
@@ -110,8 +117,14 @@
             },
 
             inputChanged(e) {
-                for (let i = 0; i < e.target.files.length; i++) {
-                    const file = e.target.files[i];
+                this.uploadFiles(e.target.files);
+
+                e.target.value = '';
+            },
+
+            uploadFiles(files) {
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
 
                     if (!file.type.startsWith('image/')) {
                         continue
@@ -166,8 +179,6 @@
 
                     reader.readAsDataURL(file);
                 }
-
-                e.target.value = '';
             },
 
             makeValue(src = '', alt = '', description = '', file = '') {
@@ -198,16 +209,16 @@
                 this.setValue(val);
             },
             dragstart(event, key) {
-                this.currentDragging = key;
+                Vue.set(this, 'currentDragging', key);
                 event.dataTransfer.effectAllowed = "move";
             },
             dragenter(event, key) {
                 if (this.currentDragging === null) {
                     return true;
                 }
-                if(key !== this.currentDragging) {
+                if (key !== this.currentDragging) {
                     this.value.splice(key, 0, this.value.splice(this.currentDragging, 1)[0]);
-                    this.currentDragging = key;
+                    Vue.set(this, 'currentDragging', key);
                 }
                 event.preventDefault();
             },
@@ -215,8 +226,45 @@
                 return true;
             },
             dragend(event, key) {
-                this.currentDragging = null;
+                Vue.set(this, 'currentDragging', null);
                 return true;
+            },
+
+            externalDragenter(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                this.externalDropping = true;
+                return false;
+            },
+
+            externalDragleave(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                this.externalDropping = false;
+                return false;
+            },
+
+            externalDrop(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                this.externalDropping = false;
+
+                let uri = event.dataTransfer.getData('text/uri-list');
+
+                if (uri !== '') {
+                    this.pushValue({
+                        src: uri,
+                        alt: '',
+                        description: '',
+                        external: true,
+                    });
+                } else {
+                    this.uploadFiles(event.dataTransfer.files);
+                }
+                console.log(typeof uri);
+
+
+                return false;
             },
         }
     }

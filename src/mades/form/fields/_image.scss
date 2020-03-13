@@ -27,7 +27,15 @@ $image-width: (
 
   &__add {
     width: 100%;
-    padding: 0 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid transparentize($form-default-color, 0.5);
+
+    &-dropping {
+      background-color: transparentize($form-default-color, 0.5);
+      min-height: 5rem;
+    }
 
     &-button {
       width: $form-default-size*3;
