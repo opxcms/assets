@@ -423,9 +423,16 @@
                         const changed = !!response.data['changed'] ? response.data['changed'] : null;
 
                         this.getSelectedItems().map(item => {
+                            let itemId = item['id'];
                             if (changed) {
-                                if (!!changed[item['id']]) {
-                                    Object.assign(item, changed[item['id']]);
+                                if (!!changed[itemId]) {
+                                    Object.assign(item, changed[itemId]);
+                                } else if (typeof changed[itemId] !== 'undefined' && changed[itemId] === null) {
+                                    Object.keys(this.list).map(index => {
+                                        if (this.list[index]['id'] === itemId) {
+                                            this.list.splice(index, 1);
+                                        }
+                                    });
                                 }
                             } else {
                                 Vue.set(item, this.actions[action].key, this.actions[action].state);
