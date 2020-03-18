@@ -69,6 +69,8 @@ import OpxFormFieldImageComponent from './components/opx-form/opx-form-fields/op
 import OpxFormFieldImageItemComponent from './components/opx-form/opx-form-fields/opx-form-field-image-item';
 import OpxFormFieldFileComponent from './components/opx-form/opx-form-fields/opx-form-field-file';
 import OpxFormFieldFileItemComponent from './components/opx-form/opx-form-fields/opx-form-field-file-item';
+import OpxFormFieldAudioComponent from './components/opx-form/opx-form-fields/opx-form-field-audio';
+import OpxFormFieldAudioItemComponent from './components/opx-form/opx-form-fields/opx-form-field-audio-item';
 import OpxFormFieldPropertiesComponent from './components/opx-form/opx-form-fields/opx-form-field-properties';
 import OpxFormFieldPropertiesSimpleComponent from './components/opx-form/opx-form-fields/opx-form-field-properties-simple';
 import OpxFormFieldPropertiesOneOfComponent from './components/opx-form/opx-form-fields/opx-form-field-properties-one-of';
@@ -131,6 +133,8 @@ Vue.component('opx-form-field-image', OpxFormFieldImageComponent);
 Vue.component('opx-form-field-image-item', OpxFormFieldImageItemComponent);
 Vue.component('opx-form-field-file', OpxFormFieldFileComponent);
 Vue.component('opx-form-field-file-item', OpxFormFieldFileItemComponent);
+Vue.component('opx-form-field-audio', OpxFormFieldAudioComponent);
+Vue.component('opx-form-field-audio-item', OpxFormFieldAudioItemComponent);
 Vue.component('opx-form-field-properties', OpxFormFieldPropertiesComponent);
 Vue.component('opx-form-field-properties-simple', OpxFormFieldPropertiesSimpleComponent);
 Vue.component('opx-form-field-properties-one-of', OpxFormFieldPropertiesOneOfComponent);

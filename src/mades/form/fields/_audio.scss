@@ -1,0 +1,189 @@
+@import "../variables";
+@import "../../media-sizes";
+@import "../../mixins/transition";
+
+/* COMMON */
+.opx-form-field-audio {
+  border-color: $form-default-color;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  box-sizing: border-box;
+  font-size: 0;
+  margin: 0;
+  outline: none !important;
+  padding: $form-default-size 0;
+  position: relative;
+  width: 100%;
+
+  &__invalid {
+    border-color: $form-error-color !important;
+  }
+
+  &__modified:focus {
+    border-color: $form-modified-color;
+  }
+
+  &__modified {
+    border-color: $form-modified-light-color;
+  }
+
+  &__required {
+  }
+
+  &:disabled {
+    background-color: transparent;
+    border-color: $form-disabled-light-color;
+    color: $form-disabled-color;
+  }
+}
+
+.opx-form-field-audio {
+  &__audio {
+    border: 1px solid $form-default-color;
+    box-sizing: border-box;
+    display: block;
+    margin: 0 0 1rem 0;
+    position: relative;
+    border-radius: 3px;
+    cursor: grab;
+    width: 100%;
+    line-height: 2rem;
+    padding: 0.5rem 2rem 0.5rem 0.5rem;
+
+    &-button {
+      display: inline-block;
+      line-height: 2rem;
+      width: 2rem;
+      height: 2rem;
+      vertical-align: top;
+      margin-right: 0.3rem;
+      cursor: pointer;
+
+      &-icon {
+        fill: $form-text-color;
+        @include transition('fill');
+      }
+
+      &:hover &-icon {
+        fill: $form-active-color;
+      }
+    }
+
+    &-seek {
+      display: inline-block;
+      line-height: 2rem;
+      width: 10rem;
+      height: 2rem;
+      vertical-align: top;
+      margin-right: 0.3rem;
+      cursor: pointer;
+      background-color: $form-light-hover-color;
+      position: relative;
+
+      &-progress {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        &-complete {
+          height: 100%;
+          background-color: $form-default-color;
+        }
+      }
+
+      &-time {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        font-family: $project-font;
+        font-size: 0.9rem;
+        color: $form-text-color;
+      }
+    }
+
+    &-name {
+      font-size: 1rem;
+      vertical-align: middle;
+      color: $form-text-color;
+      white-space: nowrap;
+    }
+
+    &-size {
+      font-size: 0.9rem;
+      vertical-align: middle;
+      color: $form-hint-color;
+      font-weight: 300;
+      margin-left: 0.3rem;
+    }
+
+    & > .opx-loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    & > .opx-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    &-remove {
+      position: absolute;
+      height: $form-default-size * 2;
+      background-color: transparentize($color-white, 0.3);
+      top: 0.5rem;
+      right: 0;
+      width: $form-default-size * 2;
+      border-radius: 0 3px 0 0;
+      background-color: $form-background;
+      cursor: pointer;
+      opacity: 0.5;
+      @include transition('opacity');
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &:before, &:after {
+        content: '';
+        display: block;
+        width: 70%;
+        height: 2px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background-color: $form-error-color;
+      }
+
+      &:before {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+
+      &:after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+
+    &-preview {
+      height: 100%;
+      width: 100%;
+      position: relative;
+
+      &-img {
+        max-height: 100%;
+        max-width: 100%;
+        position: absolute;
+        display: block;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}
