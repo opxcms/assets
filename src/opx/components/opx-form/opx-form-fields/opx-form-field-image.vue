@@ -34,17 +34,17 @@
                 <!-- end of list of images -->
 
                 <!-- actions -->
-                <div class="opx-form-field-image__add" v-if="canEdit()"
-                     :class="{'opx-form-field-image__add-dropping': externalDropping}"
+                <div class="opx-form-field__add" v-if="canEdit()"
+                     :class="{'opx-form-field__add-dropping': externalDropping}"
                      @dragenter.stop.prevent="externalDragenter"
                      @dragover.stop.prevent="() => {return false;}"
                      @dragleave.stop.prevent="externalDragleave"
                      @drop.stop.prevent="externalDrop"
                 >
-                    <label class="opx-form-field-image__add-button" v-if="!externalDropping"
-                           :class="{'opx-form-field-image__add-button-disabled': !canAddImage()}">
+                    <label class="opx-form-field__add-button" v-if="!externalDropping"
+                           :class="{'opx-form-field__add-button-disabled': !canAddImage()}">
                         <opx-icon :icon="'folder-open'"></opx-icon>
-                        <input class="opx-form-field-image__add-button-upload" type="file" accept="image/*" multiple
+                        <input class="opx-form-field__add-button-upload" type="file" accept="image/*" multiple
                                :disabled="!canAddImage()" @change="inputChanged">
                     </label>
                 </div>

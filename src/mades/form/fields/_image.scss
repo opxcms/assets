@@ -25,59 +25,6 @@ $image-width: (
   position: relative;
   width: 100%;
 
-  &__add {
-    width: 100%;
-    padding: 1rem;
-    box-sizing: border-box;
-    border-radius: 5px;
-    border: 1px solid transparentize($form-default-color, 0.5);
-
-    &-dropping {
-      background-color: transparentize($form-default-color, 0.5);
-      min-height: 5rem;
-    }
-
-    &-button {
-      width: $form-default-size*3;
-      height: $form-default-size*3;
-      display: inline-block;
-      font-size: $form-default-size * 1.6;
-      color: $form-background;
-      border-radius: 5px;
-      background-color: $form-active-color;
-      padding: $form-default-size * 0.7;
-      box-sizing: border-box;
-      cursor: pointer;
-
-      &-upload {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        -moz-opacity: 0;
-        filter: alpha(opacity=0);
-        opacity: 0;
-        font-size: 150px;
-        height: 30px;
-        z-index: -1;
-      }
-
-      & > .opx-icon {
-        display: block;
-      }
-
-      &:not(:last-child) {
-        margin-right: $form-default-size;
-      }
-
-      &-disabled {
-        cursor: default;
-        color: $form-disabled-light-color;
-        background-color: $form-disabled-color;
-      }
-    }
-  }
-
   &__invalid {
     border-color: $form-error-color !important;
   }
@@ -100,9 +47,7 @@ $image-width: (
   }
 }
 
-
 .opx-form-field-image {
-
   &__image {
     border: 1px solid $form-default-color;
     box-sizing: border-box;
