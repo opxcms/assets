@@ -2,12 +2,14 @@
 @import "../colors";
 @import "../mixins/no-selection";
 @import "../mixins/transition";
+@import "fields/field-drop-area";
 @import "fields/text";
 @import "fields/checkbox";
 @import "fields/editor";
 @import "fields/select";
 @import "fields/datetime";
 @import "fields/image";
+@import "fields/file";
 @import "fields/properties";
 @import "fields/related";
 @import "fields/comments";

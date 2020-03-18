@@ -67,6 +67,8 @@ import OpxFormFieldNestedSelectComponent from './components/opx-form/opx-form-fi
 import OpxFormFieldNestedSelectItemComponent from './components/opx-form/opx-form-fields/opx-form-field-nested-select-item';
 import OpxFormFieldImageComponent from './components/opx-form/opx-form-fields/opx-form-field-image';
 import OpxFormFieldImageItemComponent from './components/opx-form/opx-form-fields/opx-form-field-image-item';
+import OpxFormFieldFileComponent from './components/opx-form/opx-form-fields/opx-form-field-file';
+import OpxFormFieldFileItemComponent from './components/opx-form/opx-form-fields/opx-form-field-file-item';
 import OpxFormFieldPropertiesComponent from './components/opx-form/opx-form-fields/opx-form-field-properties';
 import OpxFormFieldPropertiesSimpleComponent from './components/opx-form/opx-form-fields/opx-form-field-properties-simple';
 import OpxFormFieldPropertiesOneOfComponent from './components/opx-form/opx-form-fields/opx-form-field-properties-one-of';
@@ -127,6 +129,8 @@ Vue.component('opx-form-field-nested-select', OpxFormFieldNestedSelectComponent)
 Vue.component('opx-form-field-nested-select-item', OpxFormFieldNestedSelectItemComponent);
 Vue.component('opx-form-field-image', OpxFormFieldImageComponent);
 Vue.component('opx-form-field-image-item', OpxFormFieldImageItemComponent);
+Vue.component('opx-form-field-file', OpxFormFieldFileComponent);
+Vue.component('opx-form-field-file-item', OpxFormFieldFileItemComponent);
 Vue.component('opx-form-field-properties', OpxFormFieldPropertiesComponent);
 Vue.component('opx-form-field-properties-simple', OpxFormFieldPropertiesSimpleComponent);
 Vue.component('opx-form-field-properties-one-of', OpxFormFieldPropertiesOneOfComponent);

@@ -1,0 +1,245 @@
+@import "../variables";
+@import "../../media-sizes";
+@import "../../mixins/transition";
+
+/* COMMON */
+.opx-form-field-file {
+  border-color: $form-default-color;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  box-sizing: border-box;
+  font-size: 0;
+  margin: 0;
+  outline: none !important;
+  padding: $form-default-size 0;
+  position: relative;
+  width: 100%;
+
+  &__add {
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid transparentize($form-default-color, 0.5);
+
+    &-dropping {
+      background-color: transparentize($form-default-color, 0.5);
+      min-height: 5rem;
+    }
+
+    &-button {
+      width: $form-default-size*3;
+      height: $form-default-size*3;
+      display: inline-block;
+      font-size: $form-default-size * 1.6;
+      color: $form-background;
+      border-radius: 5px;
+      background-color: $form-active-color;
+      padding: $form-default-size * 0.7;
+      box-sizing: border-box;
+      cursor: pointer;
+
+      &-upload {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        -moz-opacity: 0;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        font-size: 150px;
+        height: 30px;
+        z-index: -1;
+      }
+
+      & > .opx-icon {
+        display: block;
+      }
+
+      &:not(:last-child) {
+        margin-right: $form-default-size;
+      }
+
+      &-disabled {
+        cursor: default;
+        color: $form-disabled-light-color;
+        background-color: $form-disabled-color;
+      }
+    }
+  }
+
+  &__invalid {
+    border-color: $form-error-color !important;
+  }
+
+  &__modified:focus {
+    border-color: $form-modified-color;
+  }
+
+  &__modified {
+    border-color: $form-modified-light-color;
+  }
+
+  &__required {
+  }
+
+  &:disabled {
+    background-color: transparent;
+    border-color: $form-disabled-light-color;
+    color: $form-disabled-color;
+  }
+}
+
+
+.opx-form-field-file {
+
+  &__file {
+    border: 1px solid $form-default-color;
+    box-sizing: border-box;
+    display: block;
+    margin: 0 0 1rem 0;
+    position: relative;
+    border-radius: 3px;
+    cursor: grab;
+    width: 100%;
+    line-height: 2rem;
+    padding: 0 2rem 0 0.5rem;
+
+    &-name {
+      font-size: 1rem;
+      vertical-align: middle;
+      color: $form-text-color;
+    }
+
+    &-size {
+      font-size: 0.9rem;
+      vertical-align: middle;
+      color: $form-hint-color;
+      font-weight: 300;
+      margin-left: 0.3rem;
+    }
+
+    & > .opx-loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    & > .opx-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    &-remove, &-view, &-edit, &-id {
+      position: absolute;
+      height: $form-default-size * 2;
+      background-color: transparentize($color-white, 0.3);
+    }
+
+    &-id {
+      display: inline-block;
+      top: 0;
+      left: 0;
+      line-height: $form-default-size * 2;
+      min-width: $form-default-size * 2;
+      font-family: $project-font;
+      font-size: $form-default-size;
+      text-align: center;
+      border-radius: 3px 0 0 0;
+    }
+
+    &-edit {
+      display: none;
+    }
+
+    &-view {
+      cursor: pointer;
+      width: $form-default-size * 2;
+      border-radius: 0 0 3px 0;
+      bottom: 0;
+      right: 0;
+      opacity: 0.5;
+      @include transition('opacity');
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &:before, &:after {
+        content: '';
+        display: block;
+        position: absolute;
+      }
+
+      &:before {
+        width: 40%;
+        height: 40%;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        border: 2px solid $form-text-color;
+        transform: translate(-30%, -70%);
+      }
+
+      &:after {
+        top: 68%;
+        left: 32%;
+        height: 30%;
+        width: 2px;
+        background-color: $form-text-color;
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+    }
+
+    &-remove {
+      top: 0;
+      right: 0;
+      width: $form-default-size * 2;
+      border-radius: 0 3px 0 0;
+      background-color: $form-background;
+      cursor: pointer;
+      opacity: 0.5;
+      @include transition('opacity');
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &:before, &:after {
+        content: '';
+        display: block;
+        width: 70%;
+        height: 2px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background-color: $form-error-color;
+      }
+
+      &:before {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+
+      &:after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+
+    &-preview {
+      height: 100%;
+      width: 100%;
+      position: relative;
+
+      &-img {
+        max-height: 100%;
+        max-width: 100%;
+        position: absolute;
+        display: block;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}
