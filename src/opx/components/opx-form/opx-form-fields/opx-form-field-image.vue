@@ -143,7 +143,8 @@
                             Vue.set(newVal, 'uploading', true);
                             this.lock();
                             // do upload here
-                            client.post(this.saveUrl + '_image', {name: this.getName(), data: newVal}, {
+                            const url = !!this.controllerBase ? this.controllerBase + 'image_upload' : this.saveUrl + '_image';
+                            client.post(url, {name: this.getName(), data: newVal}, {
                                 onUploadProgress: e => {
                                     if (e.lengthComputable) {
                                         Vue.set(newVal, 'progress', Math.floor(e.loaded / e.total * 100));
@@ -261,8 +262,6 @@
                 } else {
                     this.uploadFiles(event.dataTransfer.files);
                 }
-                console.log(typeof uri);
-
 
                 return false;
             },

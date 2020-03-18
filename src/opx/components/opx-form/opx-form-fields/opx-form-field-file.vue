@@ -34,8 +34,8 @@
                 <!-- end of list of files -->
 
                 <!-- actions -->
-                <div class="opx-form-field-file__add" v-if="canEdit()"
-                     :class="{'opx-form-field-file__add-dropping': externalDropping}"
+                <div class="opx-form-field__add" v-if="canEdit()"
+                     :class="{'opx-form-field__add-dropping': externalDropping}"
                      @dragenter.stop.prevent="externalDragenter"
                      @dragover.stop.prevent="() => {return false;}"
                      @dragleave.stop.prevent="externalDragleave"
