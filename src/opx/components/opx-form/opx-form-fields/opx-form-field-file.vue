@@ -62,6 +62,7 @@
     import OpxFormAbstractField from "./opx-form-abstract-field";
     import client from "../../../api-client/api-client";
     import Vue from "vue";
+    import upload from "../../../api-client/upload";
 
     export default {
         mixins: [OpxFormAbstractField],
@@ -126,34 +127,32 @@
                 for (let i = 0; i < files.length; i++) {
                     const file = files[i];
 
+                    if (!file.type.startsWith('audio/')) {
+                        continue
+                    }
+
                     const reader = new FileReader();
                     let val = this.makeValue(file.name, file.name, '', false, file.size);
                     this.pushValue(val);
 
                     reader.onload = (newVal => {
-                        return e => {
+                        return event => {
                             if (!newVal) return;
 
-                            newVal['file'] = e.target.result;
-                            Vue.set(newVal, 'loading', false);
+                            newVal['file'] = event.target.result;
                             Vue.set(newVal, 'uploading', true);
+                            Vue.set(newVal, 'loading', false);
+
                             this.lock();
-                            // do upload here
-                            const url = !!this.controllerBase ? this.controllerBase + 'file_upload' : this.saveUrl + '_file';
-                            client.post(url, {name: this.getName(), data: newVal}, {
-                                onUploadProgress: e => {
-                                    if (e.lengthComputable) {
-                                        Vue.set(newVal, 'progress', Math.floor(e.loaded / e.total * 100));
-                                    } else {
-                                        Vue.set(newVal, 'progress', Math.floor((e.loaded % 1000000) / 10000));
-                                    }
-                                }
+
+                            upload('manage/assets/temp', file.name, event.target.result, {
+                                progress: process => {
+                                    Vue.set(newVal, 'progress', process);
+                                },
                             })
-                                .then(response => {
-                                    const res = response.data;
-                                    Vue.set(newVal, 'src', res.src);
-                                    Vue.set(newVal, 'name', res.name);
-                                    Vue.set(newVal, 'size', res.size);
+                                .then(result => {
+                                    Vue.set(newVal, 'src', result.src);
+                                    Vue.set(newVal, 'external', true);
                                     Vue.delete(newVal, 'file');
                                     Vue.delete(newVal, 'loading');
                                     Vue.delete(newVal, 'uploading');
@@ -161,20 +160,16 @@
                                     this.unlock();
                                 })
                                 .catch(error => {
-                                    const message = !!error.response.data['message'] ? error.response.data['message'] : null;
                                     Vue.delete(newVal, 'loading');
                                     Vue.delete(newVal, 'uploading');
                                     Vue.delete(newVal, 'progress');
-
-                                    if (message) {
-                                        this.$toast.error(this.$trans(message));
-                                    }
+                                    this.$toast.error(this.$trans(error));
                                     this.unlock();
                                 });
                         }
                     })(val);
 
-                    reader.readAsDataURL(file);
+                    reader.readAsBinaryString(file);
                 }
             },
 
