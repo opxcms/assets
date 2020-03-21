@@ -6,6 +6,8 @@
          @drop="drop"
          @dragend="dragend"
     >
+        <span class="opx-form-field-audio__audio-button" v-if="audio['loading']"><opx-loading :fit="true"></opx-loading></span>
+
         <span class="opx-form-field-audio__audio-button" @click="play" v-if="!playing && loaded" title="Play">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <path class="opx-form-field-audio__audio-button-icon"
@@ -24,7 +26,11 @@
                       d="M16,4.995v9.808C16,15.464,15.464,16,14.804,16H4.997C4.446,16,4,15.554,4,15.003V5.196C4,4.536,4.536,4,5.196,4h9.808C15.554,4,16,4.446,16,4.995z"/>-->
             </svg>
         </span>
-        <span class="opx-form-field-audio__audio-seek" @click="seek" v-if="loaded">
+
+        <a :href="getDownloadUrl()" class="opx-form-field-audio__audio-name">{{ audio['name'] }}</a>
+
+        <span class="opx-form-field-audio__audio-seek" @click="seek" draggable="false"
+              @dragstart.stop.prevent="()=>{return false;}" v-if="loaded">
             <div class="opx-form-field-audio__audio-seek-progress">
                 <div class="opx-form-field-audio__audio-seek-progress-complete"
                      :style="{ width: this.percentComplete + '%' }"></div>
@@ -32,11 +38,8 @@
             <div class="opx-form-field-audio__audio-seek-time">{{ currentTime }} / {{ durationTime }}</div>
         </span>
 
-        <audio :src="getFileName()" preload="auto" style="display:none;"></audio>
+        <audio :src="getFileName" preload="metadata" style="display:none;"></audio>
 
-        <a :href="getDownloadUrl()" class="opx-form-field-file__file-name">{{ audio['name'] }}</a>
-
-        <div class="opx-form-field-audio__audio-download" v-if="!audio['loading']"></div>
         <div class="opx-form-field-audio__audio-remove" v-if="!audio['loading'] && !audio['uploading']"
              @click.stop="$emit('discard', id)"></div>
         <div class="opx-progress" v-show="audio['uploading']">
@@ -71,6 +74,12 @@
         }),
 
         computed: {
+            ready() {
+                return !this.audio['uploading'] && !this.audio['loading'];
+            },
+            getFileName() {
+                return this.ready ? this.audio['src'] : null;
+            },
             currentTime() {
                 return this.convertTimeHHMMSS(this.currentSeconds);
             },
@@ -82,7 +91,7 @@
             },
             muted() {
                 return this.volume / 100 === 0;
-            }
+            },
         },
 
         watch: {
@@ -110,27 +119,27 @@
 
         methods: {
             play() {
-                if(!this.loaded) return;
+                if (!this.loaded) return;
                 this.$emit('play', this.id);
                 this.playing = true;
                 this.player.play();
             },
 
             pause() {
-                if(!this.loaded) return;
+                if (!this.loaded) return;
                 this.playing = false;
                 this.player.pause();
             },
 
             stop() {
-                if(!this.loaded) return;
+                if (!this.loaded) return;
                 this.playing = false;
                 this.player.pause();
                 this.player.currentTime = 0;
             },
 
             seek(event) {
-                if(!this.loaded) return;
+                if (!this.loaded) return;
                 // if (!this.playing || event.target.tagName === 'SPAN') return;
                 const el = event.target.getBoundingClientRect();
                 const seekPos = (event.clientX - el.left) / el.width;
@@ -153,10 +162,6 @@
             convertTimeHHMMSS(value) {
                 let hhmmss = new Date(value * 1000).toISOString().substr(11, 8);
                 return hhmmss.indexOf("00:") === 0 ? hhmmss.substr(3) : hhmmss;
-            },
-
-            getFileName() {
-                return this.audio['src'];
             },
 
             getDownloadUrl() {

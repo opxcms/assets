@@ -70,12 +70,12 @@
     }
 
     &-seek {
-      display: inline-block;
+      display: block;
       line-height: 2rem;
-      width: 10rem;
+      width: 100%;
       height: 2rem;
       vertical-align: top;
-      margin-right: 0.3rem;
+      margin-top: 0.3rem;
       cursor: pointer;
       background-color: $form-light-hover-color;
       position: relative;
@@ -111,14 +111,6 @@
       vertical-align: middle;
       color: $form-text-color;
       white-space: nowrap;
-    }
-
-    &-size {
-      font-size: 0.9rem;
-      vertical-align: middle;
-      color: $form-hint-color;
-      font-weight: 300;
-      margin-left: 0.3rem;
     }
 
     & > .opx-loading {
