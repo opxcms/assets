@@ -254,17 +254,7 @@
                 event.stopPropagation();
                 this.externalDropping = false;
 
-                // let uri = event.dataTransfer.getData('text/uri-list');
-
-                // if (uri !== '') {
-                //     this.pushValue({
-                //         src: uri,
-                //         name: uri,
-                //         external: true,
-                //     });
-                // } else {
                 this.uploadFiles(event.dataTransfer.files);
-                // }
 
                 return false;
             },
