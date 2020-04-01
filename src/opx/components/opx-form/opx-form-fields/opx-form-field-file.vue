@@ -127,10 +127,6 @@
                 for (let i = 0; i < files.length; i++) {
                     const file = files[i];
 
-                    if (!file.type.startsWith('audio/')) {
-                        continue
-                    }
-
                     const reader = new FileReader();
                     let val = this.makeValue(file.name, file.name, '', false, file.size);
                     this.pushValue(val);
@@ -246,17 +242,7 @@
                 event.stopPropagation();
                 this.externalDropping = false;
 
-                let uri = event.dataTransfer.getData('text/uri-list');
-
-                if (uri !== '') {
-                    this.pushValue({
-                        src: uri,
-                        name: uri,
-                        external: true,
-                    });
-                } else {
-                    this.uploadFiles(event.dataTransfer.files);
-                }
+                this.uploadFiles(event.dataTransfer.files);
 
                 return false;
             },
