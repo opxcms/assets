@@ -4,7 +4,7 @@ const Upload = async function (url, original, file, options) {
     return new Promise((resolve, reject) => {
         const size = 10000000;
 
-        const chunksTotal = file.length / size + .5 | 0;
+        const chunksTotal = Math.ceil(file.length / size);
         let chunksProcessed = 0;
 
         let chunks = new Array(chunksTotal);
